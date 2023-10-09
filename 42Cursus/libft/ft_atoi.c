@@ -6,13 +6,11 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:50:15 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/09 14:53:08 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:24:29 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include <stdlib.h>
-#include <limits.h>
 
 int	ft_atoi(const char *nptr)
 {
