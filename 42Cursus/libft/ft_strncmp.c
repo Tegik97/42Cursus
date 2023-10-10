@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 14:04:37 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/10 18:04:32 by mchiaram         ###   ########.fr       */
+/*   Created: 2023/10/10 16:28:24 by mchiaram          #+#    #+#             */
+/*   Updated: 2023/10/10 16:48:39 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
 #include <stdio.h>
-#include <ctype.h>
-#include <string.h>
-#include <stdio.h>
-#include <unistd.h>
 
-int	main(int argc, char *argv[])
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	ptr;
-	char *s1 = argv[2];
-	
-	if (argc > 0)
+	if (n == 0)
+		return (0);
+	while ((*s1 != '\0' || *s2 != '\0') && n > 1)
 	{
-		ptr = ft_strlcpy(argv[1], argv[2], ft_atoi(argv[3]));
-		printf("copied %s into %s, size: %d\n", s1, argv[1], ptr);
-		/*ptr = strlcpy(argv[1], argv[2], ft_atoi(argv[3]));
-		printf("original %d\n", ptr);*/
+		if (*s1 != *s2)
+			break;
+		s1++;
+		s2++;
+		n--;
 	}
+	return ((int) (*s1 - *s2));
 }

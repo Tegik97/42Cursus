@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 14:04:37 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/10 18:04:32 by mchiaram         ###   ########.fr       */
+/*   Created: 2023/10/10 17:15:19 by mchiaram          #+#    #+#             */
+/*   Updated: 2023/10/10 18:13:19 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <ctype.h>
 #include <string.h>
-#include <stdio.h>
-#include <unistd.h>
 
-int	main(int argc, char *argv[])
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	int	ptr;
-	char *s1 = argv[2];
-	
-	if (argc > 0)
+	size_t	offset;
+
+	offset = 0;
+	if(size > 0)
 	{
-		ptr = ft_strlcpy(argv[1], argv[2], ft_atoi(argv[3]));
-		printf("copied %s into %s, size: %d\n", s1, argv[1], ptr);
-		/*ptr = strlcpy(argv[1], argv[2], ft_atoi(argv[3]));
-		printf("original %d\n", ptr);*/
+		while (*(src + offset) != '\0' &&	offset < (size - 1))
+		{
+			*(dst + offset) = *(src + offset);
+			offset++;
+		}
 	}
+	*(dst + offset) = '\0';
+	return 	(offset);
 }
