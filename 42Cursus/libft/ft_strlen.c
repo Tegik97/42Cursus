@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 17:21:23 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/10 12:58:24 by menny            ###   ########.fr       */
+/*   Created: 2023/10/09 18:56:07 by menny             #+#    #+#             */
+/*   Updated: 2023/10/09 19:10:15 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <aio.h>
-#ifndef	LIBFT_H
-#define	LIBFT_H
 
-int	ft_isalnum(int c);
-int	ft_atoi(const char *nptr);
-int	ft_isalpha(int c);
-int	ft_isascii(int c);
-int	ft_isdigit(int c);
-int	ft_isprint(int c);
-int	ft_toupper(int c);
-int	ft_tolower(int c);
-size_t ft_strlen(const char *s);
-/*
-CONTROLLARE HEADERS
-*/
-char *ft_strchr(const char *s, int c);
-char *ft_strrchr(const char *s, int c);
+size_t ft_strlen(const char *s)
+{
+	int	size;
 
-#endif
+	size = 0;
+	while (s[size])
+		size++;
+	return (size);
+}
