@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 14:04:37 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/11 15:17:57 by mchiaram         ###   ########.fr       */
+/*   Created: 2023/10/11 11:53:17 by mchiaram          #+#    #+#             */
+/*   Updated: 2023/10/11 15:15:06 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
 #include <stdio.h>
-#include <ctype.h>
-#include <string.h>
-#include <stdio.h>
-#include <unistd.h>
 
-int	main(int argc, char *argv[])
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	char	*ptr;
-
-	if (argc > 0)
+	size_t	dst_l;
+	
+	dst_l = 0;
+	while (*dst != '\0')
 	{
-		printf("found %s in %s\n", argv[2], argv[1]);
-		ptr = ft_strnstr(argv[1], argv[2], ft_atoi(argv[3]));
-		printf("result: %s\n", ptr);
-/*
-		ptr = strlcpy(argv[1], argv[2], ft_atoi(argv[3]));
-		printf("original %d\n", ptr);
-*/
+		dst_l++;
+		dst++;
 	}
+	if (dst_l >= size)
+		return (size);
+	while (*src != '\0' && (size - dst_l - 1) > 0)
+	{
+		*dst = *src;
+		dst_l++;
+		dst++;
+		src++;
+	}
+	*dst = '\0';
+	dst_l++;
+	return (dst_l);
 }

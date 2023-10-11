@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:28:24 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/10 16:48:39 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/11 11:57:54 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	while ((*s1 != '\0' || *s2 != '\0') && n > 1)
 	{
 		if (*s1 != *s2)
-			break;
+			break ;
 		s1++;
 		s2++;
 		n--;
 	}
-	return ((int) (*s1 - *s2));
+	return ((int)(*s1 - *s2));
 }
