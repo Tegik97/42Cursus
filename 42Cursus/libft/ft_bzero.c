@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 11:53:17 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/11 18:03:37 by mchiaram         ###   ########.fr       */
+/*   Created: 2023/10/11 17:24:56 by mchiaram          #+#    #+#             */
+/*   Updated: 2023/10/11 17:39:25 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <string.h>
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+void	ft_bzero(void *s, size_t n)
 {
-	size_t	dst_l;
+	unsigned char	*ptr;
+	size_t			i;
 
-	dst_l = 0;
-	while (*dst != '\0')
+	ptr = (unsigned char *)s;
+	while (i < n)
 	{
-		dst_l++;
-		dst++;
+		ptr[i] = '\0';
+		i++;
 	}
-	if (dst_l >= size)
-		return (size);
-	while (*src != '\0' && (size - dst_l - 1) > 0)
-	{
-		*dst = *src;
-		dst_l++;
-		dst++;
-		src++;
-	}
-	*dst = '\0';
-	dst_l++;
-	return (dst_l);
 }

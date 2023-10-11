@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:04:37 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/11 15:17:57 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/11 17:39:04 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,15 @@
 
 int	main(int argc, char *argv[])
 {
-	char	*ptr;
+	char	str[50];
 
+	ft_strlcpy(str, argv[1], strlen(argv[1]));
 	if (argc > 0)
 	{
-		printf("found %s in %s\n", argv[2], argv[1]);
-		ptr = ft_strnstr(argv[1], argv[2], ft_atoi(argv[3]));
-		printf("result: %s\n", ptr);
-/*
-		ptr = strlcpy(argv[1], argv[2], ft_atoi(argv[3]));
-		printf("original %d\n", ptr);
-*/
+		ft_bzero(str, 5);
+		printf("mine: %s\n", str);
+		bzero(str, 5);
+		printf("original: %s\n", str);
 	}
+	argv[2] = "aaaaaaaaaaaaaa";
 }
