@@ -6,13 +6,14 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:19:50 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/12 17:35:44 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/12 19:01:10 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <aio.h>
+# include <stdio.h>
 
 int		ft_isalnum(int c);
 int		ft_atoi(const char *nptr);
@@ -35,5 +36,6 @@ void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
+char	*ft_strdup(const char *s);
 
 #endif
