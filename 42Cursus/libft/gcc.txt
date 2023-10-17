@@ -1,1 +1,1 @@
-gcc -Wextra -Werror -Wall *.c
+gcc -Wextra -Werror -Wall -o libft *.c
