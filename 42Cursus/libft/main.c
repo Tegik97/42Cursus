@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:04:37 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/17 19:35:39 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/18 18:31:51 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,9 @@
 
 int	main(int argc, char *argv[])
 {
-	char	**str;
-
 	if (argc > 0)
 	{
-		str = ft_split(argv[1], argv[2][0]);
-		while (**str)
-		{
-			printf("%s", *str);
-			str++;
-		}
+		printf("%s\n", ft_itoa(ft_atoi(argv[1])));
 	}
 	argv[2] = "aaaaaaaaaaaaaa";
 }
