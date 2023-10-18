@@ -1,1 +1,0 @@
-gcc -Wextra -Werror -Wall -o libft *.c
