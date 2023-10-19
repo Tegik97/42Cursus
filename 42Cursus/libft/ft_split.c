@@ -3,53 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 17:12:12 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/18 17:01:04 by menny            ###   ########.fr       */
+/*   Updated: 2023/10/19 17:56:45 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	nwords(char const *s, char c)
+static char	**ft_fillmat(const char *s, char c, char **mat, int nwords)
 {
-	size_t		cont;
-	const char	*s_orig;
+	size_t	wordlen;
 
-	s_orig = s;
-	cont = 0;
+	wordlen = 0;
+	while (*s == c)
+		s++;
+	while (nwords > 0)
+	{
+		if (((*s == c && *(s - 1) != c))
+			|| (*s == '\0' && *(s - 1) != c))
+		{
+			*mat++ = ft_substr((s - wordlen), 0, wordlen);
+			nwords--;
+			wordlen = 0;
+		}
+		if (*s++ != c)
+			wordlen++;
+	}
+	*mat = NULL;
+	return (mat);
+}
+
+static int	ft_wordcount(char const *s, char c)
+{
+	size_t		count;
+
+	count = 0;
+	while (*s == c)
+		s++;
 	while (*s++ != '\0')
 	{
-		if (*s == c && (s != s_orig) && *(s + 1) != '\0')
-			cont++;
+		if (((*s == c && *(s - 1) != c))
+			|| (*s == '\0' && *(s - 1) != c))
+			count++;
 	}
-	cont++;
-	return (cont);
+	return (count);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char		**str;
-	char const	*str_orig;
-	size_t		cont;
+	char	**mat;
+	size_t	nwords;
+	char	**ptr;
 
-	str = (char **) malloc(sizeof(char *) * nwords(s, c));
-	str_orig = s;
-	cont = 0;
-	while (*s)
-	{
-		if (*s == c || *s == '\0')
-		{
-			if ((s - cont) != str_orig)
-				cont--;
-			*str++ = ft_substr((s - cont), 0, cont);
-			cont = 0;
-		}
-		cont++;
-		s++;
-	}
-	cont--;
-	*str = ft_substr((s - cont), 0, cont);
-	return (str);
+	nwords = ft_wordcount(s, c);
+	mat = (char **) malloc(sizeof(char *) * (nwords + 1));
+	ptr = mat;
+	if (!mat)
+		return (NULL);
+	mat = ft_fillmat(s, c, mat, nwords);
+	return (ptr);
 }

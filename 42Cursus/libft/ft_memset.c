@@ -6,11 +6,11 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 16:08:02 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/11 17:35:59 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/19 16:55:18 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 void	*ft_memset(void *s, int c, size_t n)
 {

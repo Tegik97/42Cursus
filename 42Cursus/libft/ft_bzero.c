@@ -6,11 +6,11 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 17:24:56 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/11 17:39:25 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/19 16:53:28 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {

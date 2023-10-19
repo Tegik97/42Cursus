@@ -6,11 +6,10 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 18:28:47 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/12 18:54:24 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/19 16:55:29 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 char	*ft_strdup(const char *s)

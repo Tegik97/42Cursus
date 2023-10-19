@@ -6,11 +6,11 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:18:27 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/17 14:18:30 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/19 16:55:42 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <aio.h>
+#include "libft.h"
 
 size_t	ft_strlen(const char *s)
 {
