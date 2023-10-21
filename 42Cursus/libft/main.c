@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:04:37 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/20 15:36:54 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/21 10:32:09 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ int	main(int argc, char *argv[])
 {
 	if (argc > 0)
 	{
-		ft_putnbr_fd(ft_atoi(argv[1]), ft_atoi(argv[2]));
+		ft_isprint(127);
 	}
 }

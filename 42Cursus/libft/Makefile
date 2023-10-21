@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+         #
+#    By: menny <menny@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/17 14:19:10 by mchiaram          #+#    #+#              #
-#    Updated: 2023/10/20 16:22:42 by mchiaram         ###   ########.fr        #
+#    Updated: 2023/10/21 20:08:03 by menny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,5 +70,7 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
+
+re: fclean all
 
 .PHONY: all clean fclean re

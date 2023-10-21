@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 17:12:12 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/19 17:56:45 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/21 12:39:52 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ char	**ft_split(char const *s, char c)
 	size_t	nwords;
 	char	**ptr;
 
+	if (!s)
+		return (mat = NULL);
 	nwords = ft_wordcount(s, c);
 	mat = (char **) malloc(sizeof(char *) * (nwords + 1));
 	ptr = mat;
