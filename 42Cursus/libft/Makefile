@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+         #
+#    By: menny <menny@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/17 14:19:10 by mchiaram          #+#    #+#              #
-#    Updated: 2023/10/23 15:37:54 by mchiaram         ###   ########.fr        #
+#    Updated: 2023/10/23 23:47:40 by menny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,8 +63,8 @@ SRCS_BONUS = ft_lstnew_bonus.c \
 	ft_lstlast_bonus.c \
 	ft_lstadd_back_bonus.c \
 	ft_lstdelone_bonus.c \
-	ft_lstclear_bonus.c
-	
+	ft_lstclear_bonus.c \
+	ft_lstiter_bonus.c 
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 all: $(NAME)
