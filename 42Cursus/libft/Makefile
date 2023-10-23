@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: menny <menny@student.42.fr>                +#+  +:+       +#+         #
+#    By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/17 14:19:10 by mchiaram          #+#    #+#              #
-#    Updated: 2023/10/21 20:08:03 by menny            ###   ########.fr        #
+#    Updated: 2023/10/23 15:37:54 by mchiaram         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,8 +57,21 @@ SRCS = ft_atoi.c \
 	
 OBJS = $(SRCS:.c=.o)
 
+SRCS_BONUS = ft_lstnew_bonus.c \
+	ft_lstadd_front_bonus.c \
+	ft_lstsize_bonus.c \
+	ft_lstlast_bonus.c \
+	ft_lstadd_back_bonus.c \
+	ft_lstdelone_bonus.c \
+	ft_lstclear_bonus.c
+	
+OBJS_BONUS = $(SRCS_BONUS:.c=.o)
+
 all: $(NAME)
 
+bonus: $(OBJS_BONUS)
+	$(AR) $(NAME) $(OBJS_BONUS)
+	
 $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS)
 
@@ -66,11 +79,11 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
