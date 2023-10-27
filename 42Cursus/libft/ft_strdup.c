@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 18:28:47 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/19 16:55:29 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/27 17:09:27 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strdup(const char *s)
 	int		i;
 
 	s1 = (char *) malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!s1)
+		return (NULL);
 	i = 0;
 	while (s[i] != '\0')
 	{

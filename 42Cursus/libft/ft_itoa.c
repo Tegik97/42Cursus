@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 16:54:32 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/19 18:45:41 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:44:02 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static size_t	ft_digitcount(int n)
 	size_t	ndigits;
 
 	ndigits = 0;
+	if (n == 0)
+		return (1);
 	if (n < 0)
 	{
 		ndigits++;
@@ -34,27 +36,33 @@ char	*ft_itoa(int n)
 {
 	char		*str;
 	size_t		ndigits;
+	long int	nbr;
 
-	if (n < -2147483647)
-	{
-		str = "-2147483648";
-		return (str);
-	}
-	ndigits = ft_digitcount(n);
+	nbr = (long int)n;
+	ndigits = ft_digitcount(nbr);
 	str = (char *) malloc(sizeof(char) * (ndigits + 1));
 	if (!str)
 		return (NULL);
 	*(str + ndigits) = '\0';
-	if (n < 0)
+	if (nbr == 0)
+		str[0] = '0';
+	if (nbr < 0)
 	{
 		*str = '-';
-		n *= -1;
+		nbr *= -1;
 	}
-	while (n != 0)
+	while (nbr != 0)
 	{
 		ndigits--;
-		*(str + ndigits) = (n % 10) + '0';
-		n /= 10;
+		*(str + ndigits) = (nbr % 10) + '0';
+		nbr /= 10;
 	}
 	return (str);
 }
+/*int	main(int argc, char *argv[])
+{
+	if (argc != 2)
+		return (0);
+	ft_itoa(argv[1]);
+	return (0);
+}*/

@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:55:22 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/17 15:23:04 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:31:41 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,18 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*str;
 	size_t	i;
 
-	str = (char *) malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)));
+	if (!s1 || !s2)
+		return ("");
+	str = (char *) malloc(sizeof(char) * ((ft_strlen(s1) + ft_strlen(s2)) + 1));
 	if (!str)
 		return (NULL);
 	i = 0;
-	while (*s1 != '\0')
+	while (*s1)
 	{
 		str[i++] = *s1;
 		s1++;
 	}
-	while (*s2 != '\0')
+	while (*s2)
 	{
 		str[i++] = *s2;
 		s2++;

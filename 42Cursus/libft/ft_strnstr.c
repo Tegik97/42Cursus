@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:28:36 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/19 16:56:14 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/27 16:07:36 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	unsigned int	i;
 
+	if (!big)
+		return (NULL);
+	if (*little == '\0')
+		return ((char *)big);
 	while (*big != '\0' && len != 0)
 	{
 		i = 0;

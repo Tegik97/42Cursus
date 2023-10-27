@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 15:32:18 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/20 15:44:42 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:49:36 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_putnbr_fd(int n, int fd)
 
 	if (fd < 0)
 		return ;
-	nbr = n;
+	nbr = (long int)n;
 	if (nbr < 0)
 	{
 		write(fd, "-", 1);
@@ -31,6 +31,8 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putnbr_fd(nbr % 10, fd);
 	}
 	if (nbr <= 9)
+	{
 		c = (nbr + '0');
-	write(fd, &c, 1);
+		write(fd, &c, 1);
+	}
 }
