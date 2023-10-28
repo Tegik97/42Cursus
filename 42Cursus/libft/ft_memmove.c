@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:13:04 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/21 11:15:15 by menny            ###   ########.fr       */
+/*   Updated: 2023/10/28 19:11:34 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,29 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	}
 	return (dest);
 }
+
+/*int	main(int argc, char *argv[])
+{
+	char	dest[50];
+	
+	if (argc == 4)
+	{
+		ft_strlcpy(dest, argv[1], (ft_strlen(argv[1]) + 1));
+		printf("moved %s bytes of %s into %s\n", argv[3], argv[2], dest);
+		ft_memmove(dest, argv[2], ft_atoi(argv[3]));
+		printf("result: %s", dest);
+	}
+	return (0);
+}*/
+
+/*				---MAN DESCRIPTION---
+
+	The  memmove() function copies n bytes from memory area src to memory area dest.
+	
+	The memory areas may overlap: copying takes place as though the bytes in
+	src are first copied into a temporary array that does not overlap src or dest,
+	and the bytes are then copied from the temporary array to dest.
+
+	---RETURN VALUE---
+    The memcpy() function returns a pointer to dest.
+*/

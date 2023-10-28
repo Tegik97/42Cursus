@@ -6,10 +6,11 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:15:09 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/25 18:19:05 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/28 19:29:17 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/* CONTROLLARE I MAIN DEI MEM!! STRLCPY(?)*/
 #include "libft.h"
 
 char	*ft_strchr(const char *s, int c)

@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:31:26 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/27 17:51:14 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/28 17:46:12 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	if (!s1)
 		return (NULL);
+	if (!set)
+		return (ft_strdup(s1));
 	len = 0;
 	while (*s1 != '\0' && ft_strchr(set, *s1) != NULL)
 		s1++;

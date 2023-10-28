@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:53:17 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/25 18:13:09 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/28 19:27:30 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	dst[i] = '\0';
 	return (res);
 }
-/*
-int	main(int argc, char *argv[])
+
+/*int	main(int argc, char *argv[])
 {
 	char		*dst;
 	const char	*src;
@@ -58,8 +58,7 @@ int	main(int argc, char *argv[])
 		printf("Lenght of the string I tried to create: %ld\n", result);
 	}
 	return (0);
-}
-*/
+}*/
 
 /*				---MAN DESCRIPTION---
 
@@ -80,11 +79,11 @@ int	main(int argc, char *argv[])
 	The strlcat() function appends the NUL-terminated string src to the end of dst.
 	It will append at most size - strlen(dst) - 1 bytes, NUL-terminating the result.
 
-	---RETURN VALUES---
+	---RETURN VALUE---
     The strlcat() function returns the total length of the string 
 	it tried to create.
 	
 	For strlcat() that means the initial length of dst plus the length of src.
-	While this may seem somewhat confusing,
-	it was done to make truncation detection simple.
+	While this may seem somewhat confusing, it was done to make truncation
+	detection simple.
 */
