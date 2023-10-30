@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:15:00 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/30 19:45:09 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/30 19:53:06 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 	}
 }
 
-void	extFunct(unsigned int index, char *c)
+/*void	extFunct(unsigned int index, char *c)
 {
 	index++;
-	ft_tolower(*c);
+	*c = ft_tolower(*c);
 }
 
 int	main(int argc, char *argv[])
@@ -38,13 +38,13 @@ int	main(int argc, char *argv[])
 
 	if (argc == 2)
 	{
-		ft_strlcpy(str, argv[1], (ft_strlen(argv[1]) + 1));
+		ft_strlcpy(str, argv[1], ft_strlen(argv[1]) + 1);
 		printf("Applied the external function to '%s'\n\n", str);
 		ft_striteri(str, extFunct);
 		printf("ft_striteri: %s", str);
 	}
 	return (0);
-}
+}*/
 
 /*				---MAN DESCRIPTION---
 
