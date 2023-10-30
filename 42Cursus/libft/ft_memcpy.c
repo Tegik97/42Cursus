@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 15:45:01 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/28 18:39:09 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:25:49 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,18 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 /*int	main(int argc, char *argv[])
 {
 	char	dest[50];
+	int		slen;
 	
 	if (argc == 4)
 	{
-		ft_strlcpy(dest, argv[1], (ft_strlen(argv[1]) + 1));
-		printf("copied %s bytes of %s into %s\n", argv[3], argv[2], dest);
+		slen = ft_strlen(argv[1]);
+		ft_memcpy(dest, argv[1], (slen + 1));
+		printf("copied %s bytes of %s into %s\n\n", argv[3], argv[2], dest);
 		ft_memcpy(dest, argv[2], ft_atoi(argv[3]));
-		printf("result: %s", dest);
+		printf("ft_memcpy: %s\n", dest);
+		memcpy(dest, argv[1], (slen + 1));
+		memcpy(dest, argv[2], ft_atoi(argv[3]));
+		printf("memcpy: %s", dest);
 	}
 	return (0);
 }*/

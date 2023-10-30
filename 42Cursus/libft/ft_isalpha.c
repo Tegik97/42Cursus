@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:04:28 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/28 16:50:49 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:51:50 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,16 @@ int	ft_isalpha(int c)
 		return (1024);
 	return (0);
 }
-/*
-int	main(int argc, char *argv[])
+
+/*int	main(int argc, char *argv[])
 {
 	unsigned char	c;
 	
 	if (argc == 2)
 	{
 		c = argv[1][0];
-		printf("isalpha result: %d", ft_isalpha(c));
+		printf("ft_isalpha: %d\n", ft_isalpha(c));
+		printf("isalpha: %d\n", isalpha(c));
 	}
 	return (0);
 }*/

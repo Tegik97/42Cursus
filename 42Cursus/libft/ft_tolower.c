@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:20:23 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/28 17:57:00 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:05:35 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ int	ft_tolower(int c)
 	if (argc == 2)
 	{
 		c = argv[1][0];
-		printf("char before the function application: %c\n", c);
-		printf("tolower: %c", ft_tolower(c));
+		printf("char before the function application: %c\n\n", c);
+		printf("ft_tolower: %c\n", ft_tolower(c));
+		printf("tolower: %c", tolower(c));
 	}
 	return (0);
 }*/

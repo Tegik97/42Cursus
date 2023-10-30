@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:44:14 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/28 16:50:47 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:53:15 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int	ft_isalnum(int c)
 	if (argc == 2)
 	{
 		c = argv[1][0];
-		printf("isalnum result: %d", ft_isalnum(c));
+		printf("ft_isalnum: %d\n", ft_isalnum(c));
+		printf("isalnum: %d", isalnum(c));
 	}
 	return (0);
 }*/

@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:15:19 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/28 17:55:47 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:04:40 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ int	ft_toupper(int c)
 	if (argc == 2)
 	{
 		c = argv[1][0];
-		printf("char before the function application: %c\n", c);
-		printf("toupper: %c", ft_toupper(c));
+		printf("char before the function application: %c\n\n", c);
+		printf("ft_toupper: %c\n", ft_toupper(c));
+		printf("toupper: %c", toupper(c));
 	}
 	return (0);
 }*/

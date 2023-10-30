@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:18:27 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/28 18:02:53 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:01:39 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ size_t	ft_strlen(const char *s)
 /*int	main(int argc, char *argv[])
 {
 	if (argc == 2)
-		printf("Length of the string: %ld", ft_strlen(argv[1]));
+	{
+		printf("Length of the string %s\n\n", argv[1]);
+		printf("ft_strlen: %ld\n", ft_strlen(argv[1]));
+		printf("strlen: %ld", strlen(argv[1]));
+	}
 	return (0);
 }*/
 

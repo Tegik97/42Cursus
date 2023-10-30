@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 17:24:56 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/28 18:22:51 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/30 16:20:54 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,16 @@ void	ft_bzero(void *s, size_t n)
 	if (argc == 3)
 	{
 		len = ft_strlen(argv[1]);
-		ft_strlcpy(str, argv[1], (len + 1));
-		printf("string before function application: %s\n", str);
+		ft_memcpy(str, argv[1], (len + 1));
+		printf("string before function application: %s\n\n", str);
 		ft_bzero(str, ft_atoi(argv[2]));
-		printf("bzero: ");
+		printf("ft_bzero: ");
+		j = 0;
+		while (j < len)
+			printf("%c", str[j++]);
+		ft_memcpy(str, argv[1], (len + 1));
+		bzero(str, ft_atoi(argv[2]));
+		printf("\nbzero: ");
 		j = 0;
 		while (j < len)
 			printf("%c", str[j++]);

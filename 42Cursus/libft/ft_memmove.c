@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:13:04 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/28 19:11:34 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/30 17:53:24 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,13 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	
 	if (argc == 4)
 	{
-		ft_strlcpy(dest, argv[1], (ft_strlen(argv[1]) + 1));
-		printf("moved %s bytes of %s into %s\n", argv[3], argv[2], dest);
+		ft_memcpy(dest, argv[1], (ft_strlen(argv[1]) + 1));
+		printf("moved %s bytes of %s into %s\n\n", argv[3], argv[2], dest);
 		ft_memmove(dest, argv[2], ft_atoi(argv[3]));
-		printf("result: %s", dest);
+		printf("ft_memmove: %s\n", dest);
+		memcpy(dest, argv[1], (ft_strlen(argv[1]) + 1));
+		memmove(dest, argv[2], ft_atoi(argv[3]));
+		printf("memmove: %s", dest);
 	}
 	return (0);
 }*/

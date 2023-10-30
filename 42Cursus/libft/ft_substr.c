@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:17:29 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/27 18:13:08 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/30 18:08:24 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,45 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	slen = ft_strlen(s);
 	if (!s || start > slen)
 	{
-		sstr = (char *) malloc(sizeof(char) * (1));
-		sstr[0] = '\0';
+		sstr = ft_calloc(sizeof(char), 1);
+		if (!sstr)
+			return (NULL);
 		return (sstr);
 	}
 	if (len > slen)
 		len = slen;
 	if ((slen - start) < len)
 		len = (slen - start);
-	sstr = (char *) malloc(sizeof(char) * (len + 1));
+	sstr = ft_calloc(sizeof(char), (len + 1));
 	if (!sstr)
 		return (NULL);
 	len += start;
 	i = 0;
 	while (s[start] && start < len)
 		sstr[i++] = s[start++];
-	sstr[i] = '\0';
 	return (sstr);
 }
+
+/*int	main(int argc, char *argv[])
+{
+	if (argc == 4)
+	{
+		printf("Crated a substring of %s", argv[1]);
+		printf("starting at pos %s and of length %s: \n\n", argv[2], argv[3]);
+		printf("ft_substr: %s", ft_substr(argv[1], ft_atoi(argv[2]),
+				ft_atoi(argv[3])));
+	}
+	return (0);
+}*/
+
+/*				---MAN DESCRIPTION---
+	Allocates (with malloc(3)) and returns a substring
+	from the string ’s’.
+	
+	The substring begins at index ’start’ and is of
+	maximum size ’len’.
+
+	---RETURN VALUE---
+	The substring.
+	NULL if the allocation fails.
+*/

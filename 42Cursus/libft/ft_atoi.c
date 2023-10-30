@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:50:15 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/25 18:46:39 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/30 16:46:05 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,22 @@ int	ft_atoi(const char *nptr)
 	}
 	return (base * sign);
 }
+
+/*int	main(int argc, char *argv[])
+{
+	if (argc == 2)
+	{
+		printf("converted %s from char to int:\n\n", argv[1]);
+		printf("ft_atoi: %d\n", ft_atoi(argv[1]));
+		printf("atoi: %d", atoi(argv[1]));
+	}
+}*/
+
+/*				---MAN DESCRIPTION---
+
+	The atoi() function converts the initial portion of
+	the string pointed to by nptr to int.
+
+	---RETURN VALUE---
+    The converted value.
+*/

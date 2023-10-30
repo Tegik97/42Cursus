@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 12:15:00 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/20 12:45:41 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/30 19:45:09 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	size_t	i;
+	unsigned int	i;
 
 	if (!s)
 		return ;
@@ -25,3 +25,34 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 		i++;
 	}
 }
+
+void	extFunct(unsigned int index, char *c)
+{
+	index++;
+	ft_tolower(*c);
+}
+
+int	main(int argc, char *argv[])
+{
+	char	str[50];
+
+	if (argc == 2)
+	{
+		ft_strlcpy(str, argv[1], (ft_strlen(argv[1]) + 1));
+		printf("Applied the external function to '%s'\n\n", str);
+		ft_striteri(str, extFunct);
+		printf("ft_striteri: %s", str);
+	}
+	return (0);
+}
+
+/*				---MAN DESCRIPTION---
+
+	Applies the function ’f’ on each character of
+	the string passed as argument, passing its index
+	as first argument. Each character is passed by
+	address to ’f’ to be modified if necessary.
+
+	---RETURN VALUE---
+	None
+*/

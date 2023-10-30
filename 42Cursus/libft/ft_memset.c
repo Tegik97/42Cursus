@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 16:08:02 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/28 18:23:42 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:01:01 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,19 @@ void	*ft_memset(void *s, int c, size_t n)
 
 /*int	main(int argc, char *argv[])
 {
-	char	str[50];
+	unsigned char	str[50];
+	size_t			slen;
 	
 	if (argc == 4)
 	{
-		ft_strlcpy(str, argv[1], (ft_strlen(argv[1]) + 1));
-		printf("string before function application: %s\n", str);
+		slen = ft_strlen(argv[1]);
+		ft_memcpy(str, argv[1], (slen + 1));
+		printf("string before function application: %s\n\n", str);
 		ft_memset(str, argv[2][0], ft_atoi(argv[3]));
-		printf("memset: %s", str);
+		printf("ft_memset: %s\n", str);
+		ft_memcpy(str, argv[1], (slen + 1));
+		memset(str, argv[2][0], ft_atoi(argv[3]));
+		printf("memset: %s\n", str);
 	}
 	return (0);
 }*/

@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 16:54:32 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/27 14:44:02 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/30 19:11:06 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,12 @@ char	*ft_itoa(int n)
 
 	nbr = (long int)n;
 	ndigits = ft_digitcount(nbr);
-	str = (char *) malloc(sizeof(char) * (ndigits + 1));
+	str = ft_calloc(sizeof(char), (ndigits + 1));
 	if (!str)
 		return (NULL);
-	*(str + ndigits) = '\0';
 	if (nbr == 0)
 		str[0] = '0';
-	if (nbr < 0)
+	else if (nbr < 0)
 	{
 		*str = '-';
 		nbr *= -1;
@@ -59,10 +58,24 @@ char	*ft_itoa(int n)
 	}
 	return (str);
 }
+
 /*int	main(int argc, char *argv[])
 {
-	if (argc != 2)
-		return (0);
-	ft_itoa(argv[1]);
+	if (argc == 2)
+	{
+		printf("Converted %s from int to char\n\n", argv[1]);
+		printf("ft_itoa %s", ft_itoa(ft_atoi(argv[1])));
+	}
 	return (0);
 }*/
+
+/*				---MAN DESCRIPTION---
+
+	Allocates (with malloc(3)) and returns a string
+	representing the integer received as an argument.
+	Negative numbers must be handled.
+	
+	---RETURN VALUE---
+	The string representing the integer.
+	NULL if the allocation fails.
+*/

@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:51:53 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/28 17:03:10 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:58:28 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,17 @@ int	ft_isascii(int c)
 	unsigned char	c;
 
 	c = 125;
+	printf("ft_isascii:\n");
 	while (c <= 129)
 	{
-		printf("isascii %d result: %d\n", c, ft_isascii(c));
+		printf("%c result: %d\n", c, ft_isascii(c));
+		c++;
+	}
+	c = 125;
+	printf("\nisascii:\n");
+	while (c <= 129)
+	{
+		printf("%c result: %d\n", c, isascii(c));
 		c++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:33:16 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/28 16:50:52 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:51:21 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,16 @@ int	ft_isdigit(int c)
 		return (2048);
 	return (0);
 }
-/*
-int	main(int argc, char *argv[])
+
+/*int	main(int argc, char *argv[])
 {
 	unsigned char	c;
 	
 	if (argc == 2)
 	{
 		c = argv[1][0];
-		printf("isdigit result: %d", ft_isdigit(c));
+		printf("ft_isdigit: %d\n", ft_isdigit(c));
+		printf("isdigit: %d\n", isdigit(c));
 	}
 	return (0);
 }*/
