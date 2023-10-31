@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 17:21:54 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/30 16:17:07 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/31 15:34:23 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 /*int	main(int argc, char *argv[])
 {
 	unsigned char	*str;
+	
 	if (argc == 4)
 	{
 		str = (unsigned char*)argv[1];

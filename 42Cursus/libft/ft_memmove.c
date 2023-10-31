@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:13:04 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/30 17:53:24 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/31 15:15:16 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	unsigned char	*ptr_dest;
 	unsigned char	*ptr_src;
 
+	if (!dest || !src)
+		return (NULL);
 	ptr_dest = (unsigned char *)dest;
 	ptr_src = (unsigned char *)src;
 	if (ptr_dest == ptr_src)

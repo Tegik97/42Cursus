@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:19:50 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/28 16:18:34 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/10/31 14:57:45 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <limits.h>
+# include <fcntl.h>
 
 int		ft_isalnum(int c);
 int		ft_atoi(const char *nptr);
