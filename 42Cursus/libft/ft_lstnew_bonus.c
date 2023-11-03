@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 11:19:01 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/31 18:24:45 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/11/03 19:19:56 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ t_list	*ft_lstnew(void *content)
 	return (lst);
 }
 
+/*void	del(void *element)
+{
+	free(element);
+}
+
 void	print_list(t_list *head)
 {
 	while (head)
@@ -33,29 +38,114 @@ void	print_list(t_list *head)
 	}
 }
 
+void	*lstmap_function(void *content)
+{
+	int	*n;
+
+	n = (int *)content;
+	*n -= 10;
+	return (content);
+}
+
+void	lstiter_function(void *content)
+{
+	int	*n;
+
+	n = (int *)content;
+	*n += 10;
+}
+
 int	main(void)
 {
-	t_list	*head = NULL;
+	int		*n;
 	int		i;
-	int 	*value;
+	t_list	*head;
+	t_list	*new_element;
+	t_list	*temp;
+	t_list	*prev;
 	
-	i = 0;
+	i = 0;;
+	head = NULL;
 	while (i < 5)
 	{
-		value = malloc(sizeof(int) * 1);
-		*value = i;
-
-		ft_lstadd_back(&head, ft_lstnew(value));
-		i++;
+		n = malloc(sizeof(i) * 1);
+		*n = i;
+		new_element = ft_lstnew(n);
+		ft_lstadd_back(&head, new_element);
+		*n = i++;
 	}
-	printf("old list:\n");
+	printf("List:\n");
 	print_list(head);
-	*value = 42;
-	ft_lstadd_front(&head, ft_lstnew(value));
-	printf("\nnew list:\n");
+	printf("List of %d elements\n\n", ft_lstsize(head));
+	i = 42;
+	n = malloc(sizeof(i) * 1);
+	*n = i;
+	new_element = ft_lstnew(n);
+	ft_lstadd_front(&head, new_element);
+	printf("Added '%d' to the front of the list:\n", i);
+	print_list(head);
+	printf("List of %d elements\n\n", ft_lstsize(head));
+	i = 3;
+	temp = head;
+	if (temp && *(int *)(temp->content) == i)
+	{
+		head = temp->next;
+		ft_lstdelone(temp, del);
+		printf("Deleted %i from the list\n", i);
+	}
+	else
+	{
+		while (temp && *(int *)(temp->content) != i)
+		{
+			prev = temp;
+			temp = temp->next;
+		}
+		if (!temp)
+			printf("value not found inside the list\n");
+		else
+		{
+			prev->next = temp->next;
+			ft_lstdelone(temp, del);
+			printf("Deleted %i from the list\n", i);
+		}
+	}
+	print_list(head);
+	printf("List of %d elements\n\n", ft_lstsize(head));
+	i = 0;
+	temp = head;
+	if (temp && *(int *)(temp->content) == i)
+	{
+		ft_lstclear(&temp, del);
+		head = NULL;
+		printf("Deleted from the element %i of the list\n", i);
+	}
+	else
+	{
+		while (temp && *(int *)(temp->content) != i)
+		{
+			prev = temp;
+			temp = temp->next;
+		}
+		if (!temp)
+			printf("value not found inside the list\n");
+		else
+		{
+			ft_lstclear(&temp, del);
+			prev->next = NULL;
+			printf("Deleted from the element %i of the list\n", i);
+		}
+	}
+	print_list(head);
+	printf("List of %d elements\n\n", ft_lstsize(head));
+	ft_lstiter(head, lstiter_function);
+	printf("Added 10 to each element of the list\n");
+	print_list(head);
+	ft_lstmap(head, lstmap_function, del);
+	printf("\nDecreased each element by 10\n");
 	print_list(head);
 	return (0);
-}
+}*/
+
 /*				---MAN DESCRIPTION---
 
 	Allocates (with malloc(3)) and returns a new node.

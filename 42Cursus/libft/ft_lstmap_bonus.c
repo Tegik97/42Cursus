@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:59:19 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/30 14:41:57 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/11/03 19:16:48 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,3 +36,16 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	}
 	return (new_list);
 }
+
+/*				---MAN DESCRIPTION---
+
+	Iterates the list ’lst’ and applies the function
+	’f’ on the content of each node. Creates a new
+	list resulting of the successive applications of
+	the function ’f’. The ’del’ function is used to
+	delete the content of a node if needed.
+
+	---RETURN VALUE---
+	The new list.
+	NULL if the allocation fails.
+*/

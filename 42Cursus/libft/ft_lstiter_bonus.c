@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:58:50 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/25 14:58:53 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/11/03 19:16:10 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,3 +22,12 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 		lst = lst->next;
 	}
 }
+
+/*				---MAN DESCRIPTION---
+
+	Iterates the list ’lst’ and applies the function
+	’f’ on the content of each node.
+
+	---RETURN VALUE---
+	None
+*/

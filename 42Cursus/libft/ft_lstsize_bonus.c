@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 13:41:35 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/23 13:55:59 by mchiaram         ###   ########.fr       */
+/*   Updated: 2023/11/03 19:13:18 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,3 +26,11 @@ int	ft_lstsize(t_list *lst)
 	}
 	return (count);
 }
+
+/*				---MAN DESCRIPTION---
+
+	Counts the number of nodes in a list.
+
+	---RETURN VALUE---
+	The length of the list
+*/
