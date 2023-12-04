@@ -8,12 +8,12 @@ RM = rm -f
 
 AR = ar rcs
 
-SRCS = 
+SRCS = ft_printf.c
 
 OBJS = $(SRCS:.c=.o)
 
-all = libft $(NAME)
-
+all: libft $(NAME)
+	
 libft:
 	$(MAKE) -C libft
 
@@ -33,4 +33,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re libft
