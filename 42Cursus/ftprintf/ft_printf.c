@@ -38,9 +38,7 @@ static int	ft_countparam(const char *str)
 			str++;
 			format = ft_checkformat(*str);
 			if (format > 0)
-			{
 				numargs++;
-			}
 			else if (format < 0)
 				return (-1);
 		}
@@ -54,7 +52,7 @@ int	ft_printf(const char *str, ...)
 	int	numargs;
 
 	numargs = ft_countparam(str);
-	printf("%d\n", numargs);
+	printf("%dciao%s\n", numargs);
 	return (1);
 }
 int	main(void)
