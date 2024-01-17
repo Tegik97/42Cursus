@@ -3,28 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 14:25:55 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/01/15 19:00:18 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/01/17 19:48:06 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftprintf.h"
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
 	int				n;
-	char 			*str;
-	char 			c;
+	char			*str;
+	char			c;
 	unsigned int	un;
-	
+	void			*ptr;
+
+	ptr = &argv[1];
 	str = "Manuel";
-	un = 26;
+	n = 27890;
 	c = 'f';
-	ft_printf("Caratteri stampati %d\n\n", ft_printf("Ciao mi chiamo %s e %%ho %u anni %%%cf%%\n", str, un, c));
-	printf("Caratteri stampati %d", printf("ciao mi chiamo %s e %%ho %u anni %%%cf%%\n", str, un, c));
-	/*ft_printf("Caratteri stampati %d\n\n", ft_printf("Ciao mi chiamo %s e %%ho %u anni %%%c\n", str, un, c));
-	printf("Caratteri stampati %d", printf("Ciao mi chiamo %s e %%ho %u anni %%%c\n", str, un, c));*/
+	if (argc > 0)
+	{
+		ft_printf("Caratteri stampati %d\n\n", ft_printf("Ciao mi chiamo %s e %%ho %x anni %%%cf%%\n", argv[1], ft_atoi(argv[2]), argv[3][0]));
+		printf("Caratteri stampati %d", printf("ciao mi chiamo %s e %%ho %x anni %%%cf%%\n", argv[1], ft_atoi(argv[2]), argv[3][0]));
+	}
 	return (0);
 }
