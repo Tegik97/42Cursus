@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: menny <menny@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/01/11 11:31:56 by mchiaram          #+#    #+#              #
+#    Updated: 2024/01/17 19:17:38 by menny            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libftprintf.a
 
 CC = gcc
@@ -8,14 +20,14 @@ RM = rm -f
 
 AR = ar rcs
 
-SRCS = ft_printf.c
+SRCS = ftprintf.c
 
 OBJS = $(SRCS:.c=.o)
 
-all: libft $(NAME)
-	
-libft:
-	$(MAKE) -C libft
+all: $(NAME)
+	cd libft && $(MAKE)
+	$(AR) $(NAME) libft/*.o
+	$(CC) main.c $(NAME) -o a.out
 
 $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS)
@@ -24,13 +36,13 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(MAKE) -C libft clean
 	$(RM) $(OBJS)
+	cd libft && $(MAKE) clean
 
 fclean: clean
-	$(MAKE) -C libft fclean
-	$(RM) $(NAME)
+	$(RM) $(NAME) a.out
+	cd libft && $(MAKE) fclean
 
 re: fclean all
 
-.PHONY: all clean fclean re libft
+.PHONY: all clean fclean re bonus
