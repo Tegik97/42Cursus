@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:13:04 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/31 15:15:16 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:25:12 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,12 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 
 /*				---MAN DESCRIPTION---
 
-	The  memmove() function copies n bytes from memory area src to memory area dest.
+	The  memmove() function copies n bytes from memory
+	area src to memory area dest.
 	
 	The memory areas may overlap: copying takes place as though the bytes in
-	src are first copied into a temporary array that does not overlap src or dest,
+	src are first copied into a temporary array that does not
+	overlap src or dest,
 	and the bytes are then copied from the temporary array to dest.
 
 	---RETURN VALUE---

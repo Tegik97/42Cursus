@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: menny <menny@student.42.fr>                +#+  +:+       +#+         #
+#    By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 11:31:56 by mchiaram          #+#    #+#              #
-#    Updated: 2024/01/17 19:17:38 by menny            ###   ########.fr        #
+#    Updated: 2024/01/29 17:54:17 by mchiaram         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,14 +20,15 @@ RM = rm -f
 
 AR = ar rcs
 
-SRCS = ftprintf.c
+SRCS = ft_printf.c \
+		ft_putptr.c \
+		ft_putnbr.c 
 
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 	cd libft && $(MAKE)
 	$(AR) $(NAME) libft/*.o
-	$(CC) main.c $(NAME) -o a.out
 
 $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS)
@@ -40,7 +41,7 @@ clean:
 	cd libft && $(MAKE) clean
 
 fclean: clean
-	$(RM) $(NAME) a.out
+	$(RM) $(NAME)
 	cd libft && $(MAKE) fclean
 
 re: fclean all

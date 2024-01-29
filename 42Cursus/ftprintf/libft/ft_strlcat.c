@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:53:17 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/28 19:27:30 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:24:24 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,10 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	Also note that strlcat() only operates on true “C” strings.
 	This means that both src and dst must be NUL-terminated.
 
-	The strlcat() function appends the NUL-terminated string src to the end of dst.
-	It will append at most size - strlen(dst) - 1 bytes, NUL-terminating the result.
+	The strlcat() function appends the NUL-terminated string 
+	src to the end of dst.
+	It will append at most size - strlen(dst) - 1 bytes,
+	NUL-terminating the result.
 
 	---RETURN VALUE---
     The strlcat() function returns the total length of the string 

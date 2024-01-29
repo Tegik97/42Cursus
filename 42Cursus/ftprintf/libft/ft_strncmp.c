@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:28:24 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/30 16:07:52 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:24:51 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	if (argc == 4)
 	{
 		printf("Comparison of %d between s1 and s2:\n\n", ft_atoi(argv[3]));
-		printf("ft_strncmp: %d\n", ft_strncmp(argv[1], argv[2], ft_atoi(argv[3])));
+		printf("ft_strncmp: %d\n", ft_strncmp(argv[1], 
+		argv[2], ft_atoi(argv[3])));
 		printf("strncmp: %d", strncmp(argv[1], argv[2], ft_atoi(argv[3])));
 	}
 }*/

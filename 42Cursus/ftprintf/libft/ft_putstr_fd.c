@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 14:37:05 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/31 15:30:05 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:35:15 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ void	ft_putstr_fd(char *s, int fd)
 	if (fd < 0 || !s)
 		return ;
 	while (*s)
-	{
 		ft_putchar_fd(*s++, fd);
-	}
 }
 
 /*int	main(int argc, char *argv[])
