@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 16:54:32 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/31 15:21:06 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/02/12 16:51:32 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_digitcount(int n)
+static size_t	ft_digit_count(int n)
 {
 	size_t	ndigits;
 
@@ -39,7 +39,7 @@ char	*ft_itoa(int n)
 	long int	nbr;
 
 	nbr = (long int)n;
-	ndigits = ft_digitcount(nbr);
+	ndigits = ft_digit_count(nbr);
 	str = ft_calloc(sizeof(char), (ndigits + 1));
 	if (!str)
 		return (NULL);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:19:50 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/31 14:57:45 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/02/12 16:48:30 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <unistd.h>
 # include <limits.h>
 # include <fcntl.h>
+# include <stdint.h>
+# include <stdarg.h>
 
 int		ft_isalnum(int c);
 int		ft_atoi(const char *nptr);
@@ -72,5 +74,12 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+/* FT_PRINTF*/
+int		ft_printf(const char *str, ...);
+size_t	ft_digitcount(long int n, char c);
+int		ft_putptr(void *ptr);
+int		ft_ptrdigitcount(uintptr_t n);
+int		ft_printnbr(int nbr, char c);
 
 #endif

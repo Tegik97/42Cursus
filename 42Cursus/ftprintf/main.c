@@ -22,7 +22,7 @@ int	main(int argc, char *argv[])
 
 	str = "";
 	n = INT_MIN;
-	un = 0;
+	un = 143;
 	c = 'f';
 	ptr = &n;
 	if (argc > 0)
