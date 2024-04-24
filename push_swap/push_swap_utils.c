@@ -2,25 +2,20 @@
 
 void	print_list(t_list *list_a, t_list *list_b)
 {
-	t_list	*current_a;
-	t_list	*current_b;
-
 	ft_printf("a)\tb)\n");
-	current_a = list_a;
-	current_b = list_b;
-	while (current_a || current_b)
+	while (list_a || list_b)
 	{
-		if (current_a)
+		if (list_a)
 		{
-			ft_printf("%d\t", current_a->content);
-			current_a = current_a->next;
+			ft_printf("%d\t", list_a->content);
+			list_a = list_a->next;
 		}
 		else
 			ft_printf("\t");
-		if (current_b)
+		if (list_b)
 		{
-			ft_printf("%d\n", current_b->content);
-			current_b = current_b->next;
+			ft_printf("%d\n", list_b->content);
+			list_b = list_b->next;
 		}
 		else
 			ft_printf("\n");
