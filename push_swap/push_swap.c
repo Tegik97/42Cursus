@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:42:16 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/04/17 17:43:50 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/04/26 16:42:51 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int	ft_push_swap()
 {
-	ft_printf("%s\n", "ft_push_swap");
+	
 	return (0);
 }

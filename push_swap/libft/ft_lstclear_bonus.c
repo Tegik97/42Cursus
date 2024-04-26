@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 15:35:26 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/04/24 18:38:50 by menny            ###   ########.fr       */
+/*   Updated: 2024/04/26 16:20:14 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_lstclear(t_list **lst)
 {
 	t_list	*next;
 
-	if (!lst)
+	if (!lst || !*lst)
 		return ;
 	while (*lst != NULL)
 	{
