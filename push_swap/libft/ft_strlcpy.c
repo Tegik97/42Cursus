@@ -6,27 +6,27 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:15:19 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/28 19:34:53 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/04/29 19:09:37 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+size_t	ft_strlcpy(char **dst, const char *src)
 {
 	size_t	offset;
 	size_t	srclen;
 
 	srclen = ft_strlen(src);
-	if (!dst || !src || size == 0)
+	if (!dst || !src)
 		return (srclen);
 	offset = 0;
-	while (*(src + offset) != '\0' && offset < (size - 1))
+	dst[offset] = ft_calloc((srclen + 1), sizeof(char));
+	while (src[offset] != '\0')
 	{
-		*(dst + offset) = *(src + offset);
+		(*dst)[offset] = src[offset];
 		offset++;
 	}
-	*(dst + offset) = '\0';
 	return (srclen);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 17:12:12 by mchiaram          #+#    #+#             */
-/*   Updated: 2023/10/30 19:01:53 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/04/29 18:24:56 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ static void	ft_freemat(char **mat)
 static char	**ft_fillmat(const char *s, char c, char **mat, int nwords)
 {
 	size_t	wordlen;
-
+	size_t	i;
+	
 	wordlen = 0;
+	i = 0;
 	while (*s != '\0' && *s == c)
 		s++;
 	while (nwords > 0)
@@ -30,17 +32,16 @@ static char	**ft_fillmat(const char *s, char c, char **mat, int nwords)
 		if (((*s == c && *(s - 1) != c))
 			|| (*s == '\0' && *(s - 1) != c))
 		{
-			*mat = ft_substr((s - wordlen), 0, wordlen);
-			if (!*mat)
+			mat[i] = ft_substr((s - wordlen), 0, wordlen);
+			if (!mat[i++])
 				return (NULL);
-			mat++;
 			nwords--;
 			wordlen = 0;
 		}
 		if (*s++ != c)
 			wordlen++;
 	}
-	*mat = NULL;
+	mat[i] = NULL;
 	return (mat);
 }
 
@@ -63,28 +64,28 @@ static int	ft_wordcount(char const *s, char c)
 char	**ft_split(char const *s, char c)
 {
 	char	**mat;
-	size_t	nwords;
-	char	**ptr;
+	size_t	i;
 
 	if (!s)
 		return (NULL);
-	nwords = ft_wordcount(s, c);
-	mat = (char **) malloc(sizeof(char *) * (nwords + 1));
-	if (!mat)
+	i = 0;
+	while (s[i])
 	{
-		free(mat);
-		return (NULL);
+		if (!ft_isdigit(s[i]) && s[i] != c)
+			return (NULL);
+		i++;
 	}
-	ptr = mat;
-	mat = ft_fillmat(s, c, mat, nwords);
+	i = ft_wordcount(s, c);
+	mat = (char **) malloc(sizeof(char *) * (i + 1));
+	if (!mat)
+		return (NULL);
+	mat = ft_fillmat(s, c, mat, i);
 	if (!mat)
 	{
-		mat = ptr;
 		ft_freemat(mat);
-		free(ptr);
 		return (NULL);
 	}
-	return (ptr);
+	return (mat);
 }
 
 /*int	main(int argc, char *argv[])
