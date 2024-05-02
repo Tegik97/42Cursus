@@ -1,37 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/02 16:13:40 by mchiaram          #+#    #+#             */
+/*   Updated: 2024/05/02 16:20:47 by mchiaram         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-// void	ft_print_error()
-// {
-// 	ft_putendl_fd("Error", 2);
-// }
-
-char	**ft_check_params(int argc, char **argv)
+void	ft_free_all(t_list **list_a, t_list **list_b, char ***str)
 {
-	char	**str;
-	int		i;
-	int		x;
-	size_t	j;
+	size_t	i;
 
-	j = 0;
-	i = 1;
-	if (argc > 2)
-	{
-		str = ft_calloc(argc, sizeof(char *));
-		while (i < argc)
-		{
-			x = 0;
-			while (argv[i][x])
-			{
-				/*must free the allocated memory if this check is true*/
-				if (!ft_isdigit(argv[i][x++]))
-					return (NULL);
-			}
-			ft_strlcpy(&str[j++], argv[i++]);
-		}
-	}
-	else
-		str = ft_split(argv[1], ' ');
-	return (str);
+	i = 0;
+	if (list_a)
+		ft_lstclear(list_a);
+	if (list_b)
+		ft_lstclear(list_b);
+	i = 0;
+	while ((*str)[i])
+		free((*str)[i++]);
+	free((*str));
 }
 
 void	print_list(t_list *list_a, t_list *list_b)

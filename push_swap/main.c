@@ -6,18 +6,16 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:51:18 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/04/29 19:12:38 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:21:49 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*	CONTROLLARE FT_CHECK_PARAMS  */
 int	main(int argc, char *argv[])
 {
 	t_list	*list_a;
 	t_list	*list_b;
-	size_t	i;
 	char	**str;
 	
 	str = NULL;
@@ -38,11 +36,6 @@ int	main(int argc, char *argv[])
 	list_b = NULL;
 	list_a = fill_list(list_a, str);
 	print_list(list_a, list_b);
-	ft_lstclear(&list_a);
-	ft_lstclear(&list_b);
-	i = 0;
-	while (str[i])
-		free(str[i++]);
-	free(str);
+	ft_free_all(&list_a, &list_b, &str);
 	return (0);
 }
