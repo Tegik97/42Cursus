@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:59:19 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/04/24 18:38:19 by menny            ###   ########.fr       */
+/*   Updated: 2024/05/03 13:22:17 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_list	*ft_lstmap(t_list *lst, int (*f)(int *))
 	t_list	*content;
 	int		temp;
 
-	if (!lst || !f/* || !del*/)
+	if (!lst || !f)
 		return (NULL);
 	new_list = NULL;
 	while (lst)

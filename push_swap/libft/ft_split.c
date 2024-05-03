@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 17:12:12 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/02 13:13:35 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/05/03 13:24:47 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	**ft_fillmat(const char *s, char c, char **mat, int nwords)
 {
 	size_t	wordlen;
 	size_t	i;
-	
+
 	wordlen = 0;
 	i = 0;
 	while (*s != '\0' && *s == c)

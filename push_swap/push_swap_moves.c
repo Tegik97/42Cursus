@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:13:32 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/02 16:13:33 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/05/03 13:24:28 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_list	*ft_swap(t_list *list)
 	t_list	*current;
 	int		temp_element;
 
-	if(!list || !list->next)
+	if (!list || !list->next)
 		return (list);
 	current = list;
 	temp_element = list->content;

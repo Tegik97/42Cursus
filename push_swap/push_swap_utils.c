@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:13:40 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/02 16:20:47 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/05/03 18:42:36 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	print_list(t_list *list_a, t_list *list_b)
 			ft_printf("\n");
 	}
 }
+
 t_list	*fill_list(t_list *list, char **elements)
 {
 	t_list	*new_element;
