@@ -6,27 +6,24 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:10:51 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/03 18:44:24 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/05/05 18:06:44 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_search_spaces(char **str)
+static int	ft_check_limits(char **str)
 {
 	size_t	i;
-	size_t	j;
 
 	i = 0;
-	while (str[++i])
+	while (str[i])
 	{
-		j = 0;
-		while (str[i][j])
-		{
-			if (str[i][j] == ' ')
-				return (0);
-			j++;
-		}
+		if (ft_atoi(str[i]) > ft_atoi("2147483647"))
+			return (0);
+		else if (ft_atoi(str[i]) < ft_atoi("-2147483648"))
+			return (0);
+		i++;
 	}
 	return (1);
 }
@@ -50,6 +47,9 @@ static int	ft_check_next_char(char **str)
 			else if ((str[i][j] >= '0' && str[i][j] <= '9') &&
 					(str[i][j + 1] < '0' || str[i][j + 1] > '9') &&
 					str[i][j + 1] != ' ' && str[i][j + 1] != '\0')
+				return (0);
+			else if (!ft_isdigit(str[i][j]) && str[i][j] != '+' &&
+					str[i][j] != '-' && str[i][j] != ' ')
 				return (0);
 			j++;
 		}
@@ -85,37 +85,16 @@ static int	ft_check_dups(char	**str)
 	return (1);
 }
 
-static char	**ft_fill_mat(int argc, char **argv)
-{
-	char	**mat;
-	size_t	i;
-	size_t	j;
-	
-	if (!ft_search_spaces(argv))
-		return (NULL);
-	mat = ft_calloc(argc, sizeof(char *));
-	if (!mat)
-		return (NULL);
-	i = 1;
-	j = 0;
-	while (argv[i])
-		ft_strlcpy(&mat[j++], argv[i++]);
-	return (mat);
-}
-
 char	**ft_check_params(int argc, char **argv)
 {
 	char	**str;
 
 	if (!ft_check_next_char(argv))
 		return (NULL);
-	if (argc > 2)
-		str = ft_fill_mat(argc, argv);
-	else
-		str = ft_split(argv[1], ' ');
+	str = ft_fill_mat(argc, argv);
 	if (!str)
 		return (NULL);
-	if (!ft_check_dups(str))
+	if (!ft_check_dups(str) || !ft_check_limits(str))
 	{
 		ft_free_all(NULL, NULL, &str);
 		return (NULL);

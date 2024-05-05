@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:51:30 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/03 13:43:33 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/05/05 22:11:26 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@ t_list		*ft_rotate(t_list *list);
 t_list		*ft_reverse_rotate(t_list *list);
 char		**ft_check_params(int argc, char **argv);
 void		ft_free_all(t_list **list_a, t_list **list_b, char ***str);
+char		**ft_fill_mat(int argc, char **argv);
+t_list		*push_swap(t_list *list);
 
 #endif

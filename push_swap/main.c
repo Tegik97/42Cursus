@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:51:18 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/03 14:03:14 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/05/05 22:11:10 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ int	main(int argc, char *argv[])
 	list_a = NULL;
 	list_b = NULL;
 	list_a = fill_list(list_a, str);
+	if (ft_lstsize(list_a) < 2)
+	{
+		ft_free_all(&list_a, &list_b, &str);
+		return (0);
+	}
+	list_a = push_swap(list_a);
 	print_list(list_a, list_b);
 	ft_free_all(&list_a, &list_b, &str);
 	return (0);
