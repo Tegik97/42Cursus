@@ -6,13 +6,13 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 21:14:14 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/05 22:23:00 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/05/06 22:06:59 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_list *ft_content_swap(t_list *list, int *arr)
+static t_list	*ft_content_swap(t_list *list, int *arr, size_t size)
 {
 	size_t	i;
 	t_list	*current;
@@ -21,9 +21,8 @@ static t_list *ft_content_swap(t_list *list, int *arr)
 	while (current)
 	{
 		i = 0;
-		while (arr[i])
+		while (i < size)
 		{
-			ft_printf("%d\n", current->content);
 			if (current->content == arr[i])
 			{
 				current->content = i;
@@ -36,46 +35,47 @@ static t_list *ft_content_swap(t_list *list, int *arr)
 	return (list);
 }
 
-static int	*ft_check_array(int *arr, t_list *list, size_t size)
+static int	*ft_fill_array(int *arr, size_t i, t_list *list, size_t size)
 {
-	size_t	i;
 	size_t	j;
-	i = 0;
-	while (i <= size)
+
+	if ((arr[i] == 0 && arr[i + 1] == 0 && arr[size + 1] == 0)
+		|| (i != 0 && arr[i] == 0 && arr[i + 1] == 0))
 	{
-		if (arr[i] == '\0')
+		arr[i] = list->content;
+		arr[size + 1] = 1;
+	}
+	else if (arr[i] >= list->content)
+	{
+		j = 0;
+		while ((size - j) > i)
 		{
-			arr[i] = list->content;
-			break ;
+			arr[size - j] = arr[(size - 1) - j];
+			j++;
 		}
-		else if (arr[i] > list->content)
-		{
-			j = 0;
-			while ((size - j) > i)
-			{
-				arr[size - j] = arr[(size - 1) - j];
-				j++;
-			}
-			arr[i] = list->content;
-			break ;
-		}
-		i++;
+		arr[i] = list->content;
 	}
 	return (arr);
 }
 
-static int	*ft_get_index(t_list *list)
+static int	*ft_get_index(t_list *list, size_t size)
 {
 	int		*arr;
-	size_t	size;
-	
-	size = ft_lstsize(list);
-	arr = ft_calloc((size + 1), sizeof(list->content));
+	size_t	i;
+
+	arr = ft_calloc((size + 2), sizeof(list->content));
 	if (!arr)
 		return (NULL);
 	while (list)
 	{
-		arr = ft_check_array(arr, list, size);
+		i = 0;
+		while (i < size)
+		{
+			arr = ft_fill_array(arr, i, list, size);
+			if (arr[i] == list->content)
+				break ;
+			i++;
+		}
 		list = list->next;
 	}
 	return (arr);
@@ -84,9 +84,11 @@ static int	*ft_get_index(t_list *list)
 t_list	*push_swap(t_list *list)
 {
 	int		*arr;
+	size_t	size;
 
-	arr = ft_get_index(list);
-	list = ft_content_swap(list, arr);
+	size = ft_lstsize(list);
+	arr = ft_get_index(list, size);
+	list = ft_content_swap(list, arr, size);
 	free (arr);
 	return (list);
 }

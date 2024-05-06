@@ -6,7 +6,12 @@ INCS		:= ./include
 LIB			:= ft
 RM 			:= rm -f
 
-SRCS		:= ${wildcard *.c}
+SRCS		:=	main.c \
+				push_swap.c \
+				push_swap_checks.c \
+				push_swap_moves.c \
+				push_swap_utils.c
+				
 OBJS		:= $(SRCS:.c=.o)
 CPPFLAGS	:= $(addprefix -I,$(INCS)) -MMD -MP
 LDFLAGS		:= $(addprefix -L,$(dir $(LIBFT)))
@@ -19,6 +24,7 @@ $(NAME): $(LIBFT) $(OBJS)
 
 $(LIBFT):
 	$(MAKE) -C $(@D)
+	$(MAKE) bonus -C $(@D)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@

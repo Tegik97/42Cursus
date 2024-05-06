@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:13:40 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/05 18:04:10 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/05/06 20:06:20 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	**ft_fill_mat(int argc, char **argv)
 	if (argc > 2)
 	{
 		if (!ft_search_spaces(argv))
-		return (NULL);
+			return (NULL);
 		mat = ft_calloc(argc, sizeof(char *));
 		if (!mat)
 			return (NULL);
