@@ -6,7 +6,7 @@
 #    By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/17 14:19:10 by mchiaram          #+#    #+#              #
-#    Updated: 2024/05/06 22:19:32 by mchiaram         ###   ########.fr        #
+#    Updated: 2024/05/08 21:46:37 by mchiaram         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,7 @@ re: fclean all
 
 header:
 	${info }
-	${info ${BOLD}Creating  ->${YELLOW}$(NAME)${NO_COLOR}}
+	${info ${BOLD}Creating -> ${YELLOW}$(NAME)${NO_COLOR}}
 	@if $(MAKE) -q $(NAME) ; then \
 		echo "${BOLD}${YELLOW}No changes detected, not rebuilding $(NAME)${NO_COLOR}"; \
 	fi

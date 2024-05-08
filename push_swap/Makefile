@@ -42,7 +42,7 @@ fclean: clean
 
 header: 
 	${info }
-	${info ${BOLD}Creating  ->${YELLOW}$(NAME)${NO_COLOR}}
+	${info ${BOLD}Creating -> ${YELLOW}$(NAME)${NO_COLOR}}
 	@if $(MAKE) -q $(NAME) ; then \
 		echo "${BOLD}${YELLOW}No changes detected, not rebuilding $(NAME)${NO_COLOR}"; \
 	fi

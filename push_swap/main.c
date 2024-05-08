@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:51:18 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/08 18:40:08 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/05/08 21:49:19 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int argc, char *argv[])
 		ft_free_all(&list_a, &list_b, &str);
 		return (0);
 	}
-	list_a = push_swap(list_a);
+	list_a = push_swap(list_a, list_b);
 	print_list(list_a, list_b);
 	ft_free_all(&list_a, &list_b, &str);
 	return (0);
