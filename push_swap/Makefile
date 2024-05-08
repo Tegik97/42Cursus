@@ -10,7 +10,8 @@ SRCS		:=	main.c \
 				push_swap.c \
 				push_swap_checks.c \
 				push_swap_moves.c \
-				push_swap_utils.c
+				push_swap_utils.c \
+				push_swap_algorithm.c
 				
 OBJS		:= $(SRCS:.c=.o)
 CPPFLAGS	:= $(addprefix -I,$(INCS)) -MMD -MP
