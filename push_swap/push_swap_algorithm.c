@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:04:44 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/10 12:13:36 by menny            ###   ########.fr       */
+/*   Updated: 2024/05/10 12:19:54 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,20 @@ static t_list	*ft_sort_alg(t_list *list_a, t_list *list_b)
 {
 	if (ft_lstsize(list_a) == 4)
 		ft_push(&list_a, &list_b, 'b');
-	else
+	else if (ft_lstsize(list_a) > 4)
 	{
 		ft_push(&list_a, &list_b, 'b');
 		ft_push(&list_a, &list_b, 'b');
 	}
 	while (ft_lstsize(list_a) > 3)
-		ft_printf("");
+		ft_push(&list_a, &list_b, 'b');
 	list_a = ft_sort_three(list_a);
 	print_list(list_a, list_b);
 	return (list_a);
 }
 t_list	*ft_sort(t_list *list_a, t_list *list_b)
 {
-	if (ft_lstsize(list_a) < 4)
-		list_a = ft_sort_three(list_a);
-	else
-		list_a = ft_sort_alg(list_a, list_b);
+	list_a = ft_sort_alg(list_a, list_b);
 	return (list_a);
 }
 int	ft_check_list_sorted(t_list *list)
