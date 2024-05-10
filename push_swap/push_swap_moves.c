@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:13:32 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/08 17:45:20 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/05/10 14:31:05 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ t_list	*ft_swap(t_list *list, char c)
 	current = current->next;
 	list->content = current->content;
 	current->content = temp_element;
-	ft_printf("s%c\n", c);
+	if (c != '0')
+		ft_printf("s%c\n", c);
 	return (list);
 }
 
@@ -39,10 +40,12 @@ void	ft_push(t_list **list_src, t_list **list_dest, char c)
 	if (!new_element)
 		return ;
 	ft_lstadd_front(list_dest, new_element);
-	current = (*list_src)->next;
-	free(*list_src);
-	(*list_src) = current;
-	ft_printf("p%c\n", c);
+	current = (*list_src);
+	(*list_src) = (*list_src)->next;
+	free (current);
+	current = NULL;
+	if (c != '0')
+		ft_printf("p%c\n", c);
 }
 
 t_list	*ft_rotate(t_list *list, char c)
@@ -59,7 +62,8 @@ t_list	*ft_rotate(t_list *list, char c)
 	ft_lstadd_back(&list, new_element);
 	list = list->next;
 	free(current);
-	ft_printf("r%c\n", c);
+	if (c != '0')
+		ft_printf("r%c\n", c);
 	return (list);
 }
 

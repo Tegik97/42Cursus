@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 21:14:14 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/10 12:02:00 by menny            ###   ########.fr       */
+/*   Updated: 2024/05/10 13:46:30 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ t_list	*push_swap(t_list *list_a, t_list *list_b)
 	size = ft_lstsize(list_a);
 	arr = ft_get_index(list_a, size);
 	list_a = ft_content_swap(list_a, arr, size);
-	list_a = ft_sort(list_a, list_b);
+	list_a = ft_sort(list_a, list_b, size);
 	free (arr);
 	return (list_a);
 }

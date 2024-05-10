@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:13:40 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/10 12:10:31 by menny            ###   ########.fr       */
+/*   Updated: 2024/05/10 15:43:16 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	ft_free_all(t_list **list_a, t_list **list_b, char ***str)
 {
 	size_t	i;
 
-	i = 0;
 	if (list_a)
 		ft_lstclear(list_a);
 	if (list_b)

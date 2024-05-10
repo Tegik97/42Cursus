@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_algorithm.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:04:44 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/10 12:19:54 by menny            ###   ########.fr       */
+/*   Updated: 2024/05/10 16:18:37 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,24 +50,27 @@ t_list	*ft_sort_three(t_list *list)
 	return (list);
 }
 
-static t_list	*ft_sort_alg(t_list *list_a, t_list *list_b)
+static t_list	*ft_sort_alg(t_list *list_a, t_list *list_b, size_t size)
 {
-	if (ft_lstsize(list_a) == 4)
+	if (size == 4)
 		ft_push(&list_a, &list_b, 'b');
-	else if (ft_lstsize(list_a) > 4)
+	if (size > 4)
 	{
 		ft_push(&list_a, &list_b, 'b');
 		ft_push(&list_a, &list_b, 'b');
 	}
 	while (ft_lstsize(list_a) > 3)
-		ft_push(&list_a, &list_b, 'b');
-	list_a = ft_sort_three(list_a);
+		ft_push(&list_a, &list_b, '0');
+	list_a = ft_sort_list(list_a, list_b);
+	// list_a = ft_sort_three(list_a);
+	// while (list_b)
+	// 	ft_push(&list_b, &list_a, '0');
 	print_list(list_a, list_b);
 	return (list_a);
 }
-t_list	*ft_sort(t_list *list_a, t_list *list_b)
+t_list	*ft_sort(t_list *list_a, t_list *list_b, size_t size)
 {
-	list_a = ft_sort_alg(list_a, list_b);
+	list_a = ft_sort_alg(list_a, list_b, size);
 	return (list_a);
 }
 int	ft_check_list_sorted(t_list *list)
