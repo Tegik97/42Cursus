@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:51:30 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/08 21:50:05 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/05/10 11:50:12 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	**ft_check_params(int argc, char **argv);
 void	ft_free_all(t_list **list_a, t_list **list_b, char ***str);
 char	**ft_fill_mat(int argc, char **argv);
 t_list	*push_swap(t_list *list_a, t_list *list_b);
-t_list	*ft_check_list(t_list *list_a, t_list *list_b);
+int		ft_check_list_sorted(t_list *list);
+t_list	*ft_sort(t_list *list_a, t_list *list_b);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:13:40 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/06 20:06:20 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/05/10 12:10:31 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_free_all(t_list **list_a, t_list **list_b, char ***str)
 
 void	print_list(t_list *list_a, t_list *list_b)
 {
-	ft_printf("a)\tb)\n");
+	ft_printf("\n\na)\tb)\n");
 	while (list_a || list_b)
 	{
 		if (list_a)
