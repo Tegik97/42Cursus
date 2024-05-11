@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:04:44 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/10 16:18:37 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:30:54 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ static t_list	*ft_sort_alg(t_list *list_a, t_list *list_b, size_t size)
 		ft_push(&list_a, &list_b, 'b');
 		ft_push(&list_a, &list_b, 'b');
 	}
-	while (ft_lstsize(list_a) > 3)
-		ft_push(&list_a, &list_b, '0');
 	list_a = ft_sort_list(list_a, list_b);
 	// list_a = ft_sort_three(list_a);
 	// while (list_b)
