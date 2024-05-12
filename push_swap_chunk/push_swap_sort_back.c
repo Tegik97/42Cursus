@@ -13,17 +13,17 @@ static void	ft_do_r(t_list **list_b, t_list **list_a, char *minmax, int target, 
 		index_a = ft_find_index((*list_a), ft_atoi(minmax));
 	while ((*list_b)->content != target || (minmax && (*list_a)->content != ft_atoi(minmax)))
 	{
-		if ((*list_b)->content != target && index_b <= (size_b/2)
+		if ((*list_b)->content != target && index_b <= (size_b / 2)
 			&& index_b != 0)
 			(*list_b) = ft_rotate((*list_b), 'b');
-		else if ((*list_b)->content != target && index_b > (size_b/2)
-				&& index_b != size_b)
+		else if ((*list_b)->content != target && index_b > (size_b / 2)
+			&& index_b != size_b)
 			(*list_b) = ft_reverse_rotate((*list_b), 'b');
 		else if (minmax && ((*list_a)->content != ft_atoi(minmax)
-			&& index_a <= (size_a/2)))
+			&& index_a <= (size_a / 2)))
 			(*list_a) = ft_rotate((*list_a), 'a');
 		else if (minmax && ((*list_a)->content != ft_atoi(minmax)
-			&& index_a > (size_a/2)))
+			&& index_a > (size_a / 2)))
 			(*list_a) = ft_reverse_rotate((*list_a), 'a');
 	}
 }
@@ -66,13 +66,13 @@ static void	ft_do_rr(t_list **list_b, t_list **list_a, char *minmax, int target,
 	index_a = ft_find_index((*list_a), ft_atoi(minmax));
 	while ((*list_b)->content != target && (*list_a)->content != ft_atoi(minmax))
 	{
-		if ((index_b > (size_b/2) && index_a > (size_a/2))
-		|| ((index_b > (size_b/2) && (index_a + 1) == size_a)))
+		if ((index_b > (size_b / 2) && index_a > (size_a / 2))
+		|| (index_b > (size_b / 2) && (index_a + 1) == size_a))
 		{
 			(*list_a) = ft_reverse_rotate((*list_a), '0');
 			(*list_b) = ft_reverse_rotate((*list_b), 'r');
 		} 
-		else if (index_b <= (size_b/2) && index_a <= (size_a/2))
+		else if (index_b <= (size_b / 2) && index_a <= (size_a / 2))
 		{
 			(*list_a) = ft_rotate((*list_a), '0');
 			(*list_b) = ft_rotate((*list_b), 'r');
@@ -122,7 +122,7 @@ static t_list	*sort_list_a(t_list *list_a, size_t size)
 	index = ft_find_index(list_a, min);
 	while (list_a->content != min)
 	{
-		if (index > (size/2) || index == (size - 1))
+		if (index > (size / 2) || index == (size - 1))
 			list_a = ft_reverse_rotate(list_a, 'a');
 		else
 			list_a = ft_rotate(list_a, 'a');

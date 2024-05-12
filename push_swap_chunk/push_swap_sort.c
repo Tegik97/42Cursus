@@ -6,34 +6,34 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:09:11 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/12 21:31:17 by menny            ###   ########.fr       */
+/*   Updated: 2024/05/12 22:02:17 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	*ft_search_min_max(int content, t_list *list)
-{
-	char	*minmax;
-	int		diff;
+// char	*ft_search_min_max(int content, t_list *list)
+// {
+// 	char	*minmax;
+// 	int		diff;
 	
-	diff = 0;
-	minmax = NULL;
-	while (list)
-	{
-		if (list->content < content)
-		{
-			if ((content - list->content) < diff || diff == 0)
-			{
-				diff = content - list->content;
-				free(minmax);
-				minmax = ft_itoa(list->content);
-			}
-		}
-		list = list->next;
-	}
-	return (minmax);
-}
+// 	diff = 0;
+// 	minmax = NULL;
+// 	while (list)
+// 	{
+// 		if (list->content < content)
+// 		{
+// 			if ((content - list->content) < diff || diff == 0)
+// 			{
+// 				diff = content - list->content;
+// 				free(minmax);
+// 				minmax = ft_itoa(list->content);
+// 			}
+// 		}
+// 		list = list->next;
+// 	}
+// 	return (minmax);
+// }
 
 static void	push_chunk_b(t_list **list_a, t_list **list_b, int size)
 {
@@ -54,14 +54,14 @@ t_list	*ft_sort_list(t_list *list_a, t_list *list_b)
 	int	size;
 
 	size = ft_lstsize(list_a);
-	while (ft_lstsize(list_a) > ((size / 2)))
+	while (ft_lstsize(list_a) > (size / 2))
 	{
 		if (list_a->content < (size / 2) && list_a->content >= (size / 4))
 		{
 			ft_push(&list_a, &list_b, 'b');
 			list_b = ft_rotate(list_b, 'b');
 		}
-		else if (list_a->content >= (size/2) && list_a->content < (size - (size / 4)))
+		else if (list_a->content >= (size / 2) && list_a->content < (size - (size / 4)))
 			ft_push(&list_a, &list_b, 'b');
 		else
 			list_a = ft_rotate(list_a, 'a');

@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 21:14:14 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/12 19:12:52 by menny            ###   ########.fr       */
+/*   Updated: 2024/05/13 00:01:51 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,10 @@ t_list	*push_swap(t_list *list_a, t_list *list_b)
 		sort_list_final(list_a, &min, &min_index);
 		while (list_a->content != min)
 		{
-		if (min_index > (size/2) || min_index == (size - 1))
-			list_a = ft_reverse_rotate(list_a, 'a');
-		else
-			list_a = ft_rotate(list_a, 'a');
+			if (min_index > (size / 2) || min_index == (size - 1))
+				list_a = ft_reverse_rotate(list_a, 'a');
+			else
+				list_a = ft_rotate(list_a, 'a');
 		}
 	}
 	free (arr);

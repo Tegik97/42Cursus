@@ -5,16 +5,15 @@ static size_t	ft_num_moves_r(size_t index_a, size_t index_b, size_t size_a, size
 	size_t	nmoves;
 
 	nmoves = 0;
-	
 	while ((index_a > 0 && index_a != size_a) || (index_b > 0 && index_b != size_b))
 	{
-		if (index_a <= (size_a/2) && index_a != 0)
+		if (index_a <= (size_a / 2) && index_a != 0)
 			index_a--;
-		else if (index_a > (size_a/2) && index_a != size_a)
+		else if (index_a > (size_a / 2) && index_a != size_a)
 			index_a++;
-		else if (index_b <= (size_b/2))
+		else if (index_b <= (size_b / 2))
 			index_b--;
-		else if (index_b > (size_b/2))
+		else if (index_b > (size_b / 2))
 			index_b++;
 		nmoves++;
 	}
@@ -28,13 +27,13 @@ static size_t	ft_num_moves_rr(size_t *index_a, size_t *index_b, size_t size_a, s
 	nmoves = 0;
 	while ((*index_a > 0 && *index_b > 0) && (*index_a != size_a && *index_b != size_b))
 	{
-		if ((*index_a > (size_a/2) && *index_b > (size_b/2))
-			|| ((*index_a >= (size_a/2) && (*index_b + 1) == size_b)))
+		if ((*index_a > (size_a / 2) && *index_b > (size_b / 2))
+			|| (*index_a >= (size_a / 2) && (*index_b + 1) == size_b))
 		{
 			(*index_a)++;
 			(*index_b)++;
 		}
-		else if (*index_a <= (size_a/2) && *index_b <= (size_b/2))
+		else if (*index_a <= (size_a / 2) && *index_b <= (size_b / 2))
 		{
 			(*index_a)--;
 			(*index_b)--;

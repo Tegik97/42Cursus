@@ -1,6 +1,6 @@
 NAME		:= push_swap
 LIBFT		:= libft/libft.a
-CC			:= gcc -g
+CC			:= cc
 CFLAGS		:= -Werror -Wextra -Wall
 INCS		:= ./include
 LIB			:= ft

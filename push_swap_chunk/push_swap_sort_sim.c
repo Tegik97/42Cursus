@@ -6,13 +6,13 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:02:04 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/12 14:52:11 by menny            ###   ########.fr       */
+/*   Updated: 2024/05/12 21:55:40 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static size_t	ft_num_moves_r(size_t index_a, size_t index_b, size_t size_a, size_t size_b)
+/*static size_t	ft_num_moves_r(size_t index_a, size_t index_b, size_t size_a, size_t size_b)
 {
 	size_t	nmoves;
 
@@ -136,4 +136,4 @@ int	ft_sort_sim(t_list *list_a, t_list *list_b)
 		list_a = list_a->next;
 	}
 	return (bestnum);
-}
+}*/
