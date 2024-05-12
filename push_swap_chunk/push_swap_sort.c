@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:09:11 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/12 20:36:39 by menny            ###   ########.fr       */
+/*   Updated: 2024/05/12 21:31:17 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_search_min_max(int content, t_list *list)
 	return (minmax);
 }
 
-void	push_chunk_b(t_list **list_a, t_list **list_b, int size)
+static void	push_chunk_b(t_list **list_a, t_list **list_b, int size)
 {
 	while (ft_lstsize((*list_a)) > 3)
 	{

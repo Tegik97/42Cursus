@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:04:44 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/12 18:08:26 by menny            ###   ########.fr       */
+/*   Updated: 2024/05/12 21:31:46 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,6 @@ t_list	*ft_sort_three(t_list *list)
 
 static t_list	*ft_sort_alg(t_list *list_a, t_list *list_b)
 {
-	// if (size == 4)
-	// 	ft_push(&list_a, &list_b, 'b');
-	// if (size > 4)
-	// {
-	// 	ft_push(&list_a, &list_b, 'b');
-	// 	ft_push(&list_a, &list_b, 'b');
-	// }
 	list_a = ft_sort_list(list_a, list_b);
 	return (list_a);
 }
