@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_swap_sort_sim.c                               :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/10 17:02:04 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/12 14:52:11 by menny            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
 
 static size_t	ft_num_moves_r(size_t index_a, size_t index_b, size_t size_a, size_t size_b)
@@ -58,23 +46,23 @@ static size_t	ft_num_moves_rr(size_t *index_a, size_t *index_b, size_t size_a, s
 	return (nmoves);
 }
 
-static size_t	sort_b_sim(t_list *list_b, size_t size)
+static size_t	sort_a_sim(t_list *list_a, size_t size)
 {
 	t_list	*current;
-	int		max;
+	int		min;
 	size_t	index;
 	size_t	nmoves;
 	
-	max = INT_MIN;
-	current = list_b;
+	min = INT_MAX;
+	current = list_a;
 	nmoves = 0;
 	while (current)
 	{
-		if (current->content > max)
-			max = current->content;
+		if (current->content < min)
+			min = current->content;
 		current = current->next;
 	}
-	index = ft_find_index(list_b, max);
+	index = ft_find_index(list_a, min);
 	while (index > 0 && index != size)
 	{
 		if (index > (size/2) || index == (size - 1))
@@ -85,7 +73,8 @@ static size_t	sort_b_sim(t_list *list_b, size_t size)
 	}
 	return (nmoves);
 }
-static size_t	ft_num_moves(t_list *list_a, t_list *list_b, char *minmax, int target)
+
+static size_t	ft_num_moves(t_list *list_b, t_list *list_a, char *maxmin, int target)
 {
 	size_t	nmoves;
 	size_t	size_a;
@@ -96,44 +85,44 @@ static size_t	ft_num_moves(t_list *list_a, t_list *list_b, char *minmax, int tar
 	nmoves = 0;
 	size_a = ft_lstsize(list_a);
 	size_b = ft_lstsize(list_b);
-	index_a = ft_find_index(list_a, target);
-	index_b = 0;
-	if (minmax)
+	index_b = ft_find_index(list_b, target);
+	index_a = 0;
+	if (maxmin)
 	{
-		index_b = ft_find_index(list_b, ft_atoi(minmax));
+		index_a = ft_find_index(list_a, ft_atoi(maxmin));
 		nmoves = ft_num_moves_rr(&index_a, &index_b, size_a, size_b);
 	}
 	else
-		nmoves += sort_b_sim(list_b, ft_lstsize(list_b));
+		nmoves += sort_a_sim(list_a, ft_lstsize(list_a));
 	nmoves += ft_num_moves_r(index_a, index_b, size_a, size_b);
 	return (nmoves);
 }
 
-int	ft_sort_sim(t_list *list_a, t_list *list_b)
+int	ft_sort_back_sim(t_list *list_b, t_list *list_a)
 {
 	size_t	lessmoves;
 	size_t	nmoves;
 	t_list	*head;
-	char	*minmax;
+	char	*maxmin;
 	int		bestnum;
 	
 	lessmoves = 0;
 	bestnum = 0;
-	head = list_a;
-	while (list_a)
+	head = list_b;
+	while (list_b)
 	{
 		nmoves = 1;
-		minmax = ft_search_min_max(list_a->content, list_b);
-		nmoves += ft_num_moves(head, list_b, minmax, list_a->content);
-		free (minmax);
+		maxmin = ft_search_max_min(list_b->content, list_a);
+		nmoves += ft_num_moves(head, list_a, maxmin, list_b->content);
+		free (maxmin);
 		if (lessmoves > nmoves || lessmoves == 0)
 		{
 			lessmoves = nmoves;
-			bestnum = list_a->content;
+			bestnum = list_b->content;
 			if (lessmoves == 1)
 				break ;
 		}
-		list_a = list_a->next;
+		list_b = list_b->next;
 	}
 	return (bestnum);
 }

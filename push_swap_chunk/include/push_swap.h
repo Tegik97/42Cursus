@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:51:30 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/12 12:04:34 by menny            ###   ########.fr       */
+/*   Updated: 2024/05/12 18:08:38 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_free_all(t_list **list_a, t_list **list_b, char ***str);
 char	**ft_fill_mat(int argc, char **argv);
 t_list	*push_swap(t_list *list_a, t_list *list_b);
 int		ft_check_list_sorted(t_list *list);
-t_list	*ft_sort(t_list *list_a, t_list *list_b, size_t size);
+t_list	*ft_sort(t_list *list_a, t_list *list_b);
 t_list	*ft_sort_list(t_list *list_a, t_list *list_b);
 char	*ft_search_min_max(int content, t_list *list);
 int		ft_sort_sim(t_list *list_a, t_list *list_b);
