@@ -5,16 +5,17 @@ CFLAGS		:= -Werror -Wextra -Wall
 INCS		:= ./include
 LIB			:= ft
 RM 			:= rm -f
+SRC_DIR		:= src
 
-SRCS		:=	main.c \
-				push_swap.c \
-				push_swap_checks.c \
-				push_swap_moves.c \
-				push_swap_utils.c \
-				push_swap_algorithm.c \
-				push_swap_sort.c \
-				push_swap_sort_back.c \
-				push_swap_sort_back_sim.c
+SRCS		:=	$(SRC_DIR)/main.c \
+				$(SRC_DIR)/push_swap.c \
+				$(SRC_DIR)/push_swap_checks.c \
+				$(SRC_DIR)/push_swap_moves.c \
+				$(SRC_DIR)/push_swap_utils.c \
+				$(SRC_DIR)/push_swap_algorithm.c \
+				$(SRC_DIR)/push_swap_sort.c \
+				$(SRC_DIR)/push_swap_sort_back.c \
+				$(SRC_DIR)/push_swap_sort_back_sim.c
 				
 OBJS		:= $(SRCS:.c=.o)
 CPPFLAGS	:= $(addprefix -I,$(INCS)) -MMD -MP
