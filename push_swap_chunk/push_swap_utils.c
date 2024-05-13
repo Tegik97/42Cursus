@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:13:40 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/12 14:37:32 by menny            ###   ########.fr       */
+/*   Updated: 2024/05/13 19:29:11 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 size_t	ft_find_index(t_list *list, int target)
 {
 	size_t	index;
-	
+
 	index = 0;
 	while (list->content != target)
 	{
@@ -25,18 +25,18 @@ size_t	ft_find_index(t_list *list, int target)
 	return (index);
 }
 
-static int	ft_search_spaces(char **str)
+static int	ft_search_spaces(char **mat)
 {
 	size_t	i;
 	size_t	j;
 
 	i = 0;
-	while (str[++i])
+	while (mat[++i])
 	{
 		j = 0;
-		while (str[i][j])
+		while (mat[i][j])
 		{
-			if (str[i][j] == ' ')
+			if (mat[i][j] == ' ')
 				return (0);
 			j++;
 		}
@@ -93,27 +93,4 @@ t_list	*fill_list(t_list *list, char **elements)
 		ft_lstadd_back(&list, new_element);
 	}
 	return (list);
-}
-
-void	print_list(t_list *list_a, t_list *list_b)
-{
-	ft_printf("\n\na)\tb)\n");
-	while (list_a || list_b)
-	{
-		if (list_a)
-		{
-			ft_printf("%d\t", list_a->content);
-			list_a = list_a->next;
-		}
-		else
-			ft_printf("\t");
-		if (list_b)
-		{
-			ft_printf("%d\n", list_b->content);
-			list_b = list_b->next;
-		}
-		else
-			ft_printf("\n");
-	}
-	ft_printf("\n");
 }

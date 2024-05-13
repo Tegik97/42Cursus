@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_algorithm.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:04:44 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/12 21:31:46 by menny            ###   ########.fr       */
+/*   Updated: 2024/05/13 19:12:26 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static t_list	*ft_sort_index(t_list *list, size_t i)
 		list = ft_swap(list, 'a');
 	return (list);
 }
+
 t_list	*ft_sort_three(t_list *list)
 {
 	t_list	*current;
@@ -50,23 +51,20 @@ t_list	*ft_sort_three(t_list *list)
 	return (list);
 }
 
-static t_list	*ft_sort_alg(t_list *list_a, t_list *list_b)
+int	ft_check_list_sorted(t_list **list)
 {
-	list_a = ft_sort_list(list_a, list_b);
-	return (list_a);
-}
-t_list	*ft_sort(t_list *list_a, t_list *list_b)
-{
-	list_a = ft_sort_alg(list_a, list_b);
-	return (list_a);
-}
-int	ft_check_list_sorted(t_list *list)
-{
-	while (list->next)
+	size_t	size;
+	t_list	*current;
+
+	size = ft_lstsize(*list);
+	if (size <= 3)
+		*list = ft_sort_three(*list);
+	current = *list;
+	while (current->next)
 	{
-		if (list->content > list->next->content)
+		if (current->content > current->next->content)
 			return (0);
-		list = list->next;
+		current = current->next;
 	}
 	return (1);
 }

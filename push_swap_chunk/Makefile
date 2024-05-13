@@ -13,7 +13,6 @@ SRCS		:=	main.c \
 				push_swap_utils.c \
 				push_swap_algorithm.c \
 				push_swap_sort.c \
-				push_swap_sort_sim.c \
 				push_swap_sort_back.c \
 				push_swap_sort_back_sim.c
 				

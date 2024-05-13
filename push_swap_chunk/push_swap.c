@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 21:14:14 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/13 00:01:51 by menny            ###   ########.fr       */
+/*   Updated: 2024/05/13 19:11:28 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	sort_list_final(t_list *list_a, int *min, size_t *min_index)
 {
 	t_list	*current;
 	size_t	i;
-	
+
 	*min = INT_MAX;
 	*min_index = 0;
 	current = list_a;
@@ -102,13 +102,13 @@ t_list	*push_swap(t_list *list_a, t_list *list_b)
 	int		min;
 	size_t	min_index;
 
-	if (ft_check_list_sorted(list_a))
+	if (ft_check_list_sorted(&list_a))
 		return (list_a);
 	size = ft_lstsize(list_a);
 	arr = ft_get_index(list_a, size);
 	list_a = ft_content_swap(list_a, arr, size);
-	list_a = ft_sort(list_a, list_b);
-	if (!ft_check_list_sorted(list_a))
+	list_a = ft_sort_list(list_a, list_b);
+	if (!ft_check_list_sorted(&list_a))
 	{
 		sort_list_final(list_a, &min, &min_index);
 		while (list_a->content != min)

@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:10:51 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/05 18:06:44 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:16:20 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,28 +28,28 @@ static int	ft_check_limits(char **str)
 	return (1);
 }
 
-static int	ft_check_next_char(char **str)
+static int	ft_check_next_char(char **mat)
 {
 	size_t	i;
 	size_t	j;
 
-	if (!str)
+	if (!mat)
 		return (0);
 	i = 0;
-	while (str[++i])
+	while (mat[++i])
 	{
 		j = 0;
-		while (str[i][j])
+		while (mat[i][j])
 		{
-			if ((str[i][j] == '+' || str[i][j] == '-') && (str[i][j + 1] < '0'
-				|| str[i][j + 1] > '9' || str[i][j + 1] == '\0'))
+			if ((mat[i][j] == '+' || mat[i][j] == '-') && (mat[i][j + 1] < '0'
+				|| mat[i][j + 1] > '9' || mat[i][j + 1] == '\0'))
 				return (0);
-			else if ((str[i][j] >= '0' && str[i][j] <= '9') &&
-					(str[i][j + 1] < '0' || str[i][j + 1] > '9') &&
-					str[i][j + 1] != ' ' && str[i][j + 1] != '\0')
+			else if ((mat[i][j] >= '0' && mat[i][j] <= '9') &&
+					(mat[i][j + 1] < '0' || mat[i][j + 1] > '9') &&
+					mat[i][j + 1] != ' ' && mat[i][j + 1] != '\0')
 				return (0);
-			else if (!ft_isdigit(str[i][j]) && str[i][j] != '+' &&
-					str[i][j] != '-' && str[i][j] != ' ')
+			else if (!ft_isdigit(mat[i][j]) && mat[i][j] != '+' &&
+					mat[i][j] != '-' && mat[i][j] != ' ')
 				return (0);
 			j++;
 		}
@@ -87,17 +87,17 @@ static int	ft_check_dups(char	**str)
 
 char	**ft_check_params(int argc, char **argv)
 {
-	char	**str;
+	char	**mat;
 
 	if (!ft_check_next_char(argv))
 		return (NULL);
-	str = ft_fill_mat(argc, argv);
-	if (!str)
+	mat = ft_fill_mat(argc, argv);
+	if (!mat)
 		return (NULL);
-	if (!ft_check_dups(str) || !ft_check_limits(str))
+	if (!ft_check_dups(mat) || !ft_check_limits(mat))
 	{
-		ft_free_all(NULL, NULL, &str);
+		ft_free_all(NULL, NULL, &mat);
 		return (NULL);
 	}
-	return (str);
+	return (mat);
 }

@@ -1,42 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap_sort_back_sim.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/13 18:01:30 by mchiaram          #+#    #+#             */
+/*   Updated: 2024/05/13 18:05:18 by mchiaram         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static size_t	ft_num_moves_r(size_t index_a, size_t index_b, size_t size_a, size_t size_b)
+static size_t	ft_num_moves_r(size_t i_a, size_t i_b, size_t s_a, size_t s_b)
 {
 	size_t	nmoves;
 
 	nmoves = 0;
-	while ((index_a > 0 && index_a != size_a) || (index_b > 0 && index_b != size_b))
+	while ((i_a > 0 && i_a != s_a) || (i_b > 0 && i_b != s_b))
 	{
-		if (index_a <= (size_a / 2) && index_a != 0)
-			index_a--;
-		else if (index_a > (size_a / 2) && index_a != size_a)
-			index_a++;
-		else if (index_b <= (size_b / 2))
-			index_b--;
-		else if (index_b > (size_b / 2))
-			index_b++;
+		if (i_a <= (s_a / 2) && i_a != 0)
+			i_a--;
+		else if (i_a > (s_a / 2) && i_a != s_a)
+			i_a++;
+		else if (i_b <= (s_b / 2))
+			i_b--;
+		else if (i_b > (s_b / 2))
+			i_b++;
 		nmoves++;
 	}
 	return (nmoves);
 }
 
-static size_t	ft_num_moves_rr(size_t *index_a, size_t *index_b, size_t size_a, size_t size_b)
+static size_t	ft_n_moves_rr(size_t *i_a, size_t *i_b, size_t s_a, size_t s_b)
 {
 	size_t	nmoves;
-	
+
 	nmoves = 0;
-	while ((*index_a > 0 && *index_b > 0) && (*index_a != size_a && *index_b != size_b))
+	while ((*i_a > 0 && *i_b > 0) && (*i_a != s_a && *i_b != s_b))
 	{
-		if ((*index_a > (size_a / 2) && *index_b > (size_b / 2))
-			|| (*index_a >= (size_a / 2) && (*index_b + 1) == size_b))
+		if ((*i_a > (s_a / 2) && *i_b > (s_b / 2))
+			|| (*i_a >= (s_a / 2) && (*i_b + 1) == s_b))
 		{
-			(*index_a)++;
-			(*index_b)++;
+			(*i_a)++;
+			(*i_b)++;
 		}
-		else if (*index_a <= (size_a / 2) && *index_b <= (size_b / 2))
+		else if (*i_a <= (s_a / 2) && *i_b <= (s_b / 2))
 		{
-			(*index_a)--;
-			(*index_b)--;
+			(*i_a)--;
+			(*i_b)--;
 		}
 		else
 			break ;
@@ -51,7 +63,7 @@ static size_t	sort_a_sim(t_list *list_a, size_t size)
 	int		min;
 	size_t	index;
 	size_t	nmoves;
-	
+
 	min = INT_MAX;
 	current = list_a;
 	nmoves = 0;
@@ -64,7 +76,7 @@ static size_t	sort_a_sim(t_list *list_a, size_t size)
 	index = ft_find_index(list_a, min);
 	while (index > 0 && index != size)
 	{
-		if (index > (size/2) || index == (size - 1))
+		if (index > (size / 2) || index == (size - 1))
 			index++;
 		else
 			index--;
@@ -73,26 +85,26 @@ static size_t	sort_a_sim(t_list *list_a, size_t size)
 	return (nmoves);
 }
 
-static size_t	ft_num_moves(t_list *list_b, t_list *list_a, char *maxmin, int target)
+static size_t	ft_num_moves(t_list *l_b, t_list *l_a, char *maxmin, int target)
 {
 	size_t	nmoves;
 	size_t	size_a;
 	size_t	size_b;
 	size_t	index_a;
 	size_t	index_b;
-	
+
 	nmoves = 0;
-	size_a = ft_lstsize(list_a);
-	size_b = ft_lstsize(list_b);
-	index_b = ft_find_index(list_b, target);
+	size_a = ft_lstsize(l_a);
+	size_b = ft_lstsize(l_b);
+	index_b = ft_find_index(l_b, target);
 	index_a = 0;
 	if (maxmin)
 	{
-		index_a = ft_find_index(list_a, ft_atoi(maxmin));
-		nmoves = ft_num_moves_rr(&index_a, &index_b, size_a, size_b);
+		index_a = ft_find_index(l_a, ft_atoi(maxmin));
+		nmoves = ft_n_moves_rr(&index_a, &index_b, size_a, size_b);
 	}
 	else
-		nmoves += sort_a_sim(list_a, ft_lstsize(list_a));
+		nmoves += sort_a_sim(l_a, ft_lstsize(l_a));
 	nmoves += ft_num_moves_r(index_a, index_b, size_a, size_b);
 	return (nmoves);
 }
@@ -104,7 +116,7 @@ int	ft_sort_back_sim(t_list *list_b, t_list *list_a)
 	t_list	*head;
 	char	*maxmin;
 	int		bestnum;
-	
+
 	lessmoves = 0;
 	bestnum = 0;
 	head = list_b;
