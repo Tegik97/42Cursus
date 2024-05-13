@@ -24,7 +24,8 @@ LDLIB		:= $(addprefix -l,$(LIB))
 all : $(LIBFT) header $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(LDFLAGS) $^ $(LDLIB) -o $@ && echo "${BOLD}${GREEN}Done!${NO_COLOR}" || echo "${BOLD}${RED}Error compiling $(NAME)${NO_COLOR}";
+	$(CC) $(LDFLAGS) $^ $(LDLIB) -o $@ && echo "${BOLD}${GREEN}Done!${NO_COLOR}" \
+	|| echo "${BOLD}${RED}Error compiling $(NAME)${NO_COLOR}";
 
 $(LIBFT):
 	$(MAKE) -C $(@D)
