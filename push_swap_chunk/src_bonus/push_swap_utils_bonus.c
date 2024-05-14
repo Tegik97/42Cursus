@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:13:40 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/05/14 20:17:17 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/05/14 23:09:06 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ void	ft_free_all(t_list **list_a, t_list **list_b, char ***str)
 	i = 0;
 	while ((*str)[i])
 		free((*str)[i++]);
-	free((*str));
+	if (*str)
+		free((*str));
 }
 
 t_list	*fill_list(t_list *list, char **elements)
@@ -95,25 +96,25 @@ t_list	*fill_list(t_list *list, char **elements)
 	return (list);
 }
 
-void	print_list(t_list *list_a, t_list *list_b)
-{
-	ft_printf("\n\na)\tb)\n");
-	while (list_a || list_b)
-	{
-		if (list_a)
-		{
-			ft_printf("%d\t", list_a->content);
-			list_a = list_a->next;
-		}
-		else
-			ft_printf("\t");
-		if (list_b)
-		{
-			ft_printf("%d\n", list_b->content);
-			list_b = list_b->next;
-		}
-		else
-			ft_printf("\n");
-	}
-	ft_printf("\n");
-}
+// void	print_list(t_list *list_a, t_list *list_b)
+// {
+// 	ft_printf("\n\na)\tb)\n");
+// 	while (list_a || list_b)
+// 	{
+// 		if (list_a)
+// 		{
+// 			ft_printf("%d\t", list_a->content);
+// 			list_a = list_a->next;
+// 		}
+// 		else
+// 			ft_printf("\t");
+// 		if (list_b)
+// 		{
+// 			ft_printf("%d\n", list_b->content);
+// 			list_b = list_b->next;
+// 		}
+// 		else
+// 			ft_printf("\n");
+// 	}
+// 	ft_printf("\n");
+// }
