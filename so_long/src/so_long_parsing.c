@@ -49,33 +49,6 @@ static int	arg_check(char *arg)
 	return (1);
 }
 
-static char	*get_map(char *map_name)
-{
-	char	*line;
-	char	*map;
-	int		fd;
-
-	fd = open(map_name, O_RDONLY);
-	if (fd == -1)
-		return (0);
-	map = NULL;
-	line = "";
-	while (line)
-	{
-		line = get_next_line(fd);
-		if (!line)
-		{
-			free (line);
-			get_next_line(-42);
-			break ;
-		}
-		map = ft_strcat(&map, line);
-		free (line);
-	}
-	close (fd);
-	return (map);
-}
-
 int	parsing(int nargs, char *map_name)
 {
 	char	*map_path;
@@ -89,7 +62,8 @@ int	parsing(int nargs, char *map_name)
 	map_path = ft_strcat(&map_path, "./maps/");
 	map_path = ft_strcat(&map_path, map_name);
 	map = get_map(map_path);
-	if (!map || !check_valid_chars(map) || !check_walls(map))
+	if (!map || !check_valid_chars(map) 
+		|| !check_walls(map) || !floodfill_check(map))
 	{
 		ft_putendl_fd("Error\nNot a valid map", 2);
 		free (map);

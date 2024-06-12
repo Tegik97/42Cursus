@@ -10,7 +10,9 @@ DIR_DUP		:= mkdir -p $(@D)
 
 SRCS		:=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/so_long_parsing.c \
-				$(SRC_DIR)/so_long_wall_parsing.c
+				$(SRC_DIR)/so_long_wall_parsing.c \
+				$(SRC_DIR)/so_long_floodfill.c \
+				$(SRC_DIR)/so_long_utils.c
 
 OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 

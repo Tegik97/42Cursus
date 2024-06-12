@@ -22,13 +22,18 @@ run_command() {
   fi
 }
 
-echo -e "${BOLD}valid map name and valid map${NC}
+echo -e "${BOLD}valid map${NC}
 1111111111111
 10010000000C1
 1000011111001
 1P0011E000001
 1111111111111"
 ARG="valid.ber"
+run_command "$val $param ./so_long" $ARG
+
+echo ""
+echo -e "${BOLD}valid big map${NC}"
+ARG="big_map.ber"
 run_command "$val $param ./so_long" $ARG
 
 echo ""
