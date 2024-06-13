@@ -17,7 +17,10 @@ static int	check_rectangular(char *map)
 	}
 	rows++;
 	if (rows == columns)
+	{
+		ft_putendl_fd("Error!\nMap isn't rectangular", 2);
 		return (0);
+	}
 	return (1);
 }
 
@@ -37,7 +40,10 @@ static int	check_wall_size(char *map)
 		while (map[current_size] != '\n' && map[current_size])
 			current_size++;
 		if (current_size != first_line_size)
+		{
+			ft_putendl_fd("Error!\nWall size incorrect", 2);
 			return (0);
+		}
 		while (current_size-- >= 0 && *map)
 			map++;
 	}
@@ -51,14 +57,20 @@ static int	check_line(char *line, const size_t nline)
 		while (*line)
 		{
 			if (*line != '1')
+			{
+				ft_putendl_fd("Error\nInvalid walls", 2);
 				return (0);
+			}
 			line++;
 		}
 	}
 	else
 	{
 		if (line[0] != '1' || line[ft_strlen(line) - 1] != '1')
+		{
+			ft_putendl_fd("Error\nInvalid walls", 2);
 			return (0);
+		}
 	}
 	return (1);
 }

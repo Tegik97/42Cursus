@@ -2,16 +2,16 @@
 
 static int	check_valid_chars(char *map)
 {
-	int		dups[3];
+	int		dups[4];
 	size_t	i;
 
 	i = 0;
-	while (i < 3)
+	while (i < 4)
 		dups[i++] = 0;
 	while (*map)
 	{
 		if (!ft_strrchr("01CEP", *map) && *map != '\n')
-			return (0);
+			dups[3] = 1;
 		if (*map == 'C')
 			dups[0]++;
 		else if (*map == 'E')
@@ -20,8 +20,11 @@ static int	check_valid_chars(char *map)
 			dups[2]++;
 		map++;
 	}
-	if (dups[0] < 1 || dups[1] > 1 || dups[2] > 1)
+	if (dups[0] < 1 || dups[1] > 1 || dups[2] > 1 || dups[3] == 1)
+	{
+		ft_putendl_fd("Error!\nSome characters are not valid", 2);
 		return (0);
+	}
 	return (1);
 }
 
@@ -54,9 +57,7 @@ int	parsing(int nargs, char *map_name)
 	char	*map_path;
 	char	*map;
 
-	if (nargs != 2)
-		return (0);
-	if (!arg_check(map_name))
+	if (nargs != 2 || !arg_check(map_name))
 		return (0);
 	map_path = NULL;
 	map_path = ft_strcat(&map_path, "./maps/");
@@ -65,7 +66,6 @@ int	parsing(int nargs, char *map_name)
 	if (!map || !check_valid_chars(map) 
 		|| !check_walls(map) || !floodfill_check(map))
 	{
-		ft_putendl_fd("Error\nNot a valid map", 2);
 		free (map);
 		free (map_path);
 		return (0);
@@ -74,3 +74,26 @@ int	parsing(int nargs, char *map_name)
 	free (map_path);
 	return (1);
 }
+
+// int	parsing(int nargs, char *map_name)
+// {
+// 	char	*map_path;
+// 	char	*map;
+
+// 	if (nargs != 2)
+// 		return (0);
+// 	if (!arg_check(map_name))
+// 		return (0);
+// 	map_path = NULL;
+// 	map_path = ft_strcat(&map_path, "./maps/");
+// 	map_path = ft_strcat(&map_path, map_name);
+// 	map = get_map(map_path);
+// 	if (!map || !check_valid_chars(map) 
+// 		|| !check_walls(map) || !floodfill_check(map))
+// 	{
+// 		free_all(NULL, NULL, &map, &map_path);
+// 		return (0);
+// 	}
+// 	free_all(NULL, NULL, &map, &map_path);
+// 	return (1);
+// }

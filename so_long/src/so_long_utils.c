@@ -1,5 +1,20 @@
 #include "so_long.h"
 
+void	free_all(char **mat, size_t **char_pos)
+{
+	size_t	i;
+
+	if (*char_pos)
+		free (*char_pos);
+	if (mat)
+	{
+		i = 0;
+		while (mat[i])
+			free(mat[i++]);
+		free(mat);
+	}
+}
+
 size_t	*get_char_pos(char **mat)
 {
 	size_t	x;
@@ -25,6 +40,7 @@ size_t	*get_char_pos(char **mat)
 		}
 		y++;
 	}
+	char_pos[3] = 0;
 	return (char_pos);
 }
 
@@ -87,7 +103,7 @@ char	*get_map(char *map_name)
 
 	fd = open(map_name, O_RDONLY);
 	if (fd == -1)
-		return (0);
+		ft_putendl_fd("Error!\nFile not found", 2);
 	map = NULL;
 	line = "";
 	while (line)
@@ -102,6 +118,7 @@ char	*get_map(char *map_name)
 		map = ft_strcat(&map, line);
 		free (line);
 	}
-	close (fd);
+	if (fd != -1)
+		close (fd);
 	return (map);
 }

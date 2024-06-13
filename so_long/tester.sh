@@ -125,3 +125,38 @@ echo -e "${BOLD}Square map${NC}
 11111"
 ARG="square_map.ber"
 run_command "$val $param ./so_long" $ARG
+
+echo ""
+echo -e "${BOLD}Invalid path${NC}
+1111111111111
+10010000000C1
+1111111111111
+1P0000E000001
+1111111111111"
+ARG="invalid_path.ber"
+run_command "$val $param ./so_long" $ARG
+
+echo ""
+echo -e "${BOLD}Invalid big map${NC}"
+ARG="invalid_big_map.ber"
+run_command "$val $param ./so_long" $ARG
+
+echo ""
+echo -e "${BOLD}Can't reach collectable${NC}
+1111111111111
+10010C00001C1
+1000011101011
+1P0011E000001
+1111111111111"
+ARG="cant_reach_coll.ber"
+run_command "$val $param ./so_long" $ARG
+
+echo ""
+echo -e "${BOLD}Can't reach exit${NC}
+1111111111111
+10010000000C1
+1000011101011
+1P0011E100001
+1111111111111"
+ARG="cant_reach_exit.ber"
+run_command "$val $param ./so_long" $ARG
