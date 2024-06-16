@@ -7,6 +7,8 @@ RM			:= rm -rf
 SRC_DIR		:= src
 BUILD_DIR	:= .build
 DIR_DUP		:= mkdir -p $(@D)
+INCLUDES 	:= -I/usr/include -Imlx_linux
+MLX_FLAGS	:= -L./mlx_linux -lmlx -L/usr/lib/X11 -lXext -lX11
 
 SRCS		:=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/so_long_parsing.c \
@@ -22,7 +24,7 @@ LDLIB		:= $(addprefix -l,$(LIB))
 all : $(LIBFT) header $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(LDFLAGS) $^ $(LDLIB) -o $@ && echo "${BOLD}${GREEN}Done!${NO_COLOR}" \
+	$(CC) $(LDFLAGS) $^ $(LDLIB) -o $@ $(MLX_FLAGS) && echo "${BOLD}${GREEN}Done!${NO_COLOR}" \
 	|| echo "${BOLD}${RED}Error compiling $(NAME)${NO_COLOR}";
 
 $(LIBFT):
@@ -31,7 +33,10 @@ $(LIBFT):
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	$(DIR_DUP) $(@D)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+.c.o:
+	$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
 
 re: fclean all
 

@@ -74,26 +74,3 @@ int	parsing(int nargs, char *map_name)
 	free (map_path);
 	return (1);
 }
-
-// int	parsing(int nargs, char *map_name)
-// {
-// 	char	*map_path;
-// 	char	*map;
-
-// 	if (nargs != 2)
-// 		return (0);
-// 	if (!arg_check(map_name))
-// 		return (0);
-// 	map_path = NULL;
-// 	map_path = ft_strcat(&map_path, "./maps/");
-// 	map_path = ft_strcat(&map_path, map_name);
-// 	map = get_map(map_path);
-// 	if (!map || !check_valid_chars(map) 
-// 		|| !check_walls(map) || !floodfill_check(map))
-// 	{
-// 		free_all(NULL, NULL, &map, &map_path);
-// 		return (0);
-// 	}
-// 	free_all(NULL, NULL, &map, &map_path);
-// 	return (1);
-// }
