@@ -10,7 +10,7 @@ static int	check_valid_chars(char *map)
 		dups[i++] = 0;
 	while (*map)
 	{
-		if (!ft_strrchr("01CEP", *map) && *map != '\n')
+		if (!ft_strrchr("01CEPN", *map) && *map != '\n')
 			dups[3] = 1;
 		if (*map == 'C')
 			dups[0]++;
@@ -63,7 +63,7 @@ int	parsing(int nargs, char *map_name)
 	map_path = ft_strcat(&map_path, "./maps/");
 	map_path = ft_strcat(&map_path, map_name);
 	map = get_map(map_path);
-	if (!map || !check_valid_chars(map) 
+	if (!map || !check_valid_chars(map)
 		|| !check_walls(map) || !floodfill_check(map))
 	{
 		free (map);

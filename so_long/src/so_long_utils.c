@@ -1,29 +1,41 @@
 #include "so_long.h"
 
-void	free_all(char **mat, size_t **char_pos)
+void	free_all(t_data *game)
 {
 	size_t	i;
 
-	if (*char_pos)
-		free (*char_pos);
-	if (mat)
+	if (game)
 	{
 		i = 0;
-		while (mat[i])
-			free(mat[i++]);
-		free(mat);
+		while (game->map[i])
+			free(game->map[i++]);
+		if (game->map)
+			free(game->map);
+		if (game->num_img)
+		{
+			i = 0;
+			while (i < 10)
+				mlx_destroy_image(game->mlx, game->num_img[i++]);
+			free (game->num_img);
+		}
+		if (game->water_img && game->dino_img && game->win && game->mlx)
+		{
+			free (game->water_img);
+			free (game->dino_img);
+			mlx_destroy_window(game->mlx, game->win);
+			mlx_destroy_display(game->mlx);
+			free (game->mlx);
+		}
 	}
 }
 
-size_t	*get_char_pos(char **mat)
+void	get_char_pos(t_data *game, char **mat)
 {
 	size_t	x;
 	size_t	y;
-	size_t	*char_pos;
 
-	char_pos = ft_calloc(4, sizeof(size_t));
 	y = 0;
-	char_pos[2] = 0;
+	game->coll = 0;
 	while (mat[y])
 	{
 		x = 0;
@@ -31,17 +43,16 @@ size_t	*get_char_pos(char **mat)
 		{
 			if (mat[y][x] == 'P')
 			{
-				char_pos[0] = x;
-				char_pos[1] = y;
+				game->dino_x = x;
+				game->dino_y = y;
 			}
 			else if (mat[y][x] == 'C')
-				char_pos[2]++;
+				game->coll++;
 			x++;
 		}
 		y++;
 	}
-	char_pos[3] = 0;
-	return (char_pos);
+	game->exit = 0;
 }
 
 static char	**get_map_size(char *map)
@@ -60,6 +71,8 @@ static char	**get_map_size(char *map)
 			size[1]++;
 		map++;
 	}
+	if (size[0] > 39 || size[1] > 20)
+		return (NULL);
 	mat = ft_calloc((size[1] + 2), sizeof(char *));
 	while (size[1] != 0)
 	{
@@ -79,6 +92,8 @@ char	**map_to_mat(char *map)
 
 	mat = NULL;
 	mat = get_map_size(map);
+	if (!mat)
+		return (NULL);
 	x = 0;
 	y = 0;
 	while (*map)

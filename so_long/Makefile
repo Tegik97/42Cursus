@@ -11,10 +11,16 @@ INCLUDES 	:= -I/usr/include -Imlx_linux
 MLX_FLAGS	:= -L./mlx_linux -lmlx -L/usr/lib/X11 -lXext -lX11
 
 SRCS		:=	$(SRC_DIR)/main.c \
+				$(SRC_DIR)/so_long.c \
 				$(SRC_DIR)/so_long_parsing.c \
 				$(SRC_DIR)/so_long_wall_parsing.c \
 				$(SRC_DIR)/so_long_floodfill.c \
-				$(SRC_DIR)/so_long_utils.c
+				$(SRC_DIR)/so_long_utils.c \
+				$(SRC_DIR)/so_long_put_image.c \
+				$(SRC_DIR)/so_long_search_str_image.c \
+				$(SRC_DIR)/so_long_frame_update.c \
+				$(SRC_DIR)/so_long_move.c \
+				$(SRC_DIR)/so_long_put_moves.c 
 
 OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 
