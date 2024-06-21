@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/21 11:29:10 by mchiaram          #+#    #+#             */
+/*   Updated: 2024/06/21 11:31:30 by mchiaram         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include "libft.h"
@@ -35,7 +47,6 @@ typedef struct s_data
 	void	**num_img;
 }	t_data;
 
-
 int		map_floodfill(size_t x, size_t y, char **mat, t_data *game);
 void	get_char_pos(t_data *data, char **mat);
 void	free_all(t_data *game);
@@ -46,7 +57,7 @@ void	get_size_window(t_data *game, char *map_name);
 char	*search_image(char **map_mat, int x, int y);
 void	search_put(void *mlx, void *window, char **map_mat, void *image);
 int		game_init(char *map_name);
-void	put_background(void * mlx, void *window, char **map_mat, int size);
+void	put_background(void *mlx, void *window, char **map_mat, int size);
 int		change_frame(t_data *game);
 char	*search_entity(char **map_mat, int x, int y);
 void	chest_anim(t_data *game, int y, int x);

@@ -1,6 +1,18 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/06/21 11:25:57 by mchiaram          #+#    #+#              #
+#    Updated: 2024/06/21 11:25:58 by mchiaram         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME		:= so_long
 LIBFT		:= libft/libft.a
-CC			:= gcc -g
+CC			:= cc
 CFLAGS		:= -Werror -Wextra -Wall -I./include
 LIB			:= ft
 RM			:= rm -rf

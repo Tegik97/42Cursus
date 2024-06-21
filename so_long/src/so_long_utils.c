@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/21 11:26:27 by mchiaram          #+#    #+#             */
+/*   Updated: 2024/06/21 11:58:21 by mchiaram         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	free_all(t_data *game)
@@ -57,10 +69,9 @@ void	get_char_pos(t_data *game, char **mat)
 
 static char	**get_map_size(char *map)
 {
-	size_t	*size;
+	int		size[2];
 	char	**mat;
 
-	size = ft_calloc(2, sizeof(size_t));
 	size[0] = 0;
 	size[1] = 0;
 	while (map[size[0]] != '\n')
@@ -71,16 +82,14 @@ static char	**get_map_size(char *map)
 			size[1]++;
 		map++;
 	}
-	if (size[0] > 39 || size[1] > 20)
+	if (size[0] > 39 || size[1] > 19)
 		return (NULL);
 	mat = ft_calloc((size[1] + 2), sizeof(char *));
-	while (size[1] != 0)
+	while (size[1] >= 0)
 	{
 		mat[size[1]] = ft_calloc((size[0] + 1), sizeof(char));
 		size[1]--;
 	}
-	mat[size[1]] = ft_calloc((size[0] + 1), sizeof(char));
-	free(size);
 	return (mat);
 }
 

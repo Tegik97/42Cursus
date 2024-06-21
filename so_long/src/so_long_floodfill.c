@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long_floodfill.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/21 11:26:10 by mchiaram          #+#    #+#             */
+/*   Updated: 2024/06/21 12:00:55 by mchiaram         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 static int	check_space(size_t x, size_t y, char **mat, t_data *game)
@@ -70,6 +82,7 @@ int	floodfill_check(char *map)
 	if (!game->map)
 	{
 		ft_putendl_fd("Error\nMap is too big", 2);
+		free(game);
 		return (0);
 	}
 	get_char_pos(game, game->map);
@@ -80,6 +93,7 @@ int	floodfill_check(char *map)
 		else
 			ft_putendl_fd("Error!\nCan't reach exit", 2);
 		free_all(game);
+		free(game);
 		return (0);
 	}
 	free_all(game);

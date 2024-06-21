@@ -12,7 +12,6 @@ INC=/usr/include
 ## Please use configure script
 
 
-INC	= -I../include
 
 UNAME = $(shell uname)
 CC	= gcc
