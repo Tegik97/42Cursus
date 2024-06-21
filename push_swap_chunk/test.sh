@@ -1,0 +1,130 @@
+VALGR=""
+
+BOLD=$(tput bold)
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+YELLOW=$(tput setaf 3)
+NO_COLOR=$(tput sgr0)
+
+echo "${BOLD}${YELLOW}PARSING${NO_COLOR}"
+echo "\n${BOLD}${GREEN}- Non numeric -${NO_COLOR}"
+ARG="7 5 2 10 a 9 8 1 6 3 4"
+$VALGR ./push_swap $ARG
+
+echo "\n${BOLD}${GREEN}- Duplicate Param -${NO_COLOR}"
+ARG="7 5 2 10 7 9 8 1 6 3 4"
+$VALGR ./push_swap $ARG
+
+echo "\n${BOLD}${GREEN}- Greater than INT_MAX -${NO_COLOR}"
+ARG="7 5 2 10 2147483648 9 8 1 6 3 4"
+$VALGR ./push_swap $ARG
+
+echo "\n${BOLD}${GREEN}- Lower than INT_MIN -${NO_COLOR}"
+ARG="7 5 2 10 -2147483649 9 8 1 6 3 4"
+$VALGR ./push_swap $ARG
+
+echo "\n${BOLD}${GREEN}- No params -${NO_COLOR}"
+ARG=
+$VALGR ./push_swap $ARG
+
+echo "\n\n${BOLD}${YELLOW}ALREADY SORTED${NO_COLOR}"
+echo "\n${BOLD}${GREEN}- ./push_swap 42 -${NO_COLOR}"
+$VALGR ./push_swap 42
+
+echo "\n${BOLD}${GREEN}- ./push_swap 2 3 -${NO_COLOR}"
+$VALGR ./push_swap 2 3
+
+echo "\n${BOLD}${GREEN}- ./push_swap 0 1 2 3 -${NO_COLOR}"
+$VALGR ./push_swap 0 1 2 3
+
+echo "\n${BOLD}${GREEN}- ./push_swap 0 1 2 3 4 5 6 7 8 9 -${NO_COLOR}"
+$VALGR ./push_swap 0 1 2 3 4 5 6 7 8 9
+
+echo "\n${BOLD}${GREEN}- ./push_swap 0 1 3 5 6 8 9 -${NO_COLOR}"
+$VALGR ./push_swap 0 1 3 5 6 8 9
+
+echo "\n\n${BOLD}${YELLOW}SIZE 3 LIST${NO_COLOR}"
+echo "\n${BOLD}${GREEN}- ./push_swap 2 1 0 -${NO_COLOR}"
+ARG="2 1 0"
+$VALGR ./push_swap $ARG
+./push_swap $ARG | $VALGR ./checker $ARG
+
+echo "\n${BOLD}${GREEN}- ./push_swap 120 -323 0 -${NO_COLOR}"
+ARG="-120 -323 0"
+$VALGR ./push_swap $ARG
+./push_swap $ARG | $VALGR ./checker $ARG
+
+echo "\n\n${BOLD}${YELLOW}SIZE 5 LIST${NO_COLOR}"
+echo "\n${BOLD}${GREEN}- ./push_swap 1 5 2 4 3 -${NO_COLOR}"
+ARG="1 5 2 4 3"
+$VALGR ./push_swap $ARG | wc -l
+./push_swap $ARG | $VALGR ./checker $ARG
+
+echo "\n${BOLD}${GREEN}- ./push_swap -132 0 -23111 565 3 -${NO_COLOR}"
+ARG="-132 0 -23111 565 3"
+$VALGR ./push_swap $ARG | wc -l
+./push_swap $ARG | $VALGR ./checker $ARG
+
+echo "\n\n${BOLD}${YELLOW}100 AND 500 NUMBERS${NO_COLOR}"
+echo "\n${BOLD}${GREEN}- 100 NUMBERS -${NO_COLOR}"
+ARG="72 76 100 36 9 29 57 97 5 58 94 60 54 74 22 68 12 44 39 75 86 66 32 27 14 23 11 33 88 35 28 69 24 70 8 30 90 91 34 53 50 19 67 65 48 7 31 79 84 83 99 56 62 10 25 17 42 38 21 55 98 81 87 43 18 16 89 51 52 71 4 73 40 6 77 96 93 85 46 3 49 59 1 78 82 63 13 37 45 92 80 95 64 2 47 26 15 41 61 20"
+$VALGR ./push_swap $ARG | wc -l
+./push_swap $ARG | $VALGR ./checker $ARG
+
+echo "\n${BOLD}${GREEN}- 500 NUMBERS -${NO_COLOR}"
+ARG="242 398 192 194 484 357 306 390 38 385 249 152 472 439 486 392 189 453 93 50 236 394 302 61 387 384 82 179 73 239 294 16 129 467 465 92 495 309 421 172 324 223 148 26 156 282 355 454 460 10 207 71 173 280 126 37 153 271 391 267 258 273 116 268 409 304 59 159 262 458 134 118 448 477 314 110 445 426 184 2 388 264 237 228 438 107 62 128 91 123 54 255 188 182 112 171 60 315 161 310 462 211 459 487 104 362 436 369 311 17 281 140 45 499 414 429 97 266 181 451 431 19 135 479 80 130 427 158 353 296 450 322 21 348 361 270 300 132 483 411 349 308 113 34 85 424 358 359 209 400 432 423 446 248 339 434 199 474 469 338 27 7 278 494 293 393 79 88 251 356 65 178 376 142 498 5 1 481 44 287 177 410 230 202 221 292 246 111 325 284 329 265 327 470 404 344 373 395 476 24 58 461 463 197 31 218 36 122 208 185 150 364 363 196 100 137 443 317 368 297 205 449 206 336 227 121 375 151 164 203 381 274 217 478 254 64 226 81 257 295 95 250 99 157 11 366 28 220 8 413 316 143 488 442 6 260 74 78 204 352 127 299 22 165 160 240 253 216 374 147 468 406 425 489 415 326 471 396 333 195 318 144 219 89 382 215 52 114 20 417 145 328 46 475 243 213 447 341 408 305 103 313 323 40 105 9 87 403 124 335 33 3 380 298 491 15 210 190 14 232 288 106 259 303 43 490 276 480 29 136 261 168 86 378 370 285 167 464 191 200 347 418 68 286 457 354 252 4 41 109 225 256 433 229 120 386 291 412 238 416 402 115 233 76 397 84 131 350 247 35 275 141 166 367 331 139 32 263 452 101 444 162 66 138 57 365 12 371 125 175 117 343 53 346 321 428 485 473 212 214 183 198 279 187 174 500 307 98 180 377 47 169 283 133 419 342 269 340 170 301 39 108 63 30 25 492 379 405 193 466 56 399 222 290 231 245 456 401 332 493 18 23 435 272 51 496 312 337 119 163 49 482 440 96 42 55 372 94 330 244 72 320 70 360 497 389 186 155 351 201 345 234 319 13 441 383 102 437 176 430 420 334 289 77 83 149 69 48 407 422 90 235 67 277 224 146 75 455 241 154"
+$VALGR ./push_swap $ARG | wc -l
+./push_swap $ARG | $VALGR ./checker $ARG
+
+
+echo "\n\n\n${BOLD}${RED}\tBONUS${NO_COLOR}\n"
+echo "${BOLD}${YELLOW}PARSING${NO_COLOR}"
+echo "\n${BOLD}${GREEN}- Non numeric -${NO_COLOR}"
+ARG="7 5 2 10 a 9 8 1 6 3 4"
+$VALGR ./checker $ARG
+
+echo "\n${BOLD}${GREEN}- Duplicate Param -${NO_COLOR}"
+ARG="7 5 2 10 7 9 8 1 6 3 4"
+$VALGR ./checker $ARG
+
+echo "\n${BOLD}${GREEN}- Greater than INT_MAX -${NO_COLOR}"
+ARG="7 5 2 10 2147483648 9 8 1 6 3 4"
+$VALGR ./checker $ARG
+
+echo "\n${BOLD}${GREEN}- Lower than INT_MIN -${NO_COLOR}"
+ARG="7 5 2 10 -2147483649 9 8 1 6 3 4"
+$VALGR ./checker $ARG
+
+echo "\n${BOLD}${GREEN}- No params -${NO_COLOR}"
+ARG=
+$VALGR ./checker $ARG
+
+echo "\n${BOLD}${GREEN}- Valid params, invalid move -${NO_COLOR}"
+ARG="2 -1 5"
+$VALGR ./checker $ARG
+
+echo "\n${BOLD}${GREEN}- Valid params, move w/ spaces -${NO_COLOR}"
+ARG="2 -1 5"
+$VALGR ./checker $ARG
+
+echo "\n\n${BOLD}${YELLOW}FALSE TEST${NO_COLOR}"
+echo "\n${BOLD}${GREEN}- 0 9 1 8 2, moves: sa, pb, rrr -${NO_COLOR}"
+ARG="0 9 1 8 2"
+$VALGR ./checker $ARG
+
+echo "\n${BOLD}${GREEN}- -10 0 -32 42 8, moves: sa, pb, rrr -${NO_COLOR}"
+ARG="-10 0 -32 42 8"
+$VALGR ./checker $ARG
+
+echo "\n\n${BOLD}${YELLOW}RIGHT TEST${NO_COLOR}"
+echo "\n${BOLD}${GREEN}- 0 1 2, no moves -${NO_COLOR}"
+ARG="0 1 2"
+$VALGR ./checker $ARG
+
+echo "\n${BOLD}${GREEN}- 0 9 1 8 2, moves: pb, ra, pb, ra, sa, ra, pa, pa -${NO_COLOR}"
+ARG="0 9 1 8 2"
+$VALGR ./checker $ARG
+
+echo "\n${BOLD}${GREEN}- -10 2 0 232 1, moves: ra, pb, pb, rb, ra, sa, rra, pa, rra, pa, rra -${NO_COLOR}"
+ARG="-10 2 0 232 1"
+$VALGR ./checker $ARG
