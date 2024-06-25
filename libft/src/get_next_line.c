@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:55:35 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/03/21 15:00:47 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/06/21 11:27:56 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,17 @@ char	*get_next_line(int fd)
 {
 	static char	*str[FD_MAX];
 	char		*line;
+	size_t		i;
 
-	if (BUFFER_SIZE <= 0 || fd < 0)
+	if (BUFFER_SIZE <= 0 || fd == -1)
 		return (NULL);
+	if (fd == -42)
+	{
+		i = 0;
+		while (str[i])
+			free(str[i++]);
+		return (NULL);
+	}
 	str[fd] = ft_find_line(fd, str[fd]);
 	if (!str[fd])
 		return (NULL);
