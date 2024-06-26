@@ -1,15 +1,15 @@
 #include "minitalk.h"
 
-int	received = 0;
+int	g_received = 0;
 
 static void	sig_handler(int signum)
 {
-	received = 1;
-	// ft_printf("Received\n");
+	g_received = 1;
+	ft_printf("Received\n");
 	(void)signum;
 }
 
-static void	send_char(int s_pid, unsigned char c)
+static int	send_char(int s_pid, unsigned char c)
 {
 	int	i;
 
@@ -19,37 +19,34 @@ static void	send_char(int s_pid, unsigned char c)
 		if (((c >> i) & 1) == 0)
 		{
 			if (kill(s_pid, SIGUSR1) == -1)
-			{
-				ft_putendl_fd("Error", 2);
-				exit(1);
-			}
+				return (0);
 		}
 		else
 		{
 			if (kill(s_pid, SIGUSR2) == -1)
-			{
-				ft_putendl_fd("Error", 2);
-				exit(1);
-			}
+				return (0);
 		}
 		i--;
-		while (received == 0)
+		while (g_received == 0)
 			;
-		received = 0;
+		g_received = 0;
 	}
+	return (1);
 }
 
 static void	send_str(int s_pid, char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
 	{
-		send_char(s_pid, str[i++]);
+		if (!send_char(s_pid, str[i++]))
+		{
+			ft_putendl_fd("Error", 2);
+			exit(1);
+		}
 	}
-	send_char(s_pid, '\n');
-	send_char(s_pid, '\0');
 }
 
 int	main(int argc, char *argv[])

@@ -30,13 +30,11 @@ static void	send_char(int s_pid, unsigned char c)
 
 static void	send_str(int s_pid, char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
 		send_char(s_pid, str[i++]);
-	send_char(s_pid, '\n');
-	send_char(s_pid, '\0');
 }
 
 int	main(int argc, char *argv[])
