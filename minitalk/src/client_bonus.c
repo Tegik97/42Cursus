@@ -1,5 +1,14 @@
 #include "minitalk.h"
 
+int	received = 0;
+
+static void	sig_handler(int signum)
+{
+	received = 1;
+	// ft_printf("Received\n");
+	(void)signum;
+}
+
 static void	send_char(int s_pid, unsigned char c)
 {
 	int	i;
@@ -24,7 +33,9 @@ static void	send_char(int s_pid, unsigned char c)
 			}
 		}
 		i--;
-		usleep(50);
+		while (received == 0)
+			;
+		received = 0;
 	}
 }
 
@@ -34,7 +45,9 @@ static void	send_str(int s_pid, char *str)
 
 	i = 0;
 	while (str[i])
+	{
 		send_char(s_pid, str[i++]);
+	}
 	send_char(s_pid, '\n');
 	send_char(s_pid, '\0');
 }
@@ -54,6 +67,7 @@ int	main(int argc, char *argv[])
 		ft_putendl_fd("Error\nPID not valid", 2);
 		exit(1);
 	}
+	signal(SIGUSR2, sig_handler);
 	send_str(s_pid, argv[2]);
 	return (0);
 }

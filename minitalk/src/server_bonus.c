@@ -22,6 +22,7 @@ static void	sig_handler(int signum, siginfo_t *info, void *context)
 		bits = 0;
 		c = 0;
 	}
+	kill(c_pid, SIGUSR2);
 	(void)context;
 }
 
