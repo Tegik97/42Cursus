@@ -24,7 +24,7 @@ static void	send_char(int s_pid, unsigned char c)
 			}
 		}
 		i--;
-		usleep(50);
+		usleep(100);
 	}
 }
 

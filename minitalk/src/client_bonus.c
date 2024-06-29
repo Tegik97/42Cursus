@@ -4,8 +4,14 @@ int	g_received = 0;
 
 static void	sig_handler(int signum)
 {
+	static int	i = 0;
+
 	g_received = 1;
-	ft_printf("Received\n");
+	if (i++ == 7)
+	{
+		write(1, "Received\n", 10);
+		i = 0;
+	}
 	(void)signum;
 }
 

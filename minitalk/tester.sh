@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PATH_TO_CLIENT="./client_bonus"
+PATH_TO_CLIENT="./client"
 
 # Colors
 Black='\e[0;30m'
