@@ -107,7 +107,7 @@ echo "\n${BOLD}${GREEN}- Valid params, move w/ spaces -${NO_COLOR}"
 ARG="2 -1 5"
 $VALGR ./checker $ARG
 
-echo "\n\n${BOLD}${YELLOW}FALSE TEST${NO_COLOR}"
+echo "\n\n${BOLD}${YELLOW}WRONG TESTS${NO_COLOR}"
 echo "\n${BOLD}${GREEN}- 0 9 1 8 2, moves: sa, pb, rrr -${NO_COLOR}"
 ARG="0 9 1 8 2"
 $VALGR ./checker $ARG
@@ -116,7 +116,7 @@ echo "\n${BOLD}${GREEN}- -10 0 -32 42 8, moves: sa, pb, rrr -${NO_COLOR}"
 ARG="-10 0 -32 42 8"
 $VALGR ./checker $ARG
 
-echo "\n\n${BOLD}${YELLOW}RIGHT TEST${NO_COLOR}"
+echo "\n\n${BOLD}${YELLOW}RIGHT TESTS${NO_COLOR}"
 echo "\n${BOLD}${GREEN}- 0 1 2, no moves -${NO_COLOR}"
 ARG="0 1 2"
 $VALGR ./checker $ARG
