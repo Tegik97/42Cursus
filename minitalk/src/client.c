@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:41:48 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/06/29 16:42:17 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/07/06 15:58:09 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	send_char(int s_pid, unsigned char c)
 			}
 		}
 		i--;
-		usleep(100);
+		usleep(200);
 	}
 }
 
