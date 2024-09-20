@@ -10,7 +10,10 @@
 enum
 {
 	FREE = 1024,
-	TAKEN
+	TAKEN,
+	EATING,
+	THINKING,
+	SLEEPING
 };
 
 typedef struct s_fork

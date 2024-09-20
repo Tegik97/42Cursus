@@ -26,7 +26,7 @@ void	create_forks(int nphilo, t_fork *forks)
 	forks->id = i;
 	pthread_mutex_init(&forks->lock, NULL);
 	fhead = forks;
-	while (++i < nphilo)
+	while (++i <= nphilo)
 	{
 		new_element = malloc (1 * sizeof(t_fork));
 		new_element->id = i;
@@ -34,11 +34,6 @@ void	create_forks(int nphilo, t_fork *forks)
 		forks->next = new_element;
 		forks = forks->next;
 	}
-	new_element = malloc (1 * sizeof(t_fork));
-	new_element->id = i;
-	pthread_mutex_init(&new_element->lock, NULL);
-	forks->next = new_element;
-	forks = forks->next;
 	forks->next = fhead;
 }
 
@@ -52,7 +47,7 @@ void	create_philos(int nphilo, t_philo *philos)
 	philos->id = i;
 	philos->last_meal = get_time();
 	phead = philos;
-	while (++i < nphilo)
+	while (++i <= nphilo)
 	{
 		new_element = malloc (1 * sizeof(t_philo));
 		new_element->id = i;
@@ -60,11 +55,6 @@ void	create_philos(int nphilo, t_philo *philos)
 		philos->next = new_element;
 		philos = philos->next;
 	}
-	new_element = malloc (1 * sizeof(t_philo));
-	new_element->id = i;
-	new_element->last_meal = get_time();
-	philos->next = new_element;
-	philos = philos->next;
 	philos->next = phead;
 }
 

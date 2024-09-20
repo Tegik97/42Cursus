@@ -9,10 +9,19 @@ void	*routine(void *arg)
 	while (p->cond->exit == 0)
 	{
 		while (!philo_eat(p, tstamp))
-			;
-		usleep(p->cond->sleeptime * 1000);
+		{
+			if (p->cond->exit == 1)
+				return (NULL);
+		}
+		if (p->cond->exit == 1)
+			return (NULL);
 		tstamp = get_time() - p->cond->inittime;
-		printf("%ld %ld is sleeping\n", tstamp, p->id);
+		printf("\033[34m%ldms philo %ld is sleeping\033[0m\n", tstamp, p->id);
+		usleep(p->cond->sleeptime * 1000);
+		if (p->cond->exit == 1)
+			return (NULL);
+		tstamp = get_time() - p->cond->inittime;
+		printf("\033[33m%ldms philo %ld is thinking\033[0m\n", tstamp, p->id);
 	}
 	return (NULL);
 }
