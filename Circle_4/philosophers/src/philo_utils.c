@@ -1,13 +1,16 @@
 #include "philosopher.h"
 
-void	connect_philos_and_forks(t_philo *philos, t_fork *forks)
+void	connect_philos_and_forks(t_philo *philos, t_fork *forks, t_conditions *cond)
 {
 	t_philo	*phead;
 
 	phead = philos;
 	do
 	{
+		philos->ate = 0;
+		forks->status = FREE;
 		philos->fork = forks;
+		philos->cond = cond;
 		philos = philos->next;
 		forks = forks->next;
 	} while (philos != phead);
@@ -83,10 +86,7 @@ size_t	ft_atoi(char *str)
 	while (*str == ' ')
 		str++;
 	if (*str == '-')
-	{
-		printf("Number of philosophers must be a positive integer\n");
 		return (0);
-	}
 	if (*str == '+')
 		str++;
 	while (*str >= '0' && *str <= '9')
@@ -94,12 +94,7 @@ size_t	ft_atoi(char *str)
 		base = base * 10 + *str - '0';
 		str++;
 	}
-	if (base == 0)
-		printf("Number of philosophers must be greater than 0\n");
-	else if (base > INT_MAX)
-	{
-		printf("Number of philosophers must be a valid integer\n");
+	if (base > INT_MAX)
 		return (0);
-	}
 	return (base);
 }

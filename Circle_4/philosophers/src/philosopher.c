@@ -2,11 +2,33 @@
 
 void	*routine(void *arg)
 {
-	t_philo	*philos;
+	t_philo	*p;
+	size_t	tstamp;
 
-	philos = (t_philo *)arg;
-	printf("philo id %ld\nfork id %ld\nnext fork id %ld\nlast meal %ld\n\n", philos->id, philos->fork->id, philos->fork->next->id, philos->last_meal);
+	p = (t_philo *)arg;
+	while (p->cond->exit == 0)
+	{
+		while (!philo_eat(p, tstamp))
+			;
+		usleep(p->cond->sleeptime * 1000);
+		tstamp = get_time() - p->cond->inittime;
+		printf("%ld %ld is sleeping\n", tstamp, p->id);
+	}
 	return (NULL);
+}
+
+static void create_joins(t_philo *philos)
+{
+    t_philo *current;
+	
+	current = philos;
+    do {
+        if (pthread_join(current->thread, NULL) != 0) {
+            printf("pthread_join error\n");
+            return;
+        }
+        current = current->next;
+    } while (current != philos);
 }
 
 static void create_threads(t_philo *philos)
@@ -21,34 +43,38 @@ static void create_threads(t_philo *philos)
         }
         current = current->next;
     } while (current != philos);
-	current = philos;
-    do {
-        if (pthread_join(current->thread, NULL) != 0) {
-            printf("pthread_join error\n");
-            return;
-        }
-        current = current->next;
-    } while (current != philos);
 }
 
 
-static int	init(char **argv, t_philo *philos, t_fork *forks)
+static size_t	init(char **argv, t_philo *philos, t_fork *forks)
 {
 	int	nphilo;
+	t_conditions	*cond;
 
 	nphilo = ft_atoi(argv[1]);
 	if (nphilo == 0)
 		return (0);
+	cond = malloc (1 * sizeof(t_conditions));
+	cond->inittime = get_time();
+	cond->dietime = ft_atoi(argv[2]);
+	cond->eattime = ft_atoi(argv[3]);
+	cond->sleeptime = ft_atoi(argv[4]);
+	if (argv[5])
+		cond->neat = ft_atoi(argv[5]);
+	else
+		cond->neat = -1;
+	cond->exit = 0;
 	create_forks(nphilo, forks);
 	create_philos(nphilo, philos);
-	connect_philos_and_forks(philos, forks);
+	connect_philos_and_forks(philos, forks, cond);
 	return (nphilo);
 }
 
 int	main(int argc, char *argv[])
 {
-	t_philo	*philos;
-	t_fork	*forks;
+	t_philo			*philos;
+	t_fork			*forks;
+	size_t			nphilo;
 
 	if (argc < 5)
 	{
@@ -57,8 +83,9 @@ int	main(int argc, char *argv[])
 	}
 	philos = malloc (1 * sizeof(t_philo));
 	forks = malloc (1 * sizeof(t_fork));
-	if (!init(argv, philos, forks))
-		return (1);
+	nphilo = init(argv, philos, forks);
 	create_threads(philos);
+	check_philos(philos, nphilo);
+	create_joins(philos);
 	return (0);
 }
