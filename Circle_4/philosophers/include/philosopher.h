@@ -20,7 +20,6 @@ typedef struct s_fork
 {
 	size_t			id;
 	pthread_mutex_t	lock;
-	int				status;
 	struct s_fork	*next;
 } t_fork;
 
@@ -32,6 +31,9 @@ typedef struct s_conditions
 	size_t	sleeptime;
 	size_t	neat;
 	size_t	eaten;
+	pthread_mutex_t	lockexit;
+	pthread_mutex_t	lockmeal;
+	pthread_mutex_t	lockate;
 	int		exit;
 } t_conditions;
 
@@ -51,7 +53,10 @@ size_t	get_time();
 void	create_philos(int nphilo, t_philo *philos);
 void	create_forks(int nphilo, t_fork *forks);
 void	connect_philos_and_forks(t_philo *philos, t_fork *forks, t_conditions *cond);
-int		philo_eat(t_philo *p, size_t tstamp);
+int		philo_eat(t_philo *p);
 void	check_philos(t_philo *p, size_t nphilo);
+void	free_all(t_philo *p);
+int		check_death(t_philo *p);
+int		take_next_fork(t_philo *p, size_t tstamp);
 
 #endif

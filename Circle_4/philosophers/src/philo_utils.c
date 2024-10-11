@@ -8,7 +8,6 @@ void	connect_philos_and_forks(t_philo *philos, t_fork *forks, t_conditions *cond
 	do
 	{
 		philos->ate = 0;
-		forks->status = FREE;
 		philos->fork = forks;
 		philos->cond = cond;
 		philos = philos->next;
