@@ -26,10 +26,10 @@ int	take_next_fork(t_philo *p, size_t tstamp)
 	pthread_mutex_lock(&p->cond->lockmeal);
 	p->last_meal = get_time();
 	pthread_mutex_unlock(&p->cond->lockmeal);
+	usleep(p->cond->eattime * 1000);
 	pthread_mutex_lock(&p->cond->lockate);
 	p->ate++;
 	pthread_mutex_unlock(&p->cond->lockate);
-	usleep(p->cond->eattime * 1000);
 	pthread_mutex_unlock(&p->fork->next->lock);
 	return (1);
 }
