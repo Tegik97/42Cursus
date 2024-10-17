@@ -1,18 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/17 15:03:26 by mchiaram          #+#    #+#             */
+/*   Updated: 2024/10/17 18:42:36 by mchiaram         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosopher.h"
 
-void	connect_philos_and_forks(t_philo *philos, t_fork *forks, t_conditions *cond)
+void	connect_philos_and_forks(t_philo *p, t_fork *f, t_conditions *cond)
 {
 	t_philo	*phead;
 
-	phead = philos;
-	do
+	phead = p;
+	p->ate = 0;
+	p->fork = f;
+	p->cond = cond;
+	p = p->next;
+	f = f->next;
+	while (p != phead)
 	{
-		philos->ate = 0;
-		philos->fork = forks;
-		philos->cond = cond;
-		philos = philos->next;
-		forks = forks->next;
-	} while (philos != phead);
+		p->ate = 0;
+		p->fork = f;
+		p->cond = cond;
+		p = p->next;
+		f = f->next;
+	}
 }
 
 void	create_forks(int nphilo, t_fork *forks)
@@ -57,10 +74,10 @@ void	create_philos(int nphilo, t_philo *philos)
 	philos->next = phead;
 }
 
-size_t	get_time()
+size_t	get_time(void)
 {
-	struct timeval tv;
-	size_t	current_time;
+	struct timeval	tv;
+	size_t			current_time;
 
 	gettimeofday(&tv, NULL);
 	current_time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
@@ -69,7 +86,7 @@ size_t	get_time()
 
 size_t	ft_atoi(char *str)
 {
-	size_t base;
+	size_t	base;
 
 	base = 0;
 	while (*str == ' ')
@@ -82,6 +99,8 @@ size_t	ft_atoi(char *str)
 	{
 		base = base * 10 + *str - '0';
 		str++;
+		if (*str && (*str < '0' || *str > '9'))
+			return (0);
 	}
 	if (base > INT_MAX)
 		return (0);

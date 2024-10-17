@@ -16,7 +16,7 @@ OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 all : header $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $^ -o $@ && echo "${BOLD}${GREEN}Done!${NO_COLOR}" \
+	$(CC) $^ -o $@ -lpthread && echo "${BOLD}${GREEN}Done!${NO_COLOR}" \
 	|| echo "${BOLD}${RED}Error compiling $(C_NAME)${NO_COLOR}";
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c

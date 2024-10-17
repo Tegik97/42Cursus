@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philosopher.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/17 15:03:28 by mchiaram          #+#    #+#             */
+/*   Updated: 2024/10/17 19:12:17 by mchiaram         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosopher.h"
 
 void	*routine(void *arg)
@@ -6,65 +18,74 @@ void	*routine(void *arg)
 	size_t	tstamp;
 
 	p = (t_philo *)arg;
+	tstamp = 0;
 	while (1)
 	{
-		if (!philo_eat(p) || check_death(p))
+		if (!philo_eat(p, tstamp) || check_death(p))
 			return (NULL);
 		tstamp = get_time() - p->cond->inittime;
+		pthread_mutex_lock(&p->cond->lockprint);
 		printf("\033[34m%ldms philo %ld is sleeping\033[0m\n", tstamp, p->id);
+		pthread_mutex_unlock(&p->cond->lockprint);
 		usleep(p->cond->sleeptime * 1000);
 		if (check_death(p))
 			return (NULL);
 		tstamp = get_time() - p->cond->inittime;
+		pthread_mutex_lock(&p->cond->lockprint);
 		printf("\033[33m%ldms philo %ld is thinking\033[0m\n", tstamp, p->id);
+		pthread_mutex_unlock(&p->cond->lockprint);
 	}
 }
 
-static void create_joins(t_philo *philos)
+static void	create_joins(t_philo *philos)
 {
-    t_philo *current;
-	
+	t_philo	*current;
+
 	current = philos;
-    do {
-        if (pthread_join(current->thread, NULL) != 0) {
-            printf("pthread_join error\n");
-            return;
-        }
-        current = current->next;
-    } while (current != philos);
-}
-
-static void create_threads(t_philo *philos)
-{
-    t_philo *current;
-	
-	current = philos;
-    do {
-        if (pthread_create(&current->thread, NULL, routine, current) != 0) {
-            printf("pthread_create error\n");
-            return;
-        }
-        current = current->next;
-		usleep(500);
-    } while (current != philos);
-}
-
-
-static size_t	init(char **argv, t_philo *philos, t_fork *forks)
-{
-	int	nphilo;
-	t_conditions	*cond;
-
-	nphilo = ft_atoi(argv[1]);
-	if (nphilo == 0 || nphilo > 200)
+	if (pthread_join(current->thread, NULL) != 0)
 	{
-		printf("Number of philosophers must be greater than 0 and lower than 201\n");
-		return (0);
+		printf("pthread_join error\n");
+		return ;
 	}
-	cond = malloc (1 * sizeof(t_conditions));
-	pthread_mutex_init(&cond->lockexit, NULL);
-	pthread_mutex_init(&cond->lockmeal, NULL);
-	pthread_mutex_init(&cond->lockate, NULL);
+	current = current->next;
+	while (current != philos)
+	{
+		if (pthread_join(current->thread, NULL) != 0)
+		{
+			printf("pthread_join error\n");
+			return ;
+		}
+		current = current->next;
+	}
+}
+
+static void	create_threads(t_philo *philos)
+{
+	t_philo	*current;
+
+	current = philos;
+	if (pthread_create(&current->thread, NULL, routine, current) != 0)
+	{
+		printf("pthread_create error\n");
+		return ;
+	}
+	current = current->next;
+	usleep(500);
+	while (current != philos)
+	{
+		if (pthread_create(&current->thread, NULL, routine, current) != 0)
+		{
+			printf("pthread_create error\n");
+			return ;
+		}
+		current = current->next;
+		usleep(500);
+	}
+}
+
+static size_t	init(char **argv, t_philo *p, t_conditions *cond, t_fork *forks)
+{
+	cond->nphilo = ft_atoi(argv[1]);
 	cond->inittime = get_time();
 	cond->dietime = ft_atoi(argv[2]);
 	cond->eattime = ft_atoi(argv[3]);
@@ -73,17 +94,23 @@ static size_t	init(char **argv, t_philo *philos, t_fork *forks)
 	if (argv[5])
 		cond->neat = ft_atoi(argv[5]);
 	cond->exit = 0;
-	create_forks(nphilo, forks);
-	create_philos(nphilo, philos);
-	connect_philos_and_forks(philos, forks, cond);
-	return (nphilo);
+	if (!parsing(cond->nphilo, cond))
+		return (0);
+	pthread_mutex_init(&cond->lockexit, NULL);
+	pthread_mutex_init(&cond->lockmeal, NULL);
+	pthread_mutex_init(&cond->lockate, NULL);
+	pthread_mutex_init(&cond->lockprint, NULL);
+	create_forks(cond->nphilo, forks);
+	create_philos(cond->nphilo, p);
+	connect_philos_and_forks(p, forks, cond);
+	return (1);
 }
 
 int	main(int argc, char *argv[])
 {
 	t_philo			*philos;
 	t_fork			*forks;
-	size_t			nphilo;
+	t_conditions	*cond;
 
 	if (argc < 5)
 	{
@@ -92,11 +119,16 @@ int	main(int argc, char *argv[])
 	}
 	philos = malloc (1 * sizeof(t_philo));
 	forks = malloc (1 * sizeof(t_fork));
-	nphilo = init(argv, philos, forks);
-	if (!nphilo)
+	cond = malloc (1 * sizeof(t_conditions));
+	if (!init(argv, philos, cond, forks))
+	{
+		free (philos);
+		free (forks);
+		free (cond);
 		return (1);
+	}
 	create_threads(philos);
-	check_philos(philos, nphilo);
+	check_philos(philos, cond->nphilo);
 	create_joins(philos);
 	free_all(philos);
 	return (0);
