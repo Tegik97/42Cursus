@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:03:24 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/10/17 19:23:18 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/10/18 17:01:35 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,8 @@ int	philo_alone(t_philo *p)
 {
 	if (p == p->next)
 	{
-		while (!check_death(p))
+		while (!check_death(p, 0))
 			usleep (1);
-		pthread_mutex_unlock(&p->fork->lock);
 		return (1);
 	}
 	return (0);
@@ -53,11 +52,23 @@ size_t	*ft_calloc(size_t size, size_t nmemb)
 	return (arr);
 }
 
-int	check_death(t_philo *p)
+int	check_death(t_philo *p, int cond)
 {
 	pthread_mutex_lock(&p->cond->lockexit);
 	if (p->cond->exit == 1)
 	{
+		if (cond == 0)
+		{
+			if (p->next->id != 1)
+				pthread_mutex_unlock(&p->fork->lock);
+			else
+				pthread_mutex_unlock(&p->fork->next->lock);
+		}
+		else if (cond == 1)
+		{
+			pthread_mutex_unlock(&p->fork->lock);
+			pthread_mutex_unlock(&p->fork->next->lock);
+		}
 		pthread_mutex_unlock(&p->cond->lockexit);
 		return (1);
 	}
@@ -71,10 +82,9 @@ int	take_next_fork(t_philo *p, size_t tstamp)
 		pthread_mutex_lock(&p->fork->next->lock);
 	else
 		pthread_mutex_lock(&p->fork->lock);
-	if (check_death(p))
+	if (check_death(p, 1))
 	{
-		pthread_mutex_unlock(&p->fork->lock);
-		pthread_mutex_unlock(&p->fork->next->lock);
+		pthread_mutex_unlock(&p->cond->lockprint);
 		return (0);
 	}
 	tstamp = get_time() - p->cond->inittime;

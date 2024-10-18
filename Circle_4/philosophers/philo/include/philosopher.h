@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:03:32 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/10/17 19:10:13 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:59:06 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	connect_philos_and_forks(t_philo *p, t_fork *f, t_conditions *cond);
 int		philo_eat(t_philo *p, size_t tstamp);
 void	check_philos(t_philo *p, size_t nphilo);
 void	free_all(t_philo *p);
-int		check_death(t_philo *p);
+int		check_death(t_philo *p, int cond);
 int		take_next_fork(t_philo *p, size_t tstamp);
 size_t	*ft_calloc(size_t size, size_t nmemb);
 int		philo_alone(t_philo *p);

@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:03:20 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/10/18 10:26:04 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/10/18 14:22:23 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	free_all(t_philo *p)
 	pthread_mutex_destroy(&p->cond->lockexit);
 	pthread_mutex_destroy(&p->cond->lockate);
 	pthread_mutex_destroy(&p->cond->lockmeal);
+	pthread_mutex_destroy(&p->cond->lockprint);
 	free (p->cond);
 	while (p != phead)
 	{
@@ -77,9 +78,7 @@ static int	check_array(size_t	*arr, size_t nphilo, t_philo *p)
 void	check_philos(t_philo *p, size_t nphilo)
 {
 	size_t	*philoate;
-	size_t	i;
 
-	i = 0;
 	philoate = ft_calloc(sizeof(size_t), nphilo);
 	while (1)
 	{
@@ -106,14 +105,8 @@ int	philo_eat(t_philo *p, size_t tstamp)
 		pthread_mutex_lock(&p->fork->lock);
 	else
 		pthread_mutex_lock(&p->fork->next->lock);
-	if (check_death(p))
-	{
-		if (p->next->id != 1)
-			pthread_mutex_unlock(&p->fork->lock);
-		else
-			pthread_mutex_unlock(&p->fork->next->lock);
+	if (check_death(p, 0))
 		return (0);
-	}
 	tstamp = get_time() - p->cond->inittime;
 	pthread_mutex_lock(&p->cond->lockprint);
 	printf("\033[36m%ldms philo %ld has taken a fork\033[0m\n", tstamp, p->id);

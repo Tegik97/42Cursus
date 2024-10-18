@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:03:28 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/10/17 19:12:17 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/10/18 14:04:29 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	*routine(void *arg)
 	tstamp = 0;
 	while (1)
 	{
-		if (!philo_eat(p, tstamp) || check_death(p))
+		if (!philo_eat(p, tstamp) || check_death(p, 2))
 			return (NULL);
 		tstamp = get_time() - p->cond->inittime;
 		pthread_mutex_lock(&p->cond->lockprint);
 		printf("\033[34m%ldms philo %ld is sleeping\033[0m\n", tstamp, p->id);
 		pthread_mutex_unlock(&p->cond->lockprint);
 		usleep(p->cond->sleeptime * 1000);
-		if (check_death(p))
+		if (check_death(p, 2))
 			return (NULL);
 		tstamp = get_time() - p->cond->inittime;
 		pthread_mutex_lock(&p->cond->lockprint);
@@ -70,7 +70,7 @@ static void	create_threads(t_philo *philos)
 		return ;
 	}
 	current = current->next;
-	usleep(500);
+	usleep(50);
 	while (current != philos)
 	{
 		if (pthread_create(&current->thread, NULL, routine, current) != 0)
