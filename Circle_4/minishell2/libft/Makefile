@@ -6,7 +6,7 @@
 #    By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/17 14:19:10 by mchiaram          #+#    #+#              #
-#    Updated: 2024/10/22 11:58:56 by mchiaram         ###   ########.fr        #
+#    Updated: 2024/10/22 14:23:57 by mchiaram         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,9 @@ SRCS = $(SRC_DIR)/ft_atoi.c \
 	$(SRC_DIR)/get_next_line_utils.c \
 	$(SRC_DIR)/ft_strcat.c \
 	$(SRC_DIR)/ft_stringlcopy.c \
-	$(SRC_DIR)/ft_strtrimcpy.c
+	$(SRC_DIR)/ft_strtrimcpy.c \
+	$(SRC_DIR)/ft_freetrim.c \
+	$(SRC_DIR)/ft_uc_strchr.c
 	
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 

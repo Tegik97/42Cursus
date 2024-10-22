@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:20:12 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/10/22 12:19:35 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/10/22 13:33:57 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ int	init(void)
 		input = readline(prompt);
 		free (prompt);
 		if (input[0] != '0') //just for valgrind check
+		{
 			input_parse(input);
+			free (input);
+		}
 		else
 		{
 			free (input);

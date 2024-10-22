@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:19:50 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/10/22 12:13:51 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/10/22 14:25:18 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	ft_putnbr_fd(int n, int fd);
 char	*ft_strcat(char **dst, const char *src);
 char	*ft_stringlcopy(char *dst, const char *src, size_t size);
 char	*ft_strtrimcpy(char *dst, const char *src, size_t size);
+char	*ft_freetrim(char **s1, char const *set);
+char	*ft_uc_strchr(const char *s, int c);
 
 /* PRINTF FUNCTIONS */
 int		ft_printf(const char *str, ...);

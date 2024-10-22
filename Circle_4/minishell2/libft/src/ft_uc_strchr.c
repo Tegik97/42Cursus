@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_mem.c                                         :+:      :+:    :+:   */
+/*   ft_uc_strchr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 16:15:56 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/10/22 16:03:36 by mchiaram         ###   ########.fr       */
+/*   Created: 2024/10/22 14:22:20 by mchiaram          #+#    #+#             */
+/*   Updated: 2024/10/22 14:25:24 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	free_all(t_parse *data)
+char	*ft_uc_strchr(const char *s, int c)
 {
-	t_parse *current;
-
-	if (data)
+	unsigned char	uc;
+	if (!s)
+		return (NULL);
+	uc = (unsigned char)c;
+	while (*s != '\0')
 	{
-		current = data;
-		while (current)
-		{
-			if (current->value)
-				free (current->value);
-			if (current->path)
-				free (current->path);
-			data = data->next;
-			free (current);
-			current = NULL;
-			current = data;
-		}
+		if (*s == (char)uc)
+			return ((char *) s);
+		s++;
 	}
+	if (*s == (char)uc)
+		return ((char *) s);
+	return (NULL);
 }
