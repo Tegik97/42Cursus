@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:20:12 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/10/21 16:51:08 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/10/22 12:19:35 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	init(void)
 
 	while (1)
 	{
-		if (!(prompt = get_prompt()))
+		prompt = get_prompt();
+		if (!prompt)
 			return (1);
 		input = readline(prompt);
 		free (prompt);

@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:23:52 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/10/21 16:55:05 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/10/22 12:25:07 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,8 @@ static int	cmd_len(char *input)
 	size_t	len;
 
 	len = 0;
-	while (*input && (*input == ' ' ||
-			*input == "\n" || *input == "\t"))
-		input++;
-	while (*input && (*input != ' ' ||
-			*input != "\n" || *input != "\t"))
+	while (*input && (*input != ' ' &&
+			*input != '\n' && *input != '\t'))
 	{
 		len++;
 		input++;
@@ -29,22 +26,25 @@ static int	cmd_len(char *input)
 	return (len);
 }
 
-//controllare newelement e allocazione memoria
 void	fill_values(char *input, t_parse *data)
 {
-	size_t	i;
+	size_t	size;
 	t_parse	*new_element;
 
+	input = ft_strtrim(input, " \t\n");
+	size = cmd_len(input);
+	data->value = ft_stringlcopy(data->value, input, size);
+	input += size;
+	data->next = NULL;
 	while (*input)
 	{
-		i = 0;
-		data->value = ft_calloc(cmd_len(input), sizeof(char));
-		while (*input && (*input == ' ' ||
-			*input == "\n" || *input == "\t"))
-		input++;
-		while (*input && (*input != ' ' ||
-				*input != "\n" || *input != "\t"))
-			data->value[i++] = input++;
+		new_element = malloc(sizeof(t_parse));
+		input = ft_strtrim(input, " \t\n");
+		size = cmd_len(input);
+		new_element->value = ft_stringlcopy(data->value, input, size);
+		input += size;
+		data->next = new_element;
 		data = data->next;
 	}
+	data->next = NULL;
 }

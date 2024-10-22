@@ -6,12 +6,12 @@
 #    By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/17 14:19:10 by mchiaram          #+#    #+#              #
-#    Updated: 2024/06/21 11:28:15 by mchiaram         ###   ########.fr        #
+#    Updated: 2024/10/22 11:58:56 by mchiaram         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 			:= libft.a
-CC 				:= cc
+CC 				:= gcc -g
 CFLAGS 			:= -Wextra -Werror -Wall -I../include
 RM				:= rm -rf
 AR 				:= ar rcs
@@ -60,7 +60,8 @@ SRCS = $(SRC_DIR)/ft_atoi.c \
 	$(SRC_DIR)/get_next_line.c \
 	$(SRC_DIR)/get_next_line_utils.c \
 	$(SRC_DIR)/ft_strcat.c \
-	$(SRC_DIR)/ft_stringlcopy.c
+	$(SRC_DIR)/ft_stringlcopy.c \
+	$(SRC_DIR)/ft_strtrimcpy.c
 	
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 

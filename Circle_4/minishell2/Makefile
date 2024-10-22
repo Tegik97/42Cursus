@@ -9,7 +9,9 @@ BUILD_DIR	:= .build
 DIR_DUP		:= mkdir -p $(@D)
 
 SRCS		:= $(SRC_DIR)/exec_init/minishell.c \
+				$(SRC_DIR)/exec_init/init_prompt.c \
 				$(SRC_DIR)/parsing/parse.c \
+				$(SRC_DIR)/parsing/parse_utils.c \
 				$(SRC_DIR)/free_mem/free_mem.c
 
 OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
