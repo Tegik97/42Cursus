@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:43:43 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/10/22 15:58:17 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/10/22 16:11:39 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,14 @@ static int	token_len(char *input)
 	return (len);
 }
 
-static char	*list_element(char *input, t_parse *data)
+void	fill_values(char *input, t_parse *data)
 {
 	t_parse	*new_element;
 	size_t	size;
 	
+	size = token_len(input);
+	data->value = ft_stringlcopy(data->value, input, size);
+	input += size;
 	while (*input)
 	{
 		new_element = malloc (sizeof(t_parse));
@@ -44,24 +47,4 @@ static char	*list_element(char *input, t_parse *data)
 		input += size;
 	}
 	data->next = NULL;
-	return (input);
-}
-
-static char	*first_element(char *input, t_parse *data)
-{
-	size_t	size;
-
-	while (*input && (*input == ' ' ||
-		*input == '\t' || *input == '\n'))
-	input++;
-	size = token_len(input);
-	data->value = ft_stringlcopy(data->value, input, size);
-	input += size;
-	return (input);
-}
-
-void	fill_values(char *input, t_parse *data)
-{
-	input = first_element(input, data);
-	input = list_element(input, data);
 }
