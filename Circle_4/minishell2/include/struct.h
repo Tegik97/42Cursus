@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:43:01 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/10/21 16:27:03 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/12/02 09:53:13 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_H
-# define PARSE_H
+#ifndef STRUCT_H
+# define STRUCT_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <limits.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
+# include <limits.h>
 
-enum tokenValues
+enum e_tokenValues
 {
 	T_GENERAL	= -1,
 	T_WHITESPC	= ' ',
@@ -45,7 +45,7 @@ typedef struct s_redir
 	int				type;
 	char			*name;
 	struct s_redir	*next;
-} t_redir;
+}	t_redir;
 
 typedef struct s_token
 {
@@ -60,6 +60,6 @@ typedef struct s_parse
 	int				type;
 	char			*path;
 	struct s_parse	*next;
-} t_parse;
+}	t_parse;
 
 #endif

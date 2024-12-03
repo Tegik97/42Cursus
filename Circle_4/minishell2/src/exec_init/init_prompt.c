@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_prompt.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:20:12 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/10/22 13:33:57 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/12/03 15:16:57 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	*get_prompt(void)
 	return (prompt);
 }
 
-int	init(void)
+int	init(t_parse *data, t_token *tok)
 {
 	char	*input;
 	char	*prompt;
@@ -50,9 +50,9 @@ int	init(void)
 			return (1);
 		input = readline(prompt);
 		free (prompt);
-		if (input[0] != '0') //just for valgrind check
+		if (input[0] != '0') //if just for valgrind check
 		{
-			input_parse(input);
+			input_parse(input, data, tok);
 			free (input);
 		}
 		else

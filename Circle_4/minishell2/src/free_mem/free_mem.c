@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_mem.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:15:56 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/10/22 16:03:36 by mchiaram         ###   ########.fr       */
+/*   Updated: 2024/12/03 15:26:57 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_all(t_parse *data)
 {
-	t_parse *current;
+	t_parse	*current;
 
 	if (data)
 	{

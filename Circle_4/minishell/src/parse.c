@@ -75,8 +75,8 @@ static char	*check_if_command(char *command)
 	}
 	i = 0;
 	while (dir[i])
-				free (dir[i++]);
-			free (dir);
+		free (dir[i++]);
+	free (dir);
 	return (NULL);
 }
 
