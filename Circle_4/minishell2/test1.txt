@@ -1,2 +1,3 @@
 cat -e "prova.txt" | grep -v lulz | wc -l >> 'outfile.txt'
 cat -e "prova.txt"|grep -v lulz|wc -l>>'outfile.txt'
+<< DELIM cat -e "prova.txt" | grep -v lulz | wc -l >> 'outfile.txt'
