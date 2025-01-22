@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:40:43 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/12/04 12:05:21 by menny            ###   ########.fr       */
+/*   Updated: 2025/01/22 18:30:05 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ int	main(void)
 	data = malloc(sizeof(t_parse));
 	tok = malloc(sizeof(t_token));
 	if (!init(data, tok))
+	{
+		free(data);
+		free(tok);
 		return (1);
+	}
+	free(data);
+	free(tok);
 	return (0);
 }

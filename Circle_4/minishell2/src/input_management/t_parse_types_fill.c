@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static int	check_path_access(char *dir, char *value)
+int	check_path_access(char *dir, char *value)
 {
 	char	*path;
 
@@ -84,7 +84,7 @@ void	fill_t_parse_types(t_parse *data)
 				data->type = T_PIPE;
 		}
 		data = data->next;
-		if (data->type != T_GENERAL)
+		if (data && data->type != T_GENERAL)
 			data = data->next;
 	}
 }

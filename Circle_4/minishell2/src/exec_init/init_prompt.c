@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:20:12 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/12/03 15:16:57 by menny            ###   ########.fr       */
+/*   Updated: 2025/01/22 18:24:16 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ int	init(t_parse *data, t_token *tok)
 {
 	char	*input;
 	char	*prompt;
+	t_parse	*data_head;
+	t_token	*tok_head;
 
+	data_head = data;
+	tok_head = tok;
 	while (1)
 	{
 		prompt = get_prompt();
@@ -52,11 +56,15 @@ int	init(t_parse *data, t_token *tok)
 		free (prompt);
 		if (input[0] != '0') //if just for valgrind check
 		{
+			data = data_head;
+			tok = tok_head;
 			input_parse(input, data, tok);
+			free_all(data_head, tok_head);
 			free (input);
 		}
 		else
 		{
+			free_all(data_head, tok_head);
 			free (input);
 			return (1);
 		}

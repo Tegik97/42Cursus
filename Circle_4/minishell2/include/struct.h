@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:43:01 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/12/02 09:53:13 by menny            ###   ########.fr       */
+/*   Updated: 2025/01/22 17:25:24 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ typedef struct s_parse
 {
 	char			*value;
 	int				type;
-	char			*path;
 	struct s_parse	*next;
 }	t_parse;
 
