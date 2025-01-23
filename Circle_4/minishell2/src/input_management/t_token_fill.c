@@ -25,6 +25,10 @@ static char	*find_path(char *value)
 		}
 		i++;
 	}
+	i = 0;
+	while (dir[i])
+		free (dir[i++]);
+	free (dir);
 	return (ft_strdup(value));
 }
 

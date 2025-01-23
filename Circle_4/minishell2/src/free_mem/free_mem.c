@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:15:56 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/01/22 18:21:32 by menny            ###   ########.fr       */
+/*   Updated: 2025/01/23 12:05:30 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,23 @@
 static void free_token(t_token *tok)
 {
 	t_token *current;
+	size_t	i;
 
 	current = tok;
 	while (current)
 	{
+		i = 0;
 		if (current->value)
+		{
+			while (current->value[i])
+				free(current->value[i++]);
 			free (current->value);
+		}
 		if (current->rd)
+		{
 			free(current->rd->name);
+			free(current->rd);
+		}
 		tok = tok->next;
 		free (current);
 		current = NULL;
@@ -34,6 +43,9 @@ static void	free_parse(t_parse *data)
 {
 	t_parse	*current;
 
+	if (data->value)
+		free (data->value);
+	data = data->next;
 	current = data;
 	while (current)
 	{
@@ -48,13 +60,24 @@ static void	free_parse(t_parse *data)
 
 void	free_all(t_parse *data, t_token *tok)
 {
-	if (data->next)
-	{
-		data = data->next;
+	size_t	i;
+
+	if (data)
 		free_parse(data);
-	}
-	if (tok->next)
+	if (tok)
 	{
+		i = 0;
+		if (tok->value)
+		{
+			while (tok->value[i])
+				free(tok->value[i++]);
+			free (tok->value);
+		}
+		if (tok->rd)
+		{
+			free(tok->rd->name);
+			free(tok->rd);
+		}
 		tok = tok->next;
 		free_token(tok);
 	}

@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:20:12 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/01/22 18:24:16 by menny            ###   ########.fr       */
+/*   Updated: 2025/01/23 16:37:18 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,36 +38,40 @@ static char	*get_prompt(void)
 	return (prompt);
 }
 
+static char	*prompt_init(void)
+{
+	char	*prompt;
+	char	*input;
+
+	prompt = get_prompt();
+	if (!prompt)
+		return (NULL);
+	input = readline(prompt);
+	free (prompt);
+	input = ft_freetrim(&input, " \t\n");
+	return (input);
+}
+
 int	init(t_parse *data, t_token *tok)
 {
 	char	*input;
-	char	*prompt;
-	t_parse	*data_head;
-	t_token	*tok_head;
 
-	data_head = data;
-	tok_head = tok;
 	while (1)
 	{
-		prompt = get_prompt();
-		if (!prompt)
-			return (1);
-		input = readline(prompt);
-		free (prompt);
-		if (input[0] != '0') //if just for valgrind check
+		input = prompt_init();
+		if (input && *input)
 		{
-			data = data_head;
-			tok = tok_head;
+			add_history(input);
 			input_parse(input, data, tok);
-			free_all(data_head, tok_head);
-			free (input);
+			free_all(data, tok);
 		}
-		else
+		else if (!input)
 		{
-			free_all(data_head, tok_head);
+			rl_clear_history();
 			free (input);
 			return (1);
 		}
+		free (input);
 	}
 	return (0);
 }
