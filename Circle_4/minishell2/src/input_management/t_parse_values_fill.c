@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:43:43 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/01/24 10:29:08 by menny            ###   ########.fr       */
+/*   Updated: 2025/01/24 15:06:03 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	token_len(char *input)
 
 	len = 0;
 	type = *input;
-	if (type == T_DQUOTE || type == T_QUOTE)
+	if (type == '\"' || type == '\'')
 		len = check_quotes(input, type);
 	else
 	{
@@ -73,12 +73,15 @@ static int	get_values(t_parse *data, char *input)
 			break ;
 		new_element = malloc (sizeof(t_parse));
 		size = token_len(input);
-		if (!size)
-			return (0);
 		new_element->value = ft_stringlcopy(new_element->value, input, size);
 		new_element->type = T_GENERAL;
 		data->next = new_element;
 		data = data->next;
+		if (!size)
+		{
+			data->next = NULL;
+			return (0);
+		}
 		input += size;
 	}
 	data->next = NULL;

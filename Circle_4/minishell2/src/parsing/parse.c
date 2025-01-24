@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:00:12 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/01/24 11:07:50 by menny            ###   ########.fr       */
+/*   Updated: 2025/01/24 15:13:43 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,10 @@ int	input_parse(char *input, t_parse *data, t_token *tok)
 		tok = tok->next;
 		j++;
 	}
+	// while (data)
+	// {
+	// 	printf("value: %s, type: %d\n", data->value, data->type);
+	// 	data = data->next;
+	// }
 	return (0);
 }

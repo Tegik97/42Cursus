@@ -1,34 +1,5 @@
 #include "minishell.h"
 
-static char	*find_path(char *value)
-{
-	char	*path_env;
-	char	**dir;
-	int		i;
-
-	path_env = getenv("PATH");
-	if (!path_env)
-		return (0);
-	dir = ft_split(path_env, ':');
-	path_env = ft_strdup(value);
-	i = -1;
-	while (dir[++i])
-	{
-		if (check_path_access(dir[i], value))
-		{
-			free(path_env);
-			path_env = ft_strjoin(dir[i], "/");
-			path_env = ft_freejoin(path_env, value);
-			break ;
-		}
-	}
-	i = 0;
-	while (dir[i])
-		free (dir[i++]);
-	free (dir);
-	return (path_env);
-}
-
 static void	fill_struct(t_parse *data, t_token *tok, size_t ntok)
 {
 	t_token	*new_tok;
@@ -37,23 +8,20 @@ static void	fill_struct(t_parse *data, t_token *tok, size_t ntok)
 
 	new_tok = malloc(sizeof(t_token));
 	new_tok->value = malloc(sizeof(char *) * (ntok + 1));
-	new_rd = NULL;
+	new_rd = malloc(sizeof(t_redir));
+	new_rd->name = NULL;
 	i = 0;
 	while (data && data->type != T_PIPE && ntok > 0)
 	{
-		if (data && (data->type == T_GENERAL || data->type == T_COMMAND
-				|| data->type == T_QUOTE || data->type == T_DQUOTE))
-			new_tok->value[i++] = find_path(data->value);
-		else if (data && (data->type == T_RED_IN || data->type == T_RED_OUT
-				|| data->type == T_RED_APPEN || data->type == T_RED_APPEN))
-		{
-			new_rd = malloc(sizeof(t_redir));
-			new_rd->type = data->type;
-			new_rd->name = ft_strdup(data->next->value);
-		}
+		i = get_tok(data, new_tok, new_rd, i);
 		data = data->next;
 	}
 	new_tok->value[i] = NULL;
+	if (!new_rd->name)
+	{
+		free (new_rd);
+		new_rd = NULL;
+	}
 	new_tok->rd = new_rd;
 	tok->next = new_tok;
 }
@@ -64,21 +32,18 @@ static void	first_element(t_parse *data, t_token *tok, size_t ntok)
 	size_t	i;
 
 	tok->value = malloc(sizeof(char *) * (ntok + 1));
-	rd = NULL;
+	rd = malloc (sizeof(t_redir));
+	rd->name = NULL;
 	i = 0;
 	while (data && data->type != T_PIPE && ntok > 0)
 	{
-		if (data && (data->type == T_GENERAL || data->type == T_COMMAND
-				|| data->type == T_QUOTE || data->type == T_DQUOTE))
-			tok->value[i++] = find_path(data->value);
-		else if (data && (data->type == T_RED_IN || data->type == T_RED_OUT
-				|| data->type == T_RED_APPEN || data->type == T_DELIM))
-		{
-			rd = malloc(sizeof(t_redir));
-			rd->type = data->type;
-			rd->name = ft_strdup(data->next->value);
-		}
+		i = first_tok_copy(data, tok, rd, i);
 		data = data->next;
+	}
+	if (!rd->name)
+	{
+		free (rd);
+		rd = NULL;
 	}
 	tok->rd = rd;
 	tok->value[i] = NULL;
@@ -92,8 +57,7 @@ static int	n_tokens(t_parse *data)
 	ntok = 0;
 	while (data && data->type != T_PIPE)
 	{
-		if (data->type == T_GENERAL || data->type == T_COMMAND
-			|| data->type == T_QUOTE || data->type == T_DQUOTE)
+		if (data->type >= T_GENERAL && data->type <= T_COMMAND)
 			ntok++;
 		data = data->next;
 	}
@@ -106,8 +70,6 @@ void	fill_t_token(t_parse *data, t_token *tok)
 
 	ntok = n_tokens(data);
 	first_element(data, tok, ntok);
-	while (ntok-- > 0)
-		data = data->next;
 	while (data && data->type != T_PIPE)
 		data = data->next;
 	if (data)
@@ -116,10 +78,9 @@ void	fill_t_token(t_parse *data, t_token *tok)
 	{
 		ntok = n_tokens(data);
 		fill_struct(data, tok, ntok);
-		while (ntok-- > 0)
+		while (data && data->type != T_PIPE)
 			data = data->next;
-		while (data && (data->type != T_GENERAL && data->type != T_COMMAND
-				&& data->type != T_QUOTE && data->type != T_DQUOTE))
+		if (data)
 			data = data->next;
 		tok = tok->next;
 		tok->next = NULL;

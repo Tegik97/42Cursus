@@ -1,17 +1,30 @@
 #include "minishell.h"
 
-int	check_path_access(char *dir, char *value)
+static int	check_if_var(t_parse *data)
 {
-	char	*path;
+	char	*str;
+	char	*var_val;
+	size_t	i;
 
-	path = ft_strjoin(dir, "/");
-	path = ft_freejoin(path, value);
-	if (access(path, X_OK) == 0)
+	i = 0;
+	if ((data && data->value) && data->value[i] == '$')
 	{
-		free (path);
+		str = ft_substr(data->value, 1, ft_strlen(data->value));
+		while (str[i])
+		{
+			if (!ft_isalnum(str[i]) && str[i] != '_')
+			{
+				free (str);
+				return (0);
+			}
+			i++;
+		}
+		var_val = getenv(str);
+		free (str);
+		free (data->value);
+		data->value = ft_strdup(var_val);
 		return (1);
 	}
-	free (path);
 	return (0);
 }
 
@@ -44,31 +57,57 @@ static int	check_if_command(char *value)
 	return (0);
 }
 
+int	check_if_builtin(char *value)
+{
+	const char	**builtins;
+	size_t		i;
+
+	builtins = malloc(sizeof(char *) * 8);
+	builtins[0] = "echo";
+	builtins[1] = "cd";
+	builtins[2] = "pwd";
+	builtins[3] = "export";
+	builtins[4] = "unset";
+	builtins[5] = "env";
+	builtins[6] = "exit";
+	builtins[7] = NULL;
+	i = 0;
+	while (builtins[i])
+	{
+		if (!ft_strncmp(value, builtins[i++], ft_strlen(value)))
+		{
+			free (builtins);
+			return (1);
+		}
+	}
+	free (builtins);
+	return (0);
+}
+
 static int	check_if_quote(t_parse *data)
 {
-	if (data->value[0] == T_QUOTE)
+	if (data->value[0] == '\'')
 		data->type = T_QUOTE;
-	else if (data->value[0] == T_DQUOTE)
+	else if (data->value[0] == '\"')
 		data->type = T_DQUOTE;
-	else if (data->value[0] == T_RED_IN)
+	else if (data->value[0] == '<')
 	{
-		if (data->value[1] == T_RED_IN)
+		if (data->value[1] == '<')
 			data->type = T_DELIM;
 		else
 			data->type = T_RED_IN;
 	}
-	else if (data->value[0] == T_RED_OUT)
+	else if (data->value[0] == '>')
 	{
-		if (data->value[1] == T_RED_OUT)
+		if (data->value[1] == '>')
 			data->type = T_RED_APPEN;
 		else
 			data->type = T_RED_OUT;
 	}
 	if (data->type == T_GENERAL)
 		return (0);
-	else if (data->next && (data->type != T_FILE
-			&& data->type != T_QUOTE && data->type != T_DQUOTE))
-		data->next->type = T_FILE;
+	else if (data->type >= T_RED_IN && data->type <= T_DELIM)
+		data->next->type = T_LIM;
 	return (1);
 }
 
@@ -80,9 +119,13 @@ int	fill_t_parse_types(t_parse *data)
 	{
 		if (!check_if_quote(data))
 		{
-			if (check_if_command(data->value))
+			if (check_if_builtin(data->value))
+				data->type = T_BUILTIN;
+			else if (check_if_command(data->value))
 				data->type = T_COMMAND;
-			else if (data->value[0] == T_PIPE && !data->value[1])
+			else if (check_if_var(data))
+				data->type = T_VAR;
+			else if (data->value[0] == '|' && !data->value[1])
 				data->type = T_PIPE;
 		}
 		data = data->next;

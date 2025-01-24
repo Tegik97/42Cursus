@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:43:01 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/01/22 17:25:24 by menny            ###   ########.fr       */
+/*   Updated: 2025/01/24 16:28:46 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,24 @@
 
 enum e_tokenValues
 {
-	T_GENERAL	= -1,
-	T_WHITESPC	= ' ',
-	T_TAB		= '\t',
-	T_NEWLINE	= '\n',
-	T_QUOTE		= '\'',
-	T_DQUOTE	= '\"',
-	T_RED_IN	= '<',
-	T_RED_OUT	= '>',
-	T_PIPE		= '|',
-	T_VAR		= '$',
-	T_EXIT_STAT	= 1024,
-	T_DELIM,
-	T_RED_APPEN,
+	T_GENERAL	= 1024,
+	T_QUOTE,
+	T_DQUOTE,
+	T_BUILTIN,
+	T_VAR,
 	T_COMMAND,
-	T_FLAG,
-	T_FILE,
-	T_BUILTIN
+	T_PIPE,
+	T_EXIT_STAT,
+	T_LIM,
+	/* delimiters */
+	T_RED_IN,
+	T_RED_OUT,
+	T_RED_APPEN,
+	T_DELIM,
+	/*ignore chars*/
+	T_WHITESPC,
+	T_TAB,
+	T_NEWLINE
 };
 
 typedef struct s_redir
