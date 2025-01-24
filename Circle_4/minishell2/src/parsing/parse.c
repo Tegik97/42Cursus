@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:00:12 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/12/04 11:55:53 by menny            ###   ########.fr       */
+/*   Updated: 2025/01/24 11:07:50 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ int	input_parse(char *input, t_parse *data, t_token *tok)
 	size_t	i;
 	size_t	j;
 
-	fill_t_parse_values(input, data);
-	fill_t_parse_types(data);
+	if (!fill_t_parse_values(input, data) || !fill_t_parse_types(data))
+		return (0);
 	fill_t_token(data, tok);
 	printf("\n");
 	j = 0;
-	while (tok)
+	while (tok) //stampa valori
 	{
 		i = 0;
 		while (tok->value[i])
@@ -33,6 +33,5 @@ int	input_parse(char *input, t_parse *data, t_token *tok)
 		tok = tok->next;
 		j++;
 	}
-	// free_all(data);
 	return (0);
 }

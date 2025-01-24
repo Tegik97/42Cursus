@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:43:43 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/12/03 11:46:16 by menny            ###   ########.fr       */
+/*   Updated: 2025/01/24 10:29:08 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,31 +60,12 @@ static int	token_len(char *input)
 	return (len);
 }
 
-static char	*first_value(t_parse *data, char *input)
-{
-	size_t	size;
-
-	size = token_len(input);
-	data->value = ft_stringlcopy(data->value, input, size);
-	data->type = T_GENERAL;
-	if (!size)
-	{
-		data->next = NULL;
-		return ("\0");
-	}
-	return (input + size);
-}
-
-void	fill_t_parse_values(char *input, t_parse *data)
+static int	get_values(t_parse *data, char *input)
 {
 	t_parse	*new_element;
 	size_t	size;
 
-	while (*input && (*input == ' ' || *input == '\t' || *input == '\n'))
-		input++;
-	if (input)
-		input = first_value(data, input);
-	while (*input)
+	while (input && *input)
 	{
 		while (*input && (*input == ' ' || *input == '\t' || *input == '\n'))
 			input++;
@@ -92,13 +73,44 @@ void	fill_t_parse_values(char *input, t_parse *data)
 			break ;
 		new_element = malloc (sizeof(t_parse));
 		size = token_len(input);
+		if (!size)
+			return (0);
 		new_element->value = ft_stringlcopy(new_element->value, input, size);
 		new_element->type = T_GENERAL;
 		data->next = new_element;
 		data = data->next;
-		if (!size)
-			break ;
 		input += size;
 	}
 	data->next = NULL;
+	return (1);
+}
+
+static char	*first_value(t_parse *data, char *input)
+{
+	size_t	size;
+
+	size = token_len(input);
+	if (!size)
+	{
+		data->value = NULL;
+		return (NULL);
+	}
+	data->value = ft_stringlcopy(data->value, input, size);
+	data->type = T_GENERAL;
+	data->next = NULL;
+	return (input + size);
+}
+
+int	fill_t_parse_values(char *input, t_parse *data)
+{
+	while (*input && (*input == ' ' || *input == '\t' || *input == '\n'))
+		input++;
+	if (input)
+		input = first_value(data, input);
+	if (input && *input)
+	{
+		if (!get_values(data, input))
+			return (0);
+	}
+	return (1);
 }

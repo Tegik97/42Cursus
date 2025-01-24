@@ -72,8 +72,10 @@ static int	check_if_quote(t_parse *data)
 	return (1);
 }
 
-void	fill_t_parse_types(t_parse *data)
+int	fill_t_parse_types(t_parse *data)
 {
+	if (!data->value)
+		return (0);
 	while (data)
 	{
 		if (!check_if_quote(data))
@@ -87,4 +89,5 @@ void	fill_t_parse_types(t_parse *data)
 		if (data && data->type != T_GENERAL)
 			data = data->next;
 	}
+	return (1);
 }

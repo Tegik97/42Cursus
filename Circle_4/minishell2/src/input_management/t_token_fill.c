@@ -4,32 +4,29 @@ static char	*find_path(char *value)
 {
 	char	*path_env;
 	char	**dir;
-	size_t	i;
+	int		i;
 
 	path_env = getenv("PATH");
 	if (!path_env)
 		return (0);
 	dir = ft_split(path_env, ':');
-	i = 0;
-	while (dir[i])
+	path_env = ft_strdup(value);
+	i = -1;
+	while (dir[++i])
 	{
 		if (check_path_access(dir[i], value))
 		{
+			free(path_env);
 			path_env = ft_strjoin(dir[i], "/");
 			path_env = ft_freejoin(path_env, value);
-			i = 0;
-			while (dir[i])
-				free (dir[i++]);
-			free (dir);
-			return (path_env);
+			break ;
 		}
-		i++;
 	}
 	i = 0;
 	while (dir[i])
 		free (dir[i++]);
 	free (dir);
-	return (ft_strdup(value));
+	return (path_env);
 }
 
 static void	fill_struct(t_parse *data, t_token *tok, size_t ntok)
@@ -45,10 +42,10 @@ static void	fill_struct(t_parse *data, t_token *tok, size_t ntok)
 	while (data && data->type != T_PIPE && ntok > 0)
 	{
 		if (data && (data->type == T_GENERAL || data->type == T_COMMAND
-		|| data->type == T_QUOTE || data->type == T_DQUOTE))
+				|| data->type == T_QUOTE || data->type == T_DQUOTE))
 			new_tok->value[i++] = find_path(data->value);
 		else if (data && (data->type == T_RED_IN || data->type == T_RED_OUT
-			|| data->type == T_RED_APPEN || data->type == T_RED_APPEN))
+				|| data->type == T_RED_APPEN || data->type == T_RED_APPEN))
 		{
 			new_rd = malloc(sizeof(t_redir));
 			new_rd->type = data->type;
@@ -111,9 +108,6 @@ void	fill_t_token(t_parse *data, t_token *tok)
 	first_element(data, tok, ntok);
 	while (ntok-- > 0)
 		data = data->next;
-	// while (data && (data->type != T_GENERAL && data->type != T_COMMAND
-	// 		&& data->type != T_QUOTE && data->type != T_DQUOTE))
-	// 	data = data->next;
 	while (data && data->type != T_PIPE)
 		data = data->next;
 	if (data)

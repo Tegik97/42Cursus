@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_uc_strchr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:22:20 by mchiaram          #+#    #+#             */
-/*   Updated: 2024/10/22 14:25:24 by mchiaram         ###   ########.fr       */
+/*   Updated: 2025/01/24 11:08:39 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 char	*ft_uc_strchr(const char *s, int c)
 {
 	unsigned char	uc;
+
 	if (!s)
 		return (NULL);
 	uc = (unsigned char)c;

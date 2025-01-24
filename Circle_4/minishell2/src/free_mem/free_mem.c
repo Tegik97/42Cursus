@@ -6,15 +6,15 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:15:56 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/01/23 12:05:30 by menny            ###   ########.fr       */
+/*   Updated: 2025/01/24 10:30:42 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void free_token(t_token *tok)
+static void	free_token(t_token *tok)
 {
-	t_token *current;
+	t_token	*current;
 	size_t	i;
 
 	current = tok;

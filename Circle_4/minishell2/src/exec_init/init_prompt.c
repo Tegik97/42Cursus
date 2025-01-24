@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:20:12 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/01/23 16:37:18 by menny            ###   ########.fr       */
+/*   Updated: 2025/01/24 10:06:40 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,15 @@ static char	*get_prompt(void)
 	return (prompt);
 }
 
+static void	init_struct(t_parse *data, t_token *tok)
+{
+	data->value = NULL;
+	data->next = NULL;
+	tok->value = NULL;
+	tok->rd = NULL;
+	tok->next = NULL;
+}
+
 static char	*prompt_init(void)
 {
 	char	*prompt;
@@ -61,6 +70,7 @@ int	init(t_parse *data, t_token *tok)
 		input = prompt_init();
 		if (input && *input)
 		{
+			init_struct(data, tok);
 			add_history(input);
 			input_parse(input, data, tok);
 			free_all(data, tok);
