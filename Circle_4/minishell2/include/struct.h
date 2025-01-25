@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:43:01 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/01/24 16:28:46 by menny            ###   ########.fr       */
+/*   Updated: 2025/01/25 12:52:54 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ enum e_tokenValues
 	T_GENERAL	= 1024,
 	T_QUOTE,
 	T_DQUOTE,
-	T_BUILTIN,
+	T_EXIT_STAT,
 	T_VAR,
+	T_BUILTIN,
 	T_COMMAND,
 	T_PIPE,
-	T_EXIT_STAT,
 	T_LIM,
 	/* delimiters */
 	T_RED_IN,
@@ -51,6 +51,7 @@ typedef struct s_redir
 typedef struct s_token
 {
 	char			**value;
+	int				type;
 	t_redir			*rd;
 	struct s_token	*next;
 }	t_token;

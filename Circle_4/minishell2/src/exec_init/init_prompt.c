@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:20:12 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/01/24 13:31:08 by menny            ###   ########.fr       */
+/*   Updated: 2025/01/25 16:56:48 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	init_struct(t_parse *data, t_token *tok)
 	data->value = NULL;
 	data->next = NULL;
 	tok->value = NULL;
+	tok->type = 0;
 	tok->rd = NULL;
 	tok->next = NULL;
 }

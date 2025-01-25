@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:43:43 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/01/24 15:06:03 by menny            ###   ########.fr       */
+/*   Updated: 2025/01/25 15:56:33 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ static int	token_len(char *input)
 	else
 	{
 		while (*input && (*input != ' ' && *input != '\n' && *input != '\t'
-				&& *input != '|' && *input != '<' && *input != '>'))
+				&& *input != '|' && *input != '<' && *input != '>'
+				&& *input != '\'' && *input != '\"'))
 		{
 			len++;
 			input++;

@@ -9,17 +9,13 @@ static int	check_if_var(t_parse *data)
 	i = 0;
 	if ((data && data->value) && data->value[i] == '$')
 	{
-		str = ft_substr(data->value, 1, ft_strlen(data->value));
-		while (str[i])
+		if (data->value[i + 1] && data->value[i + 1] == '?')
 		{
-			if (!ft_isalnum(str[i]) && str[i] != '_')
-			{
-				free (str);
-				return (0);
-			}
-			i++;
+			data->type = T_EXIT_STAT;
+			return (0);
 		}
-		var_val = getenv(str);
+		str = ft_substr(data->value, 1, ft_strlen(data->value));
+		var_val = expand_var(str);
 		free (str);
 		free (data->value);
 		data->value = ft_strdup(var_val);
