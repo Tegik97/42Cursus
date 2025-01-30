@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:00:12 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/01/25 16:56:21 by menny            ###   ########.fr       */
+/*   Updated: 2025/01/30 14:22:47 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ int	input_parse(char *input, t_parse *data, t_token *tok)
 		tok = tok->next;
 		j++;
 	}
-	while (data)
-	{
-		printf("value: %s, type: %d\n", data->value, data->type);
-		data = data->next;
-	}
+	// while (data)
+	// {
+	// 	printf("value: %s, type: %d\n", data->value, data->type);
+	// 	data = data->next;
+	// }
 	return (0);
 }

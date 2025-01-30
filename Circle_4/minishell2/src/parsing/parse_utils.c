@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:23:52 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/01/25 16:10:56 by menny            ###   ########.fr       */
+/*   Updated: 2025/01/30 14:24:24 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	remove_quotes(t_parse *data)
 {
 	char	*str;
-	
+
 	str = ft_substr(data->value, 1, (ft_strlen(data->value) - 2));
 	free (data->value);
 	data->value = NULL;
