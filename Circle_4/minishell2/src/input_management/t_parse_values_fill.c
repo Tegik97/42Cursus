@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:43:43 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/01/25 15:56:33 by menny            ###   ########.fr       */
+/*   Updated: 2025/02/05 11:08:00 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,7 @@ static char	*first_value(t_parse *data, char *input)
 
 	size = token_len(input);
 	if (!size)
-	{
-		data->value = NULL;
 		return (NULL);
-	}
 	data->value = ft_stringlcopy(data->value, input, size);
 	data->type = T_GENERAL;
 	data->next = NULL;
@@ -111,6 +108,8 @@ int	fill_t_parse_values(char *input, t_parse *data)
 		input++;
 	if (input)
 		input = first_value(data, input);
+	if (!input)
+		return (0);
 	if (input && *input)
 	{
 		if (!get_values(data, input))

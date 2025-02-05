@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_mem.c                                         :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 16:15:56 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/02/05 10:57:15 by menny            ###   ########.fr       */
+/*   Created: 2024/10/22 15:26:25 by gvigano           #+#    #+#             */
+/*   Updated: 2025/02/05 14:57:42 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_all(t_parse *data, t_token *tok, t_environ *env, char **input)
+void	ft_pwd(t_token *data, int fd)
 {
-	if (data)
-		free_parse(data);
-	if (tok)
-		free_token(tok);
-	if (env)
-		free_environment(env, 1);
-	if (*(input))
+	int		i;
+	char	cwd[1024];
+	
+	i = 0;
+	if (getcwd(cwd, sizeof(cwd)))
 	{
-		free (*(input));
-		*(input) = NULL;
+		while(cwd[i])
+			ft_putchar_fd(cwd[i++], fd);
+		ft_putchar_fd('\n', fd);
 	}
+	else
+	{
+		free_token(data);
+		perror("Error pwd");
+		data->env->exit_stat = 1;
+		exit(EXIT_FAILURE);
+	}
+	data->env->exit_stat = 0;
 }

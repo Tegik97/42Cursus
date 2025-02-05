@@ -6,83 +6,76 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:20:12 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/01/25 16:56:48 by menny            ###   ########.fr       */
+/*   Updated: 2025/02/05 19:28:14 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*get_prompt(void)
+static char	*get_path(char *cwd, char *user)
+{
+	size_t	i;
+	size_t	j;
+	char	*path;
+	char	*clean_path;
+	char	*user_path;
+
+	user_path = ft_strjoin(user, "/");
+	path = ft_strnstr(cwd, user_path, ft_strlen(cwd));
+	free (user_path);
+	if (!path || !*user)
+		clean_path = ft_strdup(cwd);
+	else
+	{
+		i = 1;
+		while (i < ft_strlen(user))
+			i++;
+		clean_path = ft_calloc((ft_strlen(path) - i) + 2, sizeof(char));
+		j = 0;
+		clean_path[j++] = '~';
+		while (path[i])
+			clean_path[j++] = path[i++];
+	}
+	return (clean_path);
+}
+
+static char	*get_prompt(t_token *tok)
 {
 	char	*prompt;
 	char	cwd[1024];
 	char	*user;
 	char	*path;
-	size_t	i;
 
 	if (getcwd(cwd, sizeof(cwd)) == NULL)
 	{
 		perror("getcwd() error");
 		return (NULL);
 	}
-	user = getenv("USER");
-	path = ft_strnstr(cwd, user, ft_strlen(cwd));
-	i = 1;
-	while (i++ < ft_strlen(user))
-		path++;
-	path[0] = '~';
+	user = ft_getenv(tok->env->var, "USER");
+	if (!user)
+		user = ft_strdup("user");
+	path = get_path(cwd, user);
 	prompt = ft_strjoin("\033[1;32m", user);
 	prompt = ft_freejoin(prompt, "\033[0m:\033[1;34m");
 	prompt = ft_freejoin(prompt, path);
 	prompt = ft_freejoin(prompt, "\033[0m$ ");
+	free (user);
+	if (path)
+		free (path);
 	return (prompt);
 }
 
-static void	init_struct(t_parse *data, t_token *tok)
-{
-	data->value = NULL;
-	data->next = NULL;
-	tok->value = NULL;
-	tok->type = 0;
-	tok->rd = NULL;
-	tok->next = NULL;
-}
-
-static char	*prompt_init(void)
+char	*prompt_init(t_token *tok)
 {
 	char	*prompt;
 	char	*input;
 
-	prompt = get_prompt();
+	prompt = get_prompt(tok);
 	if (!prompt)
 		return (NULL);
 	input = readline(prompt);
 	free (prompt);
+	prompt = NULL;
 	input = ft_freetrim(&input, " \t\n");
 	return (input);
-}
-
-int	init(t_parse *data, t_token *tok)
-{
-	char	*input;
-
-	while (1)
-	{
-		input = prompt_init();
-		if (input && *input)
-		{
-			init_struct(data, tok);
-			add_history(input);
-			input_parse(input, data, tok);
-			free_all(data, tok);
-		}
-		else if (!input)
-		{
-			rl_clear_history();
-			free (input);
-			return (1);
-		}
-		free (input);
-	}
-	return (0);
 }

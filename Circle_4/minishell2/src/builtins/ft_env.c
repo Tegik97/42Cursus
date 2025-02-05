@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_mem.c                                         :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 16:15:56 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/02/05 10:57:15 by menny            ###   ########.fr       */
+/*   Created: 2024/10/22 15:26:25 by gvigano           #+#    #+#             */
+/*   Updated: 2025/02/05 19:59:47 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_all(t_parse *data, t_token *tok, t_environ *env, char **input)
+
+void	ft_env(t_token *data)
 {
-	if (data)
-		free_parse(data);
-	if (tok)
-		free_token(tok);
-	if (env)
-		free_environment(env, 1);
-	if (*(input))
+	int	i;
+
+	i = 0;
+	while (data->env->var[i])
 	{
-		free (*(input));
-		*(input) = NULL;
+		if (ft_strchr(data->env->var[i], '='))
+			printf("%s\n", data->env->var[i++]);
+		else
+			i++;
 	}
+	data->env->exit_stat = 0;
 }

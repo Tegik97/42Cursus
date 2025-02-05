@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_token_fill.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:23:00 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/01/30 14:41:57 by mchiaram         ###   ########.fr       */
+/*   Updated: 2025/02/04 16:28:29 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	fill_struct(t_parse *data, t_token *tok, size_t ntok)
 
 	new_tok = malloc(sizeof(t_token));
 	new_tok->value = malloc(sizeof(char *) * (ntok + 1));
-	new_tok->type = 0;
+	new_tok->env = tok->env;
 	new_rd = malloc(sizeof(t_redir));
 	new_rd->name = NULL;
 	i = 0;

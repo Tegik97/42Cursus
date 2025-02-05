@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   t_parse_types_fill.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:23:04 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/01/30 14:23:05 by mchiaram         ###   ########.fr       */
+/*   Updated: 2025/02/05 10:32:19 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	check_if_var(t_parse *data)
+static int	check_if_var(t_parse *data, t_token *tok)
 {
 	char	*str;
 	char	*var_val;
@@ -27,42 +27,44 @@ static int	check_if_var(t_parse *data)
 			return (0);
 		}
 		str = ft_substr(data->value, 1, ft_strlen(data->value));
-		var_val = expand_var(str);
+		var_val = expand_var(tok, str);
 		free (str);
 		free (data->value);
 		data->value = ft_strdup(var_val);
+		if (var_val)
+			free (var_val);
 		return (1);
 	}
 	return (0);
 }
 
-static int	check_if_command(char *value)
+static int	check_if_command(t_token *tok, char *value)
 {
 	char	*path_env;
 	char	**dir;
 	size_t	i;
+	size_t	found;
 
-	path_env = getenv("PATH");
+	path_env = ft_getenv(tok->env->var, "PATH");
 	if (!path_env)
 		return (0);
+	found = 0;
 	dir = ft_split(path_env, ':');
+	free(path_env);
 	i = 0;
 	while (dir[i])
 	{
 		if (check_path_access(dir[i++], value))
 		{
-			i = 0;
-			while (dir[i])
-				free (dir[i++]);
-			free (dir);
-			return (1);
+			found = 1;
+			break;
 		}
 	}
 	i = 0;
 	while (dir[i])
 		free (dir[i++]);
 	free (dir);
-	return (0);
+	return (found);
 }
 
 int	check_if_builtin(char *value)
@@ -80,7 +82,7 @@ int	check_if_builtin(char *value)
 	builtins[6] = "exit";
 	builtins[7] = NULL;
 	i = 0;
-	while (builtins[i])
+	while (builtins[i] && value)
 	{
 		if (!ft_strncmp(value, builtins[i++], ft_strlen(value)))
 		{
@@ -98,14 +100,14 @@ static int	check_if_quote(t_parse *data)
 		data->type = T_QUOTE;
 	else if (data->value[0] == '\"')
 		data->type = T_DQUOTE;
-	else if (data->value[0] == '<')
+	else if (data->next && data->value[0] == '<')
 	{
 		if (data->value[1] == '<')
 			data->type = T_DELIM;
 		else
 			data->type = T_RED_IN;
 	}
-	else if (data->value[0] == '>')
+	else if (data->next && data->value[0] == '>')
 	{
 		if (data->value[1] == '>')
 			data->type = T_RED_APPEN;
@@ -114,12 +116,12 @@ static int	check_if_quote(t_parse *data)
 	}
 	if (data->type == T_GENERAL)
 		return (0);
-	else if (data->type >= T_RED_IN && data->type <= T_DELIM)
+	else if (data->next && (data->type >= T_RED_IN && data->type <= T_DELIM))
 		data->next->type = T_LIM;
 	return (1);
 }
 
-int	fill_t_parse_types(t_parse *data)
+int	fill_t_parse_types(t_parse *data, t_token *tok)
 {
 	if (!data->value)
 		return (0);
@@ -129,9 +131,9 @@ int	fill_t_parse_types(t_parse *data)
 		{
 			if (check_if_builtin(data->value))
 				data->type = T_BUILTIN;
-			else if (check_if_command(data->value))
+			else if (check_if_command(tok, data->value))
 				data->type = T_COMMAND;
-			else if (check_if_var(data))
+			else if (check_if_var(data, tok))
 				data->type = T_VAR;
 			else if (data->value[0] == '|' && !data->value[1])
 				data->type = T_PIPE;

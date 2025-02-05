@@ -6,42 +6,70 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:40:43 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/01/24 10:31:12 by menny            ###   ########.fr       */
+/*   Updated: 2025/02/05 17:59:18 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	sigquit_handler(int sig)
+static t_token	*init_token (t_token *tok, t_environ *env)
 {
-	(void)sig;
+	tok = malloc(sizeof(t_token));
+	tok->value = NULL;
+	tok->env = env;
+	tok->rd = NULL;
+	tok->next = NULL;
+	return (tok);
 }
 
-static void	sigint_handler(int sig)
+static t_parse	*init_data(t_parse *data)
 {
-	(void)sig;
-	printf("\n");
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
+	data = malloc(sizeof(t_parse));
+	data->value = NULL;
+	data->next = NULL;
+	return (data);
 }
 
-int	main(void)
+static int	main_loop(t_parse *data, t_token *tok, char **envp)
+{
+	char		*input;
+	t_environ	*env;
+
+	env = init_env(envp);
+	while (1)
+	{
+		tok = init_token(tok, env);
+		input = prompt_init(tok);
+		if (input && *input)
+		{
+			data = init_data(data);
+			add_history(input);
+			if (input_parse(&input, data, tok))
+				do_command(tok);
+		}
+		else if (!input)
+		{
+			rl_clear_history();
+			free_all(NULL, tok, env, &input);
+			return (1);
+		}
+		free_token(tok);
+	}
+	return (0);
+}
+
+int	main(int ac, char **av, char **envp)
 {
 	t_parse	*data;
 	t_token	*tok;
 
+	(void)ac;
+	(void)av;
 	signal(SIGINT, sigint_handler);
 	signal(SIGQUIT, sigquit_handler);
-	data = malloc(sizeof(t_parse));
-	tok = malloc(sizeof(t_token));
-	if (!init(data, tok))
-	{
-		free(data);
-		free(tok);
+	data = NULL;
+	tok = NULL;
+	if (!main_loop(data, tok, envp))
 		return (1);
-	}
-	free(data);
-	free(tok);
 	return (0);
 }

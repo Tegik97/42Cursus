@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_mem.c                                         :+:      :+:    :+:   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 16:15:56 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/02/05 10:57:15 by menny            ###   ########.fr       */
+/*   Created: 2024/10/22 15:26:25 by gvigano           #+#    #+#             */
+/*   Updated: 2025/02/05 14:57:05 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_all(t_parse *data, t_token *tok, t_environ *env, char **input)
+void	ft_echo(t_token *data, int fd)
 {
-	if (data)
-		free_parse(data);
-	if (tok)
-		free_token(tok);
-	if (env)
-		free_environment(env, 1);
-	if (*(input))
+	size_t	i;
+	int		new_line;
+
+	i = 1;
+	new_line = 1;
+	if (data->value[i] && ft_strncmp(data->value[i], "-n", ft_strlen(data->value[0])) == 0)
 	{
-		free (*(input));
-		*(input) = NULL;
+		new_line = 0;
+		i++;
 	}
+	while (data->value[i])
+	{
+		if (i > 1)
+			write(fd, " ", 1);
+		write(fd, data->value[i], ft_strlen(data->value[i]));
+		i++;
+	}
+	if (new_line == 1)
+		write(fd, "\n", 1);
+	data->env->exit_stat = 0;
 }

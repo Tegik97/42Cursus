@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:43:01 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/01/25 12:52:54 by menny            ###   ########.fr       */
+/*   Updated: 2025/02/04 16:32:31 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ enum e_tokenValues
 	T_NEWLINE
 };
 
+typedef struct s_environ
+{
+	char	**var;
+	int		exit_stat;
+}	t_environ;
+
 typedef struct s_redir
 {
 	int				type;
@@ -51,7 +57,7 @@ typedef struct s_redir
 typedef struct s_token
 {
 	char			**value;
-	int				type;
+	t_environ		*env;
 	t_redir			*rd;
 	struct s_token	*next;
 }	t_token;
