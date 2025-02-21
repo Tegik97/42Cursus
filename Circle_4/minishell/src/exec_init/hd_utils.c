@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:15:37 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/02/20 16:17:52 by mchiaram         ###   ########.fr       */
+/*   Updated: 2025/02/21 16:55:58 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,21 @@ void	parent_process_hd(t_token *data, int pid)
 		data->env->exit_stat = WEXITSTATUS(status);
 }
 
-int	*check_heredoc(t_token *cmd, int ncommand)
+int	*check_heredoc(t_token *cmd)
 {
+	t_token	*head;
 	int		i;
 	int		*fd;
 
 	i = 0;
 	fd = ft_calloc(3, sizeof(int));
-	while (cmd && i < ncommand)
+	cmd->fvar->fd = &fd;
+	head = cmd;
+	while (cmd)
 	{
 		if (cmd->rd && cmd->rd->type == T_DELIM)
 		{
-			if (!here_doc(cmd) || cmd->env->exit_stat == SIGKILL)
+			if (!here_doc(cmd, head) || cmd->env->exit_stat == SIGKILL)
 			{
 				free (fd);
 				return (NULL);
@@ -60,3 +63,29 @@ int	*check_heredoc(t_token *cmd, int ncommand)
 	}
 	return (fd);
 }
+
+// int	*check_heredoc(t_token *cmd, int **pids)
+// {
+// 	t_token	*head;
+// 	int		i;
+// 	int		*fd;
+
+// 	i = 0;
+// 	fd = ft_calloc(3, sizeof(int));
+// 	head = cmd;
+// 	while (cmd)
+// 	{
+// 		if (cmd->rd && cmd->rd->type == T_DELIM)
+// 		{
+// 			if (!here_doc(cmd, &fd, pids, head) || cmd->env->exit_stat == SIGKILL)
+// 			{
+// 				free (fd);
+// 				return (NULL);
+// 			}
+// 			fd[2] = i;
+// 		}
+// 		i++;
+// 		cmd = cmd->next;
+// 	}
+// 	return (fd);
+// }

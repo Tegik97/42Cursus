@@ -6,12 +6,12 @@
 #    By: menny <menny@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/17 14:19:10 by mchiaram          #+#    #+#              #
-#    Updated: 2025/02/17 17:12:48 by menny            ###   ########.fr        #
+#    Updated: 2025/02/21 17:22:57 by menny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 			:= libft.a
-CC 				:= gcc -g
+CC 				:= cc
 CFLAGS 			:= -Wextra -Werror -Wall -I../include
 RM				:= rm -rf
 AR 				:= ar rcs
