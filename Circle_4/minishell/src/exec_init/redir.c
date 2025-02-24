@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:26:25 by gvigano           #+#    #+#             */
-/*   Updated: 2025/02/21 17:02:09 by menny            ###   ########.fr       */
+/*   Updated: 2025/02/24 15:44:31 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ static int	handle_input_redir(t_redir *rd, int *fd, int i)
 {
 	if (rd && rd->type == T_RED_IN)
 	{
+		close (fd[0]);
 		fd[0] = open(rd->name, O_RDONLY);
 		if (fd[0] < 0)
 			return (-1);
@@ -150,6 +151,7 @@ static int	handle_output_redir(t_redir *rd, int tmpout)
 {
 	if (rd && rd->type == T_RED_OUT)
 	{
+		close (tmpout);
 		tmpout = open(rd->name, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 		if (tmpout < 0)
 		{
@@ -159,6 +161,7 @@ static int	handle_output_redir(t_redir *rd, int tmpout)
 	}
 	else if (rd && rd->type == T_RED_APPEN)
 	{
+		close (tmpout);
 		tmpout = open(rd->name, O_WRONLY | O_CREAT | O_APPEND, 0777);
 		if (tmpout < 0)
 		{

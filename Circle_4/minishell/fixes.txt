@@ -1,0 +1,6 @@
+
+#nella nostra minishell i 2 ciao fanno parte di 2 data->value diversi mentre dovrebbero essere nello stesso
+echo "ciao""ciao"
+
+t_parse_values_fill.c
+parse.c

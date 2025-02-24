@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:15:37 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/02/21 16:55:58 by menny            ###   ########.fr       */
+/*   Updated: 2025/02/23 17:51:37 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,29 +63,3 @@ int	*check_heredoc(t_token *cmd)
 	}
 	return (fd);
 }
-
-// int	*check_heredoc(t_token *cmd, int **pids)
-// {
-// 	t_token	*head;
-// 	int		i;
-// 	int		*fd;
-
-// 	i = 0;
-// 	fd = ft_calloc(3, sizeof(int));
-// 	head = cmd;
-// 	while (cmd)
-// 	{
-// 		if (cmd->rd && cmd->rd->type == T_DELIM)
-// 		{
-// 			if (!here_doc(cmd, &fd, pids, head) || cmd->env->exit_stat == SIGKILL)
-// 			{
-// 				free (fd);
-// 				return (NULL);
-// 			}
-// 			fd[2] = i;
-// 		}
-// 		i++;
-// 		cmd = cmd->next;
-// 	}
-// 	return (fd);
-// }

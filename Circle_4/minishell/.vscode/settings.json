@@ -7,8 +7,8 @@
 		"tuple": "c",
 		"type_traits": "c",
 		"utility": "c",
+		"algorithm": "c",
 		"string": "c",
-		"string_view": "c",
-		"typeinfo": "c"
+		"string_view": "c"
 	}
 }

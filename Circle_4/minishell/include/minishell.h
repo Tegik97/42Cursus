@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:43:03 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/02/21 16:18:17 by menny            ###   ########.fr       */
+/*   Updated: 2025/02/23 18:25:57 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int			get_tmpfd(t_token *data);
 void		do_command(t_token *data);
 int			*create_pid(int ncommand);
 int			num_command(t_token *cmd);
+void		check_ndup_fd(int fd0, int fd1);
+int			first_check_command(t_token *data);
 void		parent_process_hd(t_token *data, int pid);
 int			*check_heredoc(t_token *cmd);
 int			*handle_redir(t_token *data, int *fd, int i, t_token *head);
