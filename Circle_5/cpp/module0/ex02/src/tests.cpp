@@ -14,14 +14,27 @@
 
 
 int		main( void ) {
-
-	typedef std::vector<Account::t>							  accounts_t;
-	typedef std::vector<int>								  ints_t;
-	typedef std::pair<accounts_t::iterator, ints_t::iterator> acc_int_t;
+	/*	A vector is like a dynamic array in C but no memory management is required
+		methods can be used to access or modify vector's memory such as:
+		.push_back(x) inserts a new value at the end of the vector
+		.clear() wipes the vector
+		.size() returns the number of elements
+		.at(i) access the i element with range check
+		.begin()/.end() first or last element
+		Vectors can also be accessed using x[i] but no memory check in this scenario
+	*/
+	typedef std::vector<Account::t>							  accounts_t;	//accounts_t is a vector of account classes
+	typedef std::vector<int>								  ints_t;		//ints_t which is a vector of integers
+	/*	std::pair is used to create a simple struct of 2 elements.
+		Values inside pair can be accessed using (x.first) and (x.second).
+		The next element can be reached using ++(x.first) or ++(x.second).
+		elements can be of any type don't have to be of the same type.
+	*/
+	typedef std::pair<accounts_t::iterator, ints_t::iterator> acc_int_t;	//Declares acc_int_t which is a pair of 2 iterators, one of each account and one for each int
 
 	int	const				amounts[]	= { 42, 54, 957, 432, 1234, 0, 754, 16576 };
-	size_t const			amounts_size( sizeof(amounts) / sizeof(int) );
-	accounts_t				accounts( amounts, amounts + amounts_size );
+	size_t const			amounts_size( sizeof(amounts) / sizeof(int) );	//Calculates the number of elements in amounts[]
+	accounts_t				accounts( amounts, amounts + amounts_size );	//Creates a vector of amounts[] elements each value in every account takes the value in amounts[i]
 	accounts_t::iterator	acc_begin	= accounts.begin();
 	accounts_t::iterator	acc_end		= accounts.end();
 
@@ -38,8 +51,10 @@ int		main( void ) {
 	ints_t::iterator	wit_end		= withdrawals.end();
 
 	Account::displayAccountsInfos();
-	std::for_each( acc_begin, acc_end, std::mem_fun_ref( &Account::displayStatus ) );
-
+	std::for_each( acc_begin, acc_end, std::mem_fun_ref( &Account::displayStatus ) );	/*	mem_fun_ref calls the function displayStatus() for each element in the accounts vector.
+																							arguments are sent to the function as reference not copies of the value in this way 
+																							if the function modifies a value it works on the original.
+																						*/
 	for ( acc_int_t it( acc_begin, dep_begin );
 		  it.first != acc_end && it.second != dep_end;
 		  ++(it.first), ++(it.second) ) {
