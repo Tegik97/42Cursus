@@ -2,7 +2,7 @@
 
 static int	check_mat_status(char **textures)
 {
-	int		fd;
+	int		fd2;
 	size_t	i;
 
 	if (!ft_strcmp(textures[0], "NO "))
@@ -20,10 +20,10 @@ static int	check_mat_status(char **textures)
 	i = 0;
 	while (textures[i])
 	{
-		fd = open(textures[i++], O_RDONLY);
-		if (fd == -1)
+		fd2 = open(textures[i++], O_RDONLY);
+		if (fd2 == -1)
 			return (i + 6);
-		close (fd);
+		close (fd2);
 	}
 	return (0);
 }
@@ -45,12 +45,9 @@ static char	**get_texture_path(char **textures, int fd)
 	char	*line;
 	size_t	i;
 
-	line = "a";
-	while (line && check_mat_status(textures))
+	line = get_next_line(fd);
+	while (line)
 	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
 		line = ft_freetrim(&line, "\t \n");
 		i = 0;
 		while (textures[i])
@@ -64,6 +61,9 @@ static char	**get_texture_path(char **textures, int fd)
 			i++;
 		}
 		free (line);
+		if (!check_mat_status(textures) || check_mat_status(textures) > 6)
+			break ;
+		line = get_next_line(fd);
 	}
 	return (textures);
 }
@@ -90,10 +90,21 @@ char	**textures_path(int fd)
 	textures = texture_mat_init(textures);
 	textures = get_texture_path(textures, fd);
 	checkMat = check_mat_status(textures);
-	if (checkMat)
+	if (checkMat > 0 && checkMat <= 10)
 	{
 		missing_path_print(checkMat, textures);
 		textures = free_mat(textures);
+	}
+	else if (checkMat > 10)
+	{
+		while (checkMat <= 12)
+		{
+			if (!check_color_gradient(textures[checkMat++ - 7]))
+			{
+				textures = free_mat(textures);
+				break ;
+			}
+		}
 	}
 	return (textures);
 }

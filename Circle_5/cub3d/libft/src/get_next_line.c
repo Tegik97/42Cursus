@@ -6,7 +6,7 @@
 /*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:55:35 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/02/10 15:00:27 by menny            ###   ########.fr       */
+/*   Updated: 2025/06/26 13:32:06 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,19 @@
 #ifndef FD_MAX
 # define FD_MAX 2048
 #endif
+
+static void	free_buffer(char **str)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < FD_MAX)
+	{
+		if (str[i])
+			free(str[i]);
+		i++;
+	}
+}
 
 static char	*ft_trimstr(char *str)
 {
@@ -100,15 +113,12 @@ char	*get_next_line(int fd)
 {
 	static char	*str[FD_MAX];
 	char		*line;
-	size_t		i;
 
 	if (BUFFER_SIZE <= 0 || fd == -1)
 		return (NULL);
 	if (fd == -42)
 	{
-		i = 0;
-		while (str[i])
-			free(str[i++]);
+		free_buffer(str);
 		return (NULL);
 	}
 	str[fd] = ft_find_line(fd, str[fd]);
@@ -123,6 +133,34 @@ char	*get_next_line(int fd)
 	}
 	return (line);
 }
+
+// char	*get_next_line(int fd)
+// {
+// 	static char	*str[FD_MAX];
+// 	char		*line;
+// 	size_t		i;
+
+// 	if (BUFFER_SIZE <= 0 || fd == -1)
+// 		return (NULL);
+// 	if (fd == -42)
+// 	{
+// 		i = 0;
+// 		while (str[i])
+// 			free(str[i++]);
+// 		return (NULL);
+// 	}
+// 	str[fd] = ft_find_line(fd, str[fd]);
+// 	if (!str[fd])
+// 		return (NULL);
+// 	line = ft_get_line(str[fd]);
+// 	str[fd] = ft_trimstr(str[fd]);
+// 	if (!line || !*line)
+// 	{
+// 		free (line);
+// 		return (NULL);
+// 	}
+// 	return (line);
+// }
 
 // int	main(void)
 // {

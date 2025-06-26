@@ -5,15 +5,15 @@ CFLAGS		:= -Werror -Wextra -Wall -I./include
 LIB			:= ft
 RM			:= rm -rf
 SRC_DIR		:= src
-PARSE_DIR	:= cub_parsing
 BUILD_DIR	:= .build
 DIR_DUP		:= mkdir -p $(@D)
 INCLUDES	:= -I/usr/include -Iminilibx-linux
 
 SRCS		:=	$(SRC_DIR)/tmp_main/main.c \
-				$(SRC_DIR)/$(PARSE_DIR)/cub_check.c \
-				$(SRC_DIR)/$(PARSE_DIR)/texture_path.c \
-				$(SRC_DIR)/$(PARSE_DIR)/missing_path_print.c \
+				$(SRC_DIR)/cub_parsing/cub_check.c \
+				$(SRC_DIR)/path_parsing/texture_path.c \
+				$(SRC_DIR)/path_parsing/missing_path_print.c \
+				$(SRC_DIR)/map_parsing/map_parsing.c \
 				$(SRC_DIR)/utility/free_mem.c
 
 OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)

@@ -12,34 +12,21 @@ static void	print_error(char *texture, int errNo)
 		ft_putendl_fd(": not a valid gradient format (0,0,0)", 2);
 }
 
-static void	check_path(char *texture)
+static int	check_path(int i, char *texture)
 {
 	int	fd;
 
-	fd = open(texture, O_RDONLY);
-	if (fd == -1)
-		print_error(texture, 0);
-}
-
-static int	check_values(char **colorValues, char *texture)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (colorValues[++i])
+	if (i == 1)
 	{
-		j = -1;
-		while (colorValues[i][++j])
+		fd = open(texture, O_RDONLY);
+		if (fd == -1)
 		{
-			if (!isdigit(colorValues[i][j]))
-			{
-				print_error(texture, 1);
-				return (0);
-			}
+			print_error(texture, 0);
+			return (0);
 		}
+		return (1);
 	}
-	if (i != 3)
+	else if (i != 3)
 	{
 		print_error(texture, 2);
 		return (0);
@@ -47,33 +34,61 @@ static int	check_values(char **colorValues, char *texture)
 	return (1);
 }
 
-static void	check_color_gradient(char *texture)
+static int	check_values(char **colorValues, char *texture)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (colorValues[i])
+		i++;
+	if (!check_path(i, texture))
+		return 0;
+	else if (i == 3)
+	{
+		i = -1;
+		while (colorValues[++i])
+		{
+			j = -1;
+			while (colorValues[i][++j])
+			{
+				if (!isdigit(colorValues[i][j]))
+				{
+					print_error(texture, 1);
+					return (0);
+				}
+			}
+		}
+	}
+	return (1);
+}
+
+int	check_color_gradient(char *texture)
 {
 	char	**colorValues;
 	int		i;
 
 	colorValues = ft_split(texture, ',');
-	if (!colorValues[1])
-	{
-		check_path(texture);
-		free_mat(colorValues);
-		return ;
-	}
 	if (!check_values(colorValues, texture))
 	{
 		free_mat(colorValues);
-		return ;
+		return (0);
 	}
-	i = -1;
-	while (colorValues[++i])
+	if (colorValues[1] && colorValues[2])
 	{
-		if (ft_atoi(colorValues[i]) < 0 || ft_atoi(colorValues[i]) > 255)
+		i = -1;
+		while (colorValues[++i])
 		{
-			print_error(texture, 1);
-			break ;
+			if (ft_atoi(colorValues[i]) < 0 || ft_atoi(colorValues[i]) > 255)
+			{
+				print_error(texture, 1);
+				free_mat(colorValues);
+				return (0);
+			}
 		}
 	}
 	free_mat(colorValues);
+	return (1);
 }
 
 void	missing_path_print(size_t errNo, char **textures)
