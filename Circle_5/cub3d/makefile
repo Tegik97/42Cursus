@@ -14,6 +14,8 @@ SRCS		:=	$(SRC_DIR)/tmp_main/main.c \
 				$(SRC_DIR)/path_parsing/texture_path.c \
 				$(SRC_DIR)/path_parsing/missing_path_print.c \
 				$(SRC_DIR)/map_parsing/map_parsing.c \
+				$(SRC_DIR)/map_parsing/check_map_validity.c \
+				$(SRC_DIR)/map_parsing/check_enclosed_map.c \
 				$(SRC_DIR)/utility/free_mem.c
 
 OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)

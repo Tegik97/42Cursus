@@ -1,28 +1,92 @@
 #include "check_map_validity.h"
 
-static int	check_walls(char **map)
+void	print_map_error(char **map, char *str, size_t errRow, size_t errCol)
+{
+	size_t	row;
+	size_t	col;
+
+	ft_putendl_fd("Error", 2);
+	ft_putendl_fd(str, 2);
+	row = 0;
+	while (map[row])
+	{
+		col = 0;
+		while (map[row][col])
+		{
+			if (row == errRow && col == errCol)
+			{
+				ft_putstr_fd("\033[41m", 2);
+				ft_putchar_fd(map[row][col], 2);
+				ft_putstr_fd("\033[0m", 2);
+			}
+			else
+				ft_putchar_fd(map[row][col], 2);
+			col++;
+		}
+		ft_putchar_fd('\n', 2);
+		row++;
+	}
+}
+
+static int	check_for_duplicate_player(char **map)
+{
+	size_t	col;
+	size_t	row;
+	int		found;
+
+	found = 0;
+	row = 0;
+	while (map[row])
+	{
+		col = 0;
+		while (map[row][col])
+		{
+			if (ft_strchr("NESW", map[row][col]))
+			{
+				if (found > 0)
+				{
+					ft_putstr_fd("Error\nToo many players\n", 2);
+					return (0);
+				}
+				found++;
+			}
+			col++;
+		}
+		row++;
+	}
+	return (1);
+}
+
+static int	check_for_invalid_char(char **map)
 {
 	size_t	col;
 	size_t	row;
 
-	col = 0;
-	while (map[1][col])
+	row = 0;
+	while (map[row])
 	{
-		if (ft_strchr(" 1", map[1][col++]))
-			return (0);
-	}
-	row = 1;
-	col = 0;
-	while (map[row + 1])
+		col = 0;
+		while (map[row][col])
+		{
+			if (!ft_strchr(" 01NESW", map[row][col]))
+			{
+				ft_putstr_fd("Error\n\"", 2);
+				ft_putchar_fd(map[row][col], 2);
+				ft_putstr_fd("\": Not a valid map char\n", 2);
+				return (0);
+			}
+			col++;
+		}
 		row++;
-	while (map[row][col])
-	{
-		if (ft_strchr(" 1", map[1][col++]))
-			return (0);
 	}
+	return (1);
 }
 
 int	map_validity(char **map)
 {
-	check_walls(map);
+	if (!check_for_invalid_char(map)
+		|| !check_for_duplicate_player(map)
+		|| !check_enclosed_map(map))
+		return (0);
+	return (1);
 }

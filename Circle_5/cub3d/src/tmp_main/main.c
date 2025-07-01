@@ -17,6 +17,11 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	map = get_map(fd);
+	if (!map)
+	{
+		textures = free_mat(textures);
+		return (1);
+	}
 	textures = free_mat(textures);
 	map = free_mat(map);
 	close (fd);

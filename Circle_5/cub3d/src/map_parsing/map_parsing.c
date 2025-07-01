@@ -45,7 +45,17 @@ char	**get_map(int fd)
 		free (line);
 		line = get_next_line(fd);
 	}
+	if (!line)
+	{
+		ft_putstr_fd("Error\nMap not found\n", 2);
+		return (NULL);
+	}
 	map = copy_map(fd, line);
-	map_validity(map);
+	if (!map_validity(map))
+	{
+		map = free_mat(map);
+		close(fd);
+		return (map);
+	}
 	return (map);
 }
