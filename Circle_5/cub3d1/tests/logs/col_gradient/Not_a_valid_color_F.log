@@ -1,0 +1,12 @@
+---expected output---
+Error
+-1,0,0: not a valid gradient [0,255]
+
+---your output---
+
+---diff---
+--- ./tests/expected/col_gradient/Not_a_valid_color_F.log	2025-07-06 20:47:01.858363671 +0200
++++ /tmp/tmp.kqp9GnNjv9	2025-07-07 15:46:47.208816034 +0200
+@@ -1,2 +0,0 @@
+-Error
+--1,0,0: not a valid gradient [0,255]

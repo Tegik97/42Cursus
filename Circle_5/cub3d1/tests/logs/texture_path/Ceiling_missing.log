@@ -1,0 +1,12 @@
+---expected output---
+Error
+Ceiling texture's path missing
+
+---your output---
+
+---diff---
+--- ./tests/expected/texture_path/Ceiling_missing.log	2025-07-06 19:12:28.219325505 +0200
++++ /tmp/tmp.Y8dDjQdbvJ	2025-07-07 15:46:44.413769073 +0200
+@@ -1,2 +0,0 @@
+-Error
+-Ceiling texture's path missing

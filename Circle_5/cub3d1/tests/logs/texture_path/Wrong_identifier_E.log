@@ -1,0 +1,12 @@
+---expected output---
+Error
+East wall texture's path missing
+
+---your output---
+
+---diff---
+--- ./tests/expected/texture_path/Wrong_identifier_E.log	2025-07-06 19:12:28.256326059 +0200
++++ /tmp/tmp.PUKgIlESxj	2025-07-07 15:46:45.395785569 +0200
+@@ -1,2 +0,0 @@
+-Error
+-East wall texture's path missing

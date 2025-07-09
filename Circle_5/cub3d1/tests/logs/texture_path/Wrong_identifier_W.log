@@ -1,0 +1,12 @@
+---expected output---
+Error
+West wall texture's path missing
+
+---your output---
+
+---diff---
+--- ./tests/expected/texture_path/Wrong_identifier_W.log	2025-07-06 19:12:28.267326224 +0200
++++ /tmp/tmp.qi7Yiwipn8	2025-07-07 15:46:45.693790576 +0200
+@@ -1,2 +0,0 @@
+-Error
+-West wall texture's path missing

@@ -1,0 +1,12 @@
+---expected output---
+Error
+./texture/floo.xpm: no such file or directory
+
+---your output---
+
+---diff---
+--- ./tests/expected/texture_path/Floor_not_found.log	2025-07-06 19:12:28.233325715 +0200
++++ /tmp/tmp.ruWzsmfHgx	2025-07-07 15:46:44.796775506 +0200
+@@ -1,2 +0,0 @@
+-Error
+-./texture/floo.xpm: no such file or directory

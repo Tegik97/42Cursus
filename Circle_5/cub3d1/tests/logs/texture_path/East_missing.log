@@ -1,0 +1,12 @@
+---expected output---
+Error
+East wall texture's path missing
+
+---your output---
+
+---diff---
+--- ./tests/expected/texture_path/East_missing.log	2025-07-06 19:12:28.225325595 +0200
++++ /tmp/tmp.PhAKOJ40cf	2025-07-07 15:46:44.567771660 +0200
+@@ -1,2 +0,0 @@
+-Error
+-East wall texture's path missing

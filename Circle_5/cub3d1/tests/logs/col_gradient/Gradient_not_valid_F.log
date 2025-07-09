@@ -1,0 +1,12 @@
+---expected output---
+Error
+0,0,0,0: not a valid gradient format (0,0,0)
+
+---your output---
+
+---diff---
+--- ./tests/expected/col_gradient/Gradient_not_valid_F.log	2025-07-06 20:42:16.108091819 +0200
++++ /tmp/tmp.ZbH3XCBnkc	2025-07-07 15:46:46.299800758 +0200
+@@ -1,2 +0,0 @@
+-Error
+-0,0,0,0: not a valid gradient format (0,0,0)

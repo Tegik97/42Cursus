@@ -1,0 +1,12 @@
+---expected output---
+Error
+Not a valid .cub file
+
+---your output---
+
+---diff---
+--- ./tests/expected/file_name/test.cb.log	2025-07-06 19:12:28.205325295 +0200
++++ /tmp/tmp.36w6I9BXYt	2025-07-07 15:46:44.189765310 +0200
+@@ -1,2 +0,0 @@
+-Error
+-Not a valid .cub file

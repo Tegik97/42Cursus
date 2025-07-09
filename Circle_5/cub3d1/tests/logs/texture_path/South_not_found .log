@@ -1,0 +1,12 @@
+---expected output---
+Error
+./texture/wall.xpm: no such file or directory
+
+---your output---
+
+---diff---
+--- "./tests/expected/texture_path/South_not_found .log"	2025-07-06 19:12:28.245325894 +0200
++++ /tmp/tmp.Iya0qioWcf	2025-07-07 15:46:45.095780529 +0200
+@@ -1,2 +0,0 @@
+-Error
+-./texture/wall.xpm: no such file or directory

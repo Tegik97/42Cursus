@@ -1,0 +1,12 @@
+---expected output---
+Error
+South wall texture's path missing
+
+---your output---
+
+---diff---
+--- ./tests/expected/texture_path/Wrong_identifier_S.log	2025-07-06 19:12:28.264326179 +0200
++++ /tmp/tmp.4EXDEUkjpJ	2025-07-07 15:46:45.618789316 +0200
+@@ -1,2 +0,0 @@
+-Error
+-South wall texture's path missing

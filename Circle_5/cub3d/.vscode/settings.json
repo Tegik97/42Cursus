@@ -1,5 +1,8 @@
 {
 	"files.associations": {
-		"texture_path.h": "c"
+		"cub3d.h": "c",
+		"x.h": "c",
+		"mlx_int.h": "c",
+		"parsing.h": "c"
 	}
 }
