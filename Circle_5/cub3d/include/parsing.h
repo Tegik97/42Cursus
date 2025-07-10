@@ -8,6 +8,6 @@
 # include "cub3d.h"
 
 t_texture	*init_struct(t_texture *txt, t_game *g);
-int	parsing_start(int argc, char **argv, t_texture *txt, t_game *g);
+int			parsing_start(int argc, char **argv, t_texture *txt, t_game *g);
 
 #endif

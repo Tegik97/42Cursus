@@ -1,0 +1,717 @@
+==10640== Memcheck, a memory error detector
+==10640== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==10640== Using Valgrind-3.22.0-bd4db67b1d-20231031 and LibVEX; rerun with -h for copyright info
+==10640== Command: ./cub3d ./tests/cubs/passing_tests/passing2.cub --test
+==10640== 
+--10640-- Valgrind options:
+--10640--    --leak-check=full
+--10640--    --error-exitcode=42
+--10640--    --track-origins=yes
+--10640--    --show-leak-kinds=all
+--10640--    --suppressions=valgrind.supp
+--10640--    -v
+--10640-- Contents of /proc/version:
+--10640--   Linux version 6.8.0-63-generic (buildd@lcy02-amd64-047) (x86_64-linux-gnu-gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, GNU ld (GNU Binutils for Ubuntu) 2.42) #66-Ubuntu SMP PREEMPT_DYNAMIC Fri Jun 13 20:25:30 UTC 2025
+--10640-- 
+--10640-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
+--10640-- Page sizes: currently 4096, max supported 4096
+--10640-- Valgrind library directory: /usr/libexec/valgrind
+--10640-- Reading syms from /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d
+--10640-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+--10640--   Considering /usr/lib/debug/.build-id/1c/8db5f83bba514f8fd5f1fb6d7be975be1bb855.debug ..
+--10640--   .. build-id is valid
+--10640-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
+--10640--    object doesn't have a dynamic symbol table
+--10640-- Scheduler: using generic scheduler lock implementation.
+--10640-- Reading suppressions file: valgrind.supp
+--10640-- Reading suppressions file: /usr/libexec/valgrind/default.supp
+==10640== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-10640-by-menny-on-???
+==10640== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-10640-by-menny-on-???
+==10640== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-10640-by-menny-on-???
+==10640== 
+==10640== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==10640== don't want to do, unless you know exactly what you're doing,
+==10640== or are doing some strange experiment):
+==10640==   /usr/bin/vgdb --pid=10640 ...command...
+==10640== 
+==10640== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==10640==   /path/to/gdb ./cub3d
+==10640== and then give GDB the following command
+==10640==   target remote | /usr/bin/vgdb --pid=10640
+==10640== --pid is optional if only one valgrind process is running
+==10640== 
+--10640-- REDIR: 0x4028b00 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c2e1a (???)
+--10640-- REDIR: 0x40272b0 (ld-linux-x86-64.so.2:index) redirected to 0x580c2e34 (???)
+--10640-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
+--10640-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
+==10640== WARNING: new redirection conflicts with existing -- ignoring it
+--10640--     old: 0x04028b00 (strlen              ) R-> (0000.0) 0x580c2e1a ???
+--10640--     new: 0x04028b00 (strlen              ) R-> (2007.0) 0x0484f340 strlen
+--10640-- REDIR: 0x40274e0 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4850460 (strcmp)
+--10640-- REDIR: 0x4026910 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4853cd0 (mempcpy)
+--10640-- Reading syms from /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+--10640-- Reading syms from /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+--10640-- Reading syms from /usr/lib/x86_64-linux-gnu/libm.so.6
+--10640-- Reading syms from /usr/lib/x86_64-linux-gnu/libc.so.6
+--10640--   Considering /usr/lib/debug/.build-id/42/c84c92e6f98126b3e2230ebfdead22c235b667.debug ..
+--10640--   .. build-id is valid
+--10640-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+--10640-- Reading syms from /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+--10640-- Reading syms from /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+--10640-- Reading syms from /usr/lib/x86_64-linux-gnu/libbsd.so.0.12.1
+--10640-- Reading syms from /usr/lib/x86_64-linux-gnu/libmd.so.0.1.0
+--10640-- REDIR: 0x4028ca0 (ld-linux-x86-64.so.2:strncmp) redirected to 0x484fc90 (strncmp)
+--10640-- REDIR: 0x4b5c050 (libc.so.6:strnlen) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b5c0e0 (libc.so.6:strpbrk) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b5a1a0 (libc.so.6:strcmp) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b733b0 (libc.so.6:wcsnlen) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b59290 (libc.so.6:memset) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b72b20 (libc.so.6:wcslen) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4bde3c0 (libc.so.6:__memcpy_chk) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b59200 (libc.so.6:memrchr) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b73350 (libc.so.6:wcsncpy) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b58720 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b718e0 (libc.so.6:wcschr) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b5a090 (libc.so.6:index) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b5c110 (libc.so.6:rindex) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b71990 (libc.so.6:wcscmp) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b594b0 (libc.so.6:stpncpy) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b7feb0 (libc.so.6:wmemchr) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b5bef0 (libc.so.6:strncmp) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b59510 (libc.so.6:strcasecmp) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b5b310 (libc.so.6:strcspn) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b728f0 (libc.so.6:wcscpy) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b5a020 (libc.so.6:strcat) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b5bdf0 (libc.so.6:strncasecmp_l) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b5a110 (libc.so.6:strchrnul) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b58630 (libc.so.6:bcmp) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b5b2a0 (libc.so.6:strcpy) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b595b0 (libc.so.6:strcasecmp_l) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b5bcc0 (libc.so.6:strlen) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b5bf90 (libc.so.6:strncpy) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b7ff30 (libc.so.6:wmemcmp) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4bde4e0 (libc.so.6:__memmove_chk) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+==10640== WARNING: new redirection conflicts with existing -- ignoring it
+--10640--     old: 0x04c2f9d0 (__memcpy_chk_avx_una) R-> (2030.0) 0x04853dd0 __memcpy_chk
+--10640--     new: 0x04c2f9d0 (__memcpy_chk_avx_una) R-> (2024.0) 0x04853740 __memmove_chk
+--10640-- REDIR: 0x4b59440 (libc.so.6:stpcpy) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b58fc0 (libc.so.6:memmove) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+==10640== Preferring higher priority redirection:
+--10640--     old: 0x04c2fa00 (__memcpy_avx_unalign) R-> (2018.0) 0x04851580 __memcpy_avx_unaligned_erms
+--10640--     new: 0x04c2fa00 (__memcpy_avx_unalign) R-> (2018.1) 0x04852d60 memmove
+--10640-- REDIR: 0x4b585b0 (libc.so.6:memchr) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b5c2e0 (libc.so.6:strspn) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b590e0 (libc.so.6:mempcpy) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4b5bd50 (libc.so.6:strncasecmp) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--10640-- REDIR: 0x4c345f0 (libc.so.6:__strrchr_avx2) redirected to 0x484ed20 (rindex)
+--10640-- REDIR: 0x4b54650 (libc.so.6:malloc) redirected to 0x48467b0 (malloc)
+--10640-- REDIR: 0x4b54d30 (libc.so.6:free) redirected to 0x4849820 (free)
+--10640-- REDIR: 0x4c32740 (libc.so.6:__strlen_avx2) redirected to 0x484f220 (strlen)
+--10640-- REDIR: 0x4c33820 (libc.so.6:__strncmp_avx2) redirected to 0x484fab0 (strncmp)
+--10640-- REDIR: 0x4b557a0 (libc.so.6:calloc) redirected to 0x484d8a0 (calloc)
+--10640-- REDIR: 0x4c2f9d0 (libc.so.6:__memcpy_chk_avx_unaligned_erms) redirected to 0x4853dd0 (__memcpy_chk)
+--10640-- REDIR: 0x4c31da0 (libc.so.6:__strchrnul_avx2) redirected to 0x48537b0 (strchrnul)
+--10640-- REDIR: 0x4c2fa00 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x4852d60 (memmove)
+--10640-- REDIR: 0x4bdef90 (libc.so.6:__strcpy_chk) redirected to 0x4853830 (__strcpy_chk)
+--10640-- REDIR: 0x4c31b60 (libc.so.6:__strchr_avx2) redirected to 0x484ef00 (index)
+--10640-- REDIR: 0x4c2f2a0 (libc.so.6:__memcmp_avx2_movbe) redirected to 0x4852480 (bcmp)
+--10640-- REDIR: 0x4c30400 (libc.so.6:__memset_avx2_unaligned_erms) redirected to 0x4852c50 (memset)
+--10640-- REDIR: 0x4b550a0 (libc.so.6:realloc) redirected to 0x484db00 (realloc)
+--10640-- REDIR: 0x4c33e80 (libc.so.6:__strncpy_avx2) redirected to 0x484f4f0 (strncpy)
+--10640-- REDIR: 0x4c31f90 (libc.so.6:__strcmp_avx2) redirected to 0x4850360 (strcmp)
+==10640== Syscall param writev(vector[0]) points to uninitialised byte(s)
+==10640==    at 0x4BD0864: writev (writev.c:26)
+==10640==    by 0x4CC7ACA: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==10640==    by 0x4CC7C4E: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==10640==    by 0x4CC8D7E: xcb_writev (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==10640==    by 0x48C20B8: _XSend (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C7148: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C752B: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x116435: mlx_int_wait_first_expose (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11616E: mlx_new_window (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x1117CC: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==  Address 0x4d6937c is 28 bytes inside a block of size 16,384 alloc'd
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48B142D: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==  Uninitialised value was created by a stack allocation
+==10640==    at 0x116350: mlx_int_anti_resize_win (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 
+==10640== HEAP SUMMARY:
+==10640==     in use at exit: 74,413 bytes in 101 blocks
+==10640==   total heap usage: 2,484 allocs, 2,383 frees, 545,637 bytes allocated
+==10640== 
+==10640== Searching for pointers to 101 not-freed blocks
+==10640== Checked 273,312 bytes
+==10640== 
+==10640== 3 bytes in 1 blocks are still reachable in loss record 1 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x4B5B35E: strdup (strdup.c:42)
+==10640==    by 0x48B10DA: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 8 bytes in 1 blocks are still reachable in loss record 2 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x4B5B35E: strdup (strdup.c:42)
+==10640==    by 0x48AE0CE: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x487383F: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x4878C44: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x115D23: mlx_int_deal_shm (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x115FB1: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 8 bytes in 1 blocks are still reachable in loss record 3 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x4871B16: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x48739F6: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x4878C44: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x115D23: mlx_int_deal_shm (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x115FB1: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 10 bytes in 1 blocks are still reachable in loss record 4 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x4B5B35E: strdup (strdup.c:42)
+==10640==    by 0x48AE0CE: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x4923033: XkbUseExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48B1C72: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 16 bytes in 1 blocks are still reachable in loss record 5 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x4CCA46D: xcb_connect_to_fd (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==10640==    by 0x4CCB0D9: xcb_connect_to_display_with_auth_info (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==10640==    by 0x48C03C9: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48B10FD: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 16 bytes in 1 blocks are still reachable in loss record 6 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48A856B: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48B13D0: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 21 bytes in 1 blocks are still reachable in loss record 7 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48B15D1: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 24 bytes in 1 blocks are still reachable in loss record 8 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x4873021: XextCreateExtension (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x48734C4: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x48739DF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x4878C44: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x115D23: mlx_int_deal_shm (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x115FB1: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 24 bytes in 1 blocks are still reachable in loss record 9 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x4B5B35E: strdup (strdup.c:42)
+==10640==    by 0x48AE0CE: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x487383F: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x4873502: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x48739DF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x4878C44: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x115D23: mlx_int_deal_shm (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x115FB1: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 24 bytes in 1 blocks are still reachable in loss record 10 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x4873A10: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x4878C44: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x115D23: mlx_int_deal_shm (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x115FB1: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 24 bytes in 1 blocks are still reachable in loss record 11 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48BE6B6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C75CD: _XReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C7AA4: XSync (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x116690: mlx_int_new_xshm_image (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x1168C2: mlx_new_image (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x111358: render (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11629C: mlx_loop (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FAD0: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 29 bytes in 1 blocks are still reachable in loss record 12 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48AA00C: _XUpdateAtomCache (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48ACFE6: XInternAtom (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115FA2: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 32 bytes in 1 blocks are still reachable in loss record 13 of 57
+==10640==    at 0x484DB80: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x4CCE712: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==10640==    by 0x4CCE80A: xcb_get_extension_data (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==10640==    by 0x4CCE8CE: xcb_prefetch_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==10640==    by 0x4CCE945: xcb_get_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==10640==    by 0x48B196A: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 32 bytes in 1 blocks are still reachable in loss record 14 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x4CC7257: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==10640==    by 0x4CC7A95: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==10640==    by 0x4CC7EEF: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==10640==    by 0x4CC8E6D: xcb_wait_for_reply (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==10640==    by 0x4CCE85A: xcb_get_extension_data (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==10640==    by 0x4CCE8CE: xcb_prefetch_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==10640==    by 0x4CCE945: xcb_get_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==10640==    by 0x48B196A: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 32 bytes in 1 blocks are still reachable in loss record 15 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x4873812: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x4878C44: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x115D23: mlx_int_deal_shm (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x115FB1: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 32 bytes in 1 blocks are still reachable in loss record 16 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x4873812: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x4873502: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x48739DF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x4878C44: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x115D23: mlx_int_deal_shm (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x115FB1: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 33 bytes in 1 blocks are still reachable in loss record 17 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48AA00C: _XUpdateAtomCache (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48ACFE6: XInternAtom (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115F8B: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 40 bytes in 1 blocks are still reachable in loss record 18 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48A85B5: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48B13D0: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 40 bytes in 1 blocks are still reachable in loss record 19 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48C06F9: _XPollfdCacheInit (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48B13E0: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 48 bytes in 1 blocks are still reachable in loss record 20 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48C0350: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48B10FD: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 48 bytes in 1 blocks are still reachable in loss record 21 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48C0365: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48B10FD: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 48 bytes in 1 blocks are still reachable in loss record 22 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48A85A4: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48B13D0: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 48 bytes in 1 blocks are still reachable in loss record 23 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48A85C5: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48B13D0: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 48 bytes in 1 blocks are still reachable in loss record 24 of 57
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x4915422: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x49154B8: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x49157D7: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x117AB7: mlx_int_param_KeyPress (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x1162F5: mlx_loop (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FAD0: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 72 bytes in 1 blocks are still reachable in loss record 25 of 57
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48B148C: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 72 bytes in 1 blocks are still reachable in loss record 26 of 57
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x4915406: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x49154B8: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x49157D7: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x117AB7: mlx_int_param_KeyPress (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x1162F5: mlx_loop (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FAD0: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 112 bytes in 1 blocks are still reachable in loss record 27 of 57
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48C0255: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48B10FD: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 112 bytes in 1 blocks are still reachable in loss record 28 of 57
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48B1751: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 128 bytes in 1 blocks are still reachable in loss record 29 of 57
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48B167F: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 128 bytes in 1 blocks are still reachable in loss record 30 of 57
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48AE0BE: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x4923033: XkbUseExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48B1C72: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 128 bytes in 1 blocks are still reachable in loss record 31 of 57
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48AE0BE: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x487383F: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x4878C44: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x115D23: mlx_int_deal_shm (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x115FB1: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 128 bytes in 1 blocks are still reachable in loss record 32 of 57
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48AE0BE: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x487383F: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x4873502: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x48739DF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x4878C44: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x115D23: mlx_int_deal_shm (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x115FB1: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 136 bytes in 1 blocks are still reachable in loss record 33 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x115EDF: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 145 bytes in 1 blocks are still reachable in loss record 34 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48B1CE1: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 152 bytes in 1 blocks are still reachable in loss record 35 of 57
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x492321E: XkbUseExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48B1C72: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 160 bytes in 1 blocks are still reachable in loss record 36 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x489F938: XCreateGC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48B19EC: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 168 bytes in 1 blocks are still reachable in loss record 37 of 57
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48B1B34: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 192 bytes in 1 blocks are still reachable in loss record 38 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48A8586: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48B13D0: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 208 bytes in 1 blocks are still reachable in loss record 39 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x4871AC9: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x48739F6: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x4878C44: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==10640==    by 0x115D23: mlx_int_deal_shm (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x115FB1: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 208 bytes in 1 blocks are still reachable in loss record 40 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48C251D: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C59AE: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C71B0: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C752B: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x116435: mlx_int_wait_first_expose (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11616E: mlx_new_window (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x1117CC: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 256 bytes in 1 blocks are still reachable in loss record 41 of 57
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x491C75D: XkbAllocClientMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x491507C: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x4915380: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x491544D: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x49154B8: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x49157D7: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x117AB7: mlx_int_param_KeyPress (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x1162F5: mlx_loop (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FAD0: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 288 bytes in 6 blocks are still reachable in loss record 42 of 57
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x49148F9: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x4915380: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x491544D: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x49154B8: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x49157D7: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x117AB7: mlx_int_param_KeyPress (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x1162F5: mlx_loop (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FAD0: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 416 bytes in 2 blocks are still reachable in loss record 43 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48C251D: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C59AE: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C771C: _XReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C7AA4: XSync (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x116690: mlx_int_new_xshm_image (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x1168C2: mlx_new_image (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x1117F4: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 416 bytes in 2 blocks are still reachable in loss record 44 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48C251D: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C59AE: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C771C: _XReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C7AA4: XSync (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x116690: mlx_int_new_xshm_image (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x1168C2: mlx_new_image (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x1171A7: mlx_int_parse_xpm (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x1175D4: mlx_xpm_file_to_image (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11194A: load_texture (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x111E1E: init_texture (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x111861: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 512 bytes in 1 blocks are still reachable in loss record 45 of 57
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48ACE7A: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48ACF1E: XInternAtom (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115F8B: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 624 bytes in 3 blocks are still reachable in loss record 46 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48C251D: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C59AE: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C71B0: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C7507: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x116435: mlx_int_wait_first_expose (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11616E: mlx_new_window (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x1117CC: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 960 bytes in 1 blocks are still reachable in loss record 47 of 57
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x491C831: XkbAllocClientMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x4914ABE: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x4915380: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x491544D: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x49154B8: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x49157D7: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x117AB7: mlx_int_param_KeyPress (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x1162F5: mlx_loop (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FAD0: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 1,040 bytes in 5 blocks are still reachable in loss record 48 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48C251D: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C59AE: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C71F9: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C7507: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x116435: mlx_int_wait_first_expose (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11616E: mlx_new_window (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x1117CC: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 1,800 bytes in 23 blocks are still reachable in loss record 49 of 57
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x49147C1: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x4915380: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x491544D: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x49154B8: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x49157D7: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x117AB7: mlx_int_param_KeyPress (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x1162F5: mlx_loop (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FAD0: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 1,872 bytes in 9 blocks are still reachable in loss record 50 of 57
+==10640==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48C251D: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C59AE: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C71F9: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C752B: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x116435: mlx_int_wait_first_expose (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11616E: mlx_new_window (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x1117CC: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 2,048 bytes in 1 blocks are still reachable in loss record 51 of 57
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x491491C: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x4915380: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x491544D: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x49154B8: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x49157D7: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x117AB7: mlx_int_param_KeyPress (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x1162F5: mlx_loop (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FAD0: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 3,380 bytes in 1 blocks are still reachable in loss record 52 of 57
+==10640==    at 0x484DB80: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x4CCA678: xcb_connect_to_fd (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==10640==    by 0x4CCB0D9: xcb_connect_to_display_with_auth_info (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==10640==    by 0x48C03C9: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48B10FD: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 4,720 bytes in 1 blocks are still reachable in loss record 53 of 57
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48B10C6: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 7,392 bytes in 2 blocks are still reachable in loss record 54 of 57
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48B17E0: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 8,192 bytes in 1 blocks are still reachable in loss record 55 of 57
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x4914F36: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x4915380: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x491544D: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x49154B8: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x49157D7: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x117AB7: mlx_int_param_KeyPress (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x1162F5: mlx_loop (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FAD0: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 16,384 bytes in 1 blocks are still reachable in loss record 56 of 57
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48B142D: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== 21,176 bytes in 1 blocks are still reachable in loss record 57 of 57
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x4CCA396: xcb_connect_to_fd (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==10640==    by 0x4CCB0D9: xcb_connect_to_display_with_auth_info (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==10640==    by 0x48C03C9: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48B10FD: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== LEAK SUMMARY:
+==10640==    definitely lost: 0 bytes in 0 blocks
+==10640==    indirectly lost: 0 bytes in 0 blocks
+==10640==      possibly lost: 0 bytes in 0 blocks
+==10640==    still reachable: 74,413 bytes in 101 blocks
+==10640==         suppressed: 0 bytes in 0 blocks
+==10640== 
+==10640== ERROR SUMMARY: 2 errors from 1 contexts (suppressed: 0 from 0)
+==10640== 
+==10640== 2 errors in context 1 of 1:
+==10640== Syscall param writev(vector[0]) points to uninitialised byte(s)
+==10640==    at 0x4BD0864: writev (writev.c:26)
+==10640==    by 0x4CC7ACA: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==10640==    by 0x4CC7C4E: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==10640==    by 0x4CC8D7E: xcb_writev (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==10640==    by 0x48C20B8: _XSend (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C7148: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x48C752B: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x116435: mlx_int_wait_first_expose (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11616E: mlx_new_window (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x1117CC: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==  Address 0x4d6937c is 28 bytes inside a block of size 16,384 alloc'd
+==10640==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10640==    by 0x48B142D: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==10640==    by 0x115EF7: mlx_init (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x11179F: init_struct_game (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==    by 0x10FA21: main (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640==  Uninitialised value was created by a stack allocation
+==10640==    at 0x116350: mlx_int_anti_resize_win (in /home/menny/Documenti/42Cursus/Circle_5/cub3d/cub3d)
+==10640== 
+==10640== ERROR SUMMARY: 2 errors from 1 contexts (suppressed: 0 from 0)

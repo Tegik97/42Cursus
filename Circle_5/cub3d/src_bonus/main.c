@@ -1,9 +1,9 @@
 #include "cub3d.h"
 #include "parsing.h"
 
-int	main (int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_game 		*g;
+	t_game		*g;
 	t_texture	*txt;
 
 	g = malloc(1 * sizeof(t_game));
@@ -18,10 +18,10 @@ int	main (int argc, char **argv)
 	init_struct_game(g, txt);
 	mouse_controls(g);
 	mlx_loop_hook(g->mlx, render, g);
-	mlx_hook(g->win, 2, 1L<<0, key_press, g);
-	mlx_hook(g->win, 3, 1L<<1, key_release, g);
+	mlx_hook(g->win, 2, 1L << 0, key_press, g);
+	mlx_hook(g->win, 3, 1L << 1, key_release, g);
 	mlx_hook(g->win, 17, 0, close_window, g);
 	mlx_loop(g->mlx);
 	free_struct(txt, g);
-	return (0); // devo fare un free della mappa ?
+	return (0);
 }

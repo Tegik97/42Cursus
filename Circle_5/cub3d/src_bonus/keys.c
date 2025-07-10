@@ -26,11 +26,11 @@ int	key_release(int key, t_game *g)
 		g->keys.left = 0;
 	else if (key == KEY_RIGHT)
 		g->keys.right = 0;
-		else if (key == KEY_W)
+	else if (key == KEY_W)
 		g->keys.w = 0;
 	else if (key == KEY_S)
 		g->keys.s = 0;
-		else if (key == KEY_A)
+	else if (key == KEY_A)
 		g->keys.a = 0;
 	else if (key == KEY_D)
 		g->keys.d = 0;

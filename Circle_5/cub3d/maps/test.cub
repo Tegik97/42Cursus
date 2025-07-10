@@ -1,16 +1,16 @@
-NO ./texture/128x128/Brick/Brick_19-128x128.xpm
-SO ./texture/128x128/Brick/Brick_02-128x128.xpm
-WE ./texture/128x128/Brick/Brick_04-128x128.xpm
+NO ./texture/Brick_05.xpm
+SO ./texture/Brick_02.xpm
+WE ./texture/Brick_03.xpm
 
-F ./texture/floor.xpm
-C ./texture/ceil.xpm
-
-
+F ./texture/Tile_01.xpm
+C ./texture/Tile_02.xpm
 
 
 
 
-EA ./texture/128x128/Brick/Brick_14-128x128.xpm
+
+
+EA ./texture/Brick_06.xpm
 
         111111
         100001

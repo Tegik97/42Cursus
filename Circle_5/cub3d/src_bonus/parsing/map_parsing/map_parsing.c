@@ -17,37 +17,37 @@ static char	**fill_map(char **map, t_game *g)
 
 static char	**copy_map(int fd, char *line, t_game *g)
 {
-	char	*fullMap;
+	char	*full_map;
 	char	**map;
 
-	fullMap = NULL;
+	full_map = NULL;
 	while (line)
 	{
-		fullMap = ft_freejoin(fullMap, " ");
-		fullMap = ft_freejoin(fullMap, line);
+		full_map = ft_freejoin(full_map, " ");
+		full_map = ft_freejoin(full_map, line);
 		g->map_h++;
 		if (ft_strlen(line) > g->map_w)
 			g->map_w = ft_strlen(line);
 		free (line);
 		line = get_next_line(fd);
 	}
-	map = ft_split(fullMap, '\n');
-	free (fullMap);
+	map = ft_split(full_map, '\n');
+	free (full_map);
 	map = fill_map(map, g);
 	return (map);
 }
 
 static int	find_map_start(char *line)
 {
-	char	*trimLine;
+	char	*trim_line;
 
-	trimLine = ft_strtrim(line, " \t\n");
-	if (*trimLine == '1')
+	trim_line = ft_strtrim(line, " \t\n");
+	if (*trim_line == '1')
 	{
-		free (trimLine);
+		free (trim_line);
 		return (1);
 	}
-	free (trimLine);
+	free (trim_line);
 	return (0);
 }
 

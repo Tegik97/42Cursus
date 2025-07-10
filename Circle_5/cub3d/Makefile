@@ -1,7 +1,7 @@
 NAME			:= cub3d
 NAME_BONUS		:= cub3d_bonus
 LIBFT			:= libft/libft.a
-CC				:= gcc -g
+CC				:= cc
 CFLAGS			:= -Wall -Werror -Wextra -I./include
 RM				:= rm -rf
 LIB				:= ft
@@ -21,7 +21,7 @@ SRCS		:=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/init_struct.c \
 				$(SRC_DIR)/texture_utils/texture.c \
 				$(SRC_DIR)/texture_utils/init_texture.c \
-				$(SRC_DIR)/parsing/tmp_main/parse_init.c \
+				$(SRC_DIR)/parsing/parse_init/parse_init.c \
 				$(SRC_DIR)/parsing/cub_parsing/cub_check.c \
 				$(SRC_DIR)/parsing/path_parsing/texture_path.c \
 				$(SRC_DIR)/parsing/path_parsing/missing_path_print.c \
@@ -41,7 +41,7 @@ SRCS_BONUS	:= 	$(SRC_DIR_BONUS)/main.c \
 				$(SRC_DIR_BONUS)/init_struct.c \
 				$(SRC_DIR_BONUS)/texture_utils/texture.c \
 				$(SRC_DIR_BONUS)/texture_utils/init_texture.c \
-				$(SRC_DIR_BONUS)/parsing/tmp_main/parse_init.c \
+				$(SRC_DIR_BONUS)/parsing/parse_init/parse_init.c \
 				$(SRC_DIR_BONUS)/parsing/cub_parsing/cub_check.c \
 				$(SRC_DIR_BONUS)/parsing/path_parsing/texture_path.c \
 				$(SRC_DIR_BONUS)/parsing/path_parsing/missing_path_print.c \
@@ -95,7 +95,6 @@ fclean: clean
 		$(RM) $(NAME_BONUS)
 
 re: fclean all
-
 
 header: 
 	${info }

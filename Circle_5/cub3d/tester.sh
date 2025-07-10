@@ -13,7 +13,7 @@ fail=0
 val=0
 
 if [ "$1" = "valgrind" ]; then
-	VALGRIND="valgrind --leak-check=full --error-exitcode=42"
+	VALGRIND="valgrind --leak-check=full --error-exitcode=42 --track-origins=yes --show-leak-kinds=all --suppressions=valgrind.supp -v"
 	val=1
 fi
 

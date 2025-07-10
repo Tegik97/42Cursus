@@ -5,7 +5,7 @@ static void	free_split(char **arr)
 	int	i;
 
 	if (!arr)
-		return;
+		return ;
 	i = 0;
 	while (arr[i])
 	{
@@ -37,19 +37,19 @@ void	init_texture(t_game *g, t_texture *txt)
 	size_t	i;
 
 	i = 0;
-	while (txt->texturePath[i])
+	while (txt->texturepath[i])
 	{
-		if (ft_strncmp(txt->texturePath[i], "./", 2) == 0)
-			g->texture[i] = load_texture(g, g->mlx, txt->texturePath[i]);
+		if (ft_strncmp(txt->texturepath[i], "./", 2) == 0)
+			g->texture[i] = load_texture(g, g->mlx, txt->texturepath[i]);
 		else if (i == 4)
 		{
-			g->use_floor_text = False;
-			g->floor_color = find_color(txt->texturePath[i]);
+			g->use_floor_text = FALSE;
+			g->floor_color = find_color(txt->texturepath[i]);
 		}
 		else if (i == 5)
 		{
-			g->use_ceil_text = False;
-			g->ceil_color = find_color(txt->texturePath[i]);
+			g->use_ceil_text = FALSE;
+			g->ceil_color = find_color(txt->texturepath[i]);
 		}
 		i++;
 	}

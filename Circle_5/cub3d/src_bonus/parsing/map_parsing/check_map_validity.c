@@ -47,7 +47,7 @@ static int	check_for_duplicate_player(char **map)
 				if (found > 0)
 				{
 					ft_putstr_fd("Error\nToo many players\n", 2);
-					return (0);
+					return (-1);
 				}
 				found++;
 			}
@@ -85,13 +85,17 @@ static int	check_for_invalid_char(char **map)
 
 int	map_validity(char **map)
 {
+	int	p_found;
 	if (!check_for_invalid_char(map)
 		|| !check_enclosed_map(map))
 		return (0);
-	if (!check_for_duplicate_player(map))
+	p_found = check_for_duplicate_player(map);
+	if (!p_found)
 	{
 		ft_putendl_fd("Error\nPlayer not found", 2);
 		return (0);
 	}
+	else if (p_found == -1)
+		return (0);
 	return (1);
 }

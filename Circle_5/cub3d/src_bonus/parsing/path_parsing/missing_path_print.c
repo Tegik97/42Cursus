@@ -43,7 +43,7 @@ static int	check_values(char **colorValues, char *texture)
 	while (colorValues[i])
 		i++;
 	if (!check_path(i, texture))
-		return 0;
+		return (0);
 	else if (i == 3)
 	{
 		i = -1;
@@ -65,29 +65,29 @@ static int	check_values(char **colorValues, char *texture)
 
 int	check_color_gradient(char *texture)
 {
-	char	**colorValues;
+	char	**color_values;
 	int		i;
 
-	colorValues = ft_split(texture, ',');
-	if (!check_values(colorValues, texture))
+	color_values = ft_split(texture, ',');
+	if (!check_values(color_values, texture))
 	{
-		free_mat(colorValues);
+		free_mat(color_values);
 		return (0);
 	}
-	if (colorValues[1] && colorValues[2])
+	if (color_values[1] && color_values[2])
 	{
 		i = -1;
-		while (colorValues[++i])
+		while (color_values[++i])
 		{
-			if (ft_atoi(colorValues[i]) < 0 || ft_atoi(colorValues[i]) > 255)
+			if (ft_atoi(color_values[i]) < 0 || ft_atoi(color_values[i]) > 255)
 			{
 				print_error(texture, 1);
-				free_mat(colorValues);
+				free_mat(color_values);
 				return (0);
 			}
 		}
 	}
-	free_mat(colorValues);
+	free_mat(color_values);
 	return (1);
 }
 

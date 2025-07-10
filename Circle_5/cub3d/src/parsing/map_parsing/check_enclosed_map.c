@@ -9,12 +9,13 @@ static int	find_wall_east(char **map, int row, size_t col)
 		if (map[row][++col])
 		{
 			if (!map[row][col])
-				break;
+				break ;
 			else if (map[row][col] == ' ')
 			{
 				if (map[row][col + 1] && ft_strchr("01", map[row][col + 1]))
 				{
-					print_map_error(map, "invalid space inside map walls", row, col);
+					print_map_error(map, "invalid space inside map walls", \
+						row, col);
 					col++;
 					return (0);
 				}
@@ -42,7 +43,8 @@ static int	find_wall_west(char **map, size_t row, int col)
 					break ;
 				else if (ft_strchr("01", map[row][col - 1]))
 				{
-					print_map_error(map, "invalid space inside map walls", row, col);
+					print_map_error(map, "invalid space inside map walls", \
+						row, col);
 					col++;
 					return (0);
 				}
@@ -52,6 +54,7 @@ static int	find_wall_west(char **map, size_t row, int col)
 	print_map_error(map, "map not enclosed by walls\n", row, (col + 1));
 	return (0);
 }
+
 static int	find_wall_south(char **map, int row, size_t col)
 {
 	while (map[row])
@@ -61,12 +64,13 @@ static int	find_wall_south(char **map, int row, size_t col)
 		if (map[++row])
 		{
 			if (!map[row][1] || !map[row][col])
-				break;
+				break ;
 			else if (map[row][col] == ' ')
 			{
 				if (map[row + 1] && ft_strchr("01", map[row + 1][col]))
 				{
-					print_map_error(map, "invalid space inside map walls", row, col);
+					print_map_error(map, "invalid space inside map walls", \
+						row, col);
 					return (0);
 				}
 				else
@@ -88,12 +92,13 @@ static int	find_wall_north(char **map, int row, size_t col)
 		if (row > 0)
 		{
 			if (!map[row][1] || !map[row][col])
-				break;
+				break ;
 			else if (map[row][col] == ' ')
 			{
 				if (map[row - 1] && ft_strchr("01", map[row - 1][col]))
 				{
-					print_map_error(map, "invalid space inside map walls", row, col);
+					print_map_error(map, "invalid space inside map walls", \
+						row, col);
 					return (0);
 				}
 				else

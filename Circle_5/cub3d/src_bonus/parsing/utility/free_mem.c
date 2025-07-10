@@ -28,11 +28,11 @@ void	free_struct(t_texture *txt, t_game *g)
 	size_t	i;
 
 	i = 0;
-	if (txt->texturePath)
+	if (txt->texturepath)
 	{
-		while (txt->texturePath[i])
-			free(txt->texturePath[i++]);
-		free (txt->texturePath);
+		while (txt->texturepath[i])
+			free(txt->texturepath[i++]);
+		free (txt->texturepath);
 	}
 	if (txt->direction)
 		free (txt->direction);

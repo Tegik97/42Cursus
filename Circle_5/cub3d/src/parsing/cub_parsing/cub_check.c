@@ -3,21 +3,21 @@
 static int	get_file_fd(char *fileName)
 {
 	int		fd;
-	char	*filePath;
+	char	*file_path;
 
-	filePath = NULL;
+	file_path = NULL;
 	if (ft_strncmp(fileName, "./", 2))
 	{
-		filePath = ft_strcat(&filePath, "./maps/");
-		filePath = ft_freejoin(filePath, fileName);
-		fd = open(filePath, O_RDONLY);
+		file_path = ft_strcat(&file_path, "./maps/");
+		file_path = ft_freejoin(file_path, fileName);
+		fd = open(file_path, O_RDONLY);
 	}
 	else
 		fd = open(fileName, O_RDONLY);
 	if (fd == -1)
 		perror("Error\n");
-	if (filePath)
-		free (filePath);
+	if (file_path)
+		free (file_path);
 	return (fd);
 }
 

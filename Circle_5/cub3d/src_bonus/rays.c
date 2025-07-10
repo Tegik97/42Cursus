@@ -16,11 +16,11 @@ static void	dda_algoritm(t_game *g, t_ray *r)
 			r->map_y += r->step_y;
 			r->side = 1;
 		}
-		if (r->map_x < 0 || r->map_x >= (int)g->map_w ||
-			r->map_y < 0 || r->map_y >= (int)g->map_h)
+		if (r->map_x < 0 || r->map_x >= (int)g->map_w
+			|| r->map_y < 0 || r->map_y >= (int)g->map_h)
 		{
 			ft_printf("Error\n");
-			break;
+			break ;
 		}
 		if (g->map[r->map_y][r->map_x] == 1)
 			r->hit = 1;
@@ -32,39 +32,40 @@ static void	calculate_init_step_sidedist(t_game *g, t_ray *r)
 	if (r->raydir_x < 0)
 	{
 		r->step_x = -1;
-		r->sidedist_x = (g->posX - r->map_x) * r->deltadist_x;
+		r->sidedist_x = (g->pos_x - r->map_x) * r->deltadist_x;
 	}
 	else
 	{
 		r->step_x = 1;
-		r->sidedist_x = (r->map_x + 1.0 - g->posX) * r->deltadist_x;
+		r->sidedist_x = (r->map_x + 1.0 - g->pos_x) * r->deltadist_x;
 	}
 	if (r->raydir_y < 0)
 	{
 		r->step_y = -1;
-		r->sidedist_y = (g->posY - r->map_y) * r->deltadist_y;
+		r->sidedist_y = (g->pos_y - r->map_y) * r->deltadist_y;
 	}
 	else
 	{
 		r->step_y = 1;
-		r->sidedist_y = (r->map_y + 1.0 - g->posY) * r->deltadist_y;	
+		r->sidedist_y = (r->map_y + 1.0 - g->pos_y) * r->deltadist_y;
 	}
 }
+
 static void	init_ray(t_game *g, t_ray *r, int x)
 {
 	r->camera_x = 2 * x / (double)g->win_w -1;
-	r->raydir_x = g->dirX + g->planeX * r->camera_x;
+	r->raydir_x = g->dir_x + g->plane_x * r->camera_x;
 	if (r->raydir_x == 0)
 		r->deltadist_x = __DBL_MAX__;
 	else
 		r->deltadist_x = fabs(1 / r->raydir_x);
-	r->raydir_y = g->dirY + g->planeY * r->camera_x;
+	r->raydir_y = g->dir_y + g->plane_y * r->camera_x;
 	if (r->raydir_y == 0)
 		r->deltadist_y = __DBL_MAX__;
 	else
 		r->deltadist_y = fabs(1 / r->raydir_y);
-	r->map_x = (int)g->posX;
-	r->map_y = (int)g->posY;
+	r->map_x = (int)g->pos_x;
+	r->map_y = (int)g->pos_y;
 	calculate_init_step_sidedist(g, r);
 }
 
@@ -75,12 +76,12 @@ static void	find_wall_parameters(t_game *g, t_ray *r)
 	else
 		r->walldist = r->sidedist_y - r->deltadist_y;
 	if (r->walldist <= 0 || isnan(r->walldist))
-		r->walldist = 0.0001; // Evita divisione per zero nella height
+		r->walldist = 0.0001;
 	if (r->side == 0)
-		r->wall_x = g->posY + r->walldist * r->raydir_y;
+		r->wall_x = g->pos_y + r->walldist * r->raydir_y;
 	else
-		r->wall_x = g->posX + r->walldist * r->raydir_x;
-	r->wall_x -= floor(r->wall_x); //solo la parte decimale del valore 
+		r->wall_x = g->pos_x + r->walldist * r->raydir_x;
+	r->wall_x -= floor(r->wall_x);
 	r->text_x = 0;
 	r->height = (int)(g->win_h / r->walldist);
 	r->draw_start = -r->height / 2 + g->win_h / 2;
@@ -96,8 +97,9 @@ static void	find_wall_parameters(t_game *g, t_ray *r)
 
 void	cast_ray(t_game *g, int x)
 {
-	t_ray	r = {0};
+	t_ray	r;
 
+	init_struct_ray(&r);
 	init_ray(g, &r, x);
 	dda_algoritm(g, &r);
 	find_id_texture(g, r.side, r.raydir_x, r.raydir_y);

@@ -57,7 +57,7 @@ static char	**get_texture_path(char **textures, int fd)
 			{
 				free (textures[i]);
 				textures[i] = get_path(line);
-				break;
+				break ;
 			}
 			i++;
 		}
@@ -85,22 +85,22 @@ static char	**texture_mat_init(char **textures)
 char	**textures_path(int fd)
 {
 	char	**textures;
-	size_t	checkMat;
-	
+	size_t	check_mat;
+
 	textures = NULL;
 	textures = texture_mat_init(textures);
 	textures = get_texture_path(textures, fd);
-	checkMat = check_mat_status(textures);
-	if (checkMat > 0 && checkMat <= 10)
+	check_mat = check_mat_status(textures);
+	if (check_mat > 0 && check_mat <= 10)
 	{
-		missing_path_print(checkMat, textures);
+		missing_path_print(check_mat, textures);
 		textures = free_mat(textures);
 	}
-	else if (checkMat > 10)
+	else if (check_mat > 10)
 	{
-		while (checkMat <= 12)
+		while (check_mat <= 12)
 		{
-			if (!check_color_gradient(textures[checkMat++ - 7]))
+			if (!check_color_gradient(textures[check_mat++ - 7]))
 			{
 				textures = free_mat(textures);
 				break ;
@@ -111,7 +111,8 @@ char	**textures_path(int fd)
 }
 
 /*
-*	Looks for each texture's path avoiding duplicates and checks for missing infos
+*	Looks for each texture's path
+*	avoiding duplicates and checks for missing infos
 *	Fills a matrix with each path in the following order:
 *	North, South, West, East, Floor, Ceiling.
 *	
@@ -120,5 +121,6 @@ char	**textures_path(int fd)
 *	follows (NO, SO, WE, EA, F, C), order doesn't matter
 * 
 *	RETURN VALUE
-*	A matrix in which each row is a path or the path's identification if no path is found
+*	A matrix in which each row is a path or the path's
+*	identification if no path is found
 */
