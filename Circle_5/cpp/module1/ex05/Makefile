@@ -1,4 +1,4 @@
-NAME = replacer
+NAME = harl
 
 CXX = c++
 CXXFLAGS = -Wextra -Werror -Wall -std=c++98 -Ihpp
@@ -8,7 +8,7 @@ BUILD_DIR =	.build
 DIR_DUP =	@mkdir -p $(@D)
 
 SRCS = 	$(SRC_DIR)/main.cpp \
-		$(SRC_DIR)/replacer.cpp
+		$(SRC_DIR)/Harl.cpp
 
 OBJS =	$(SRCS:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
 
