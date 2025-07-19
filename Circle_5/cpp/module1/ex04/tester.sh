@@ -162,7 +162,7 @@ if [ "$1" == "gen" ]; then
 	exit 0
 fi;
 
-if [ $1 == "valgrind" ]; then
+if [ "$1" == "valgrind" ]; then
 	run_valgrind_for "$TEST_DIR/lorem_ipsum" "dolor" "PAIN"
 	run_valgrind_for "$TEST_DIR/sed" "sed" "X"
 	run_valgrind_for "$TEST_DIR/empty_s2" "uno" ""
