@@ -1,4 +1,4 @@
-NAME = phonebook
+NAME = thisisbrain
 
 CXX = c++
 CXXFLAGS = -Wextra -Werror -Wall -std=c++98 -Ihpp
@@ -7,9 +7,7 @@ SRC_DIR =	src
 BUILD_DIR =	.build
 DIR_DUP =	@mkdir -p $(@D)
 
-SRCS = 	$(SRC_DIR)/main.cpp \
-		$(SRC_DIR)/Contact.cpp \
-		$(SRC_DIR)/PhoneBook.cpp
+SRCS = 	$(SRC_DIR)/main.cpp
 
 OBJS =	$(SRCS:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
 
@@ -31,10 +29,20 @@ header:
 	fi
 
 clean:
-	rm -rf $(BUILD_DIR)
+	@if [ -d "$(BUILD_DIR)" ]; then \
+		rm -rf $(BUILD_DIR) && \
+		echo "${BOLD}${GREEN}Deleted build files${NO_COLOR}"; \
+	else \
+		echo "${BOLD}${YELLOW}No build files to delete${NO_COLOR}"; \
+	fi
 
 fclean: clean
-	rm -f $(NAME)
+	@if [ -f "$(NAME)" ]; then \
+		rm -f $(NAME) && \
+		echo "${BOLD}${GREEN}Deleted binary file: $(NAME)${NO_COLOR}"; \
+	else \
+		echo "${BOLD}${YELLOW}No binary file to delete: $(NAME)${NO_COLOR}"; \
+	fi
 
 re: fclean all
 

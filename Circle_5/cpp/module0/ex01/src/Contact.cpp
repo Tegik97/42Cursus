@@ -1,4 +1,4 @@
-#include "contact.hpp"
+#include "Contact.hpp"
 
 Contact::Contact() {}
 Contact::Contact(std::string name, std::string surname, std::string nick, std::string number, std::string secret)
