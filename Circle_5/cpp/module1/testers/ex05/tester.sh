@@ -13,7 +13,7 @@ BOLD=$(tput bold)
 if [ "$1" == "valgrind" ]; then
 	VALGRIND="valgrind --leak-check=full --error-exitcode=42 --track-origins=yes --show-leak-kinds=all"
 	for level in DEBUG INFO WARNING ERROR "WRONG" ""; do
-	echo "Running: $VALGRIND ./harl $level"
+	echo "${BOLD}${YELLOW}Running:${GREEN} $VALGRIND ./harl $level${NO_COLOR}"
 	$VALGRIND $HARL_BIN $level
 	exit_stat=$?
 	echo
@@ -26,7 +26,7 @@ if [ "$1" == "valgrind" ]; then
 	done
 else
 	for level in DEBUG INFO WARNING ERROR "WRONG" ""; do
-	echo "Running: ./harl $level"
+	echo "${BOLD}${YELLOW}Running:${GREEN} ./harl $level${NO_COLOR}"
 	$HARL_BIN $level
 	echo
 	done
