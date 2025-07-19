@@ -44,10 +44,29 @@ fclean: clean
 	else \
 		echo "${BOLD}${YELLOW}No binary file to delete: $(NAME)${NO_COLOR}"; \
 	fi
+	@if [ -f "tester.sh" ]; then \
+		echo && \
+		echo "${BOLD}${YELLOW}[Tester]${NO_COLOR}" && \
+		./tester.sh fclean && \
+		rm -f "tester.sh" && \
+		echo "${BOLD}${GREEN}Deleted tester.sh${NO_COLOR}"; \
+	fi;
 
 re: fclean all
 
-.PHONY: all re clean fclean header
+TESTER_URL = https://raw.githubusercontent.com/Tegik97/42Cursus/main/Circle_5/cpp/module1/ex04/tester.sh
+
+test:
+	@if [ ! -f "tester.sh" ]; then \
+		echo "${BOLD}${YELLOW}Downloading tester...${NO_COLOR}"; \
+		curl -sSfL $(TESTER_URL) -o tester.sh; \
+		chmod +x tester.sh; \
+		echo "${BOLD}${GREEN}Done${NO_COLOR}"; \
+	else \
+		echo "${BOLD}${YELLOW}tester.sh already downloaded${NO_COLOR}"; \
+	fi;
+
+.PHONY: all re clean fclean header test
 .SILENT:
 
 YELLOW		:= ${shell tput setaf 3}

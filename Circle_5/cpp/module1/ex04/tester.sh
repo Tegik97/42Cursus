@@ -104,7 +104,6 @@ clean_tests()
 			echo "${BOLD}${YELLOW}Nothing to clean${NO_COLOR}"
 		fi;
 		echo
-		exit 0;
 	elif [ "$1" = "clean" ]; then
 		echo "${BOLD}${YELLOW}Removing all .replace files${NO_COLOR}"
 		$S_SLEEP
@@ -115,7 +114,6 @@ clean_tests()
 			echo "${BOLD}${YELLOW}No .replace files in $TEST_DIR${NO_COLOR}"
 		fi;
 		echo
-		exit 0
 	fi;
 }
 
@@ -153,8 +151,17 @@ generate_tests()
 	fi;
 }
 
-clean_tests $1
+if [ "$1" == "clean" ] || [ "$1" == "fclean" ]; then
+	clean_tests $1
+	exit 0
+fi;
+clean_tests
+
 generate_tests
+if [ "$1" == "gen" ]; then
+	exit 0
+fi;
+
 if [ $1 == "valgrind" ]; then
 	run_valgrind_for "$TEST_DIR/lorem_ipsum" "dolor" "PAIN"
 	run_valgrind_for "$TEST_DIR/sed" "sed" "X"
