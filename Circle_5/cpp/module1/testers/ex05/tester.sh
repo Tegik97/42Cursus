@@ -11,8 +11,18 @@ RED=$(tput setaf 1)
 NO_COLOR=$(tput sgr0)
 BOLD=$(tput bold)
 
-for level in DEBUG INFO WARNING ERROR "WRONG" ""; do
+
+
+if [ "$1" == "valgrind" ]; then
+	for level in DEBUG INFO WARNING ERROR "WRONG" ""; do
+	echo "Running: valgrind ./harl $level"
+	valgrind $HARL_BIN $level
+	echo
+	done
+else
+	for level in DEBUG INFO WARNING ERROR "WRONG" ""; do
 	echo "Running: ./harl $level"
 	$HARL_BIN $level
 	echo
-done
+	done
+fi;

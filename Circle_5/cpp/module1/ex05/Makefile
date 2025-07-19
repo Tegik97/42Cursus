@@ -47,14 +47,13 @@ fclean: clean
 	@if [ -f "tester.sh" ]; then \
 		echo && \
 		echo "${BOLD}${YELLOW}[Tester]${NO_COLOR}" && \
-		./tester.sh fclean && \
 		rm -f "tester.sh" && \
 		echo "${BOLD}${GREEN}Deleted tester.sh${NO_COLOR}"; \
 	fi;
 
 re: fclean all
 
-TESTER_URL = https://raw.githubusercontent.com/Tegik97/42Cursus/main/Circle_5/cpp/module1/testers/ex04/tester.sh
+TESTER_URL = https://raw.githubusercontent.com/Tegik97/42Cursus/main/Circle_5/cpp/module1/testers/ex05/tester.sh
 
 test:
 	@if [ ! -f "tester.sh" ]; then \
