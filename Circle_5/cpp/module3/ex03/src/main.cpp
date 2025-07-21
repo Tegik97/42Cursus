@@ -8,10 +8,60 @@ void printSeparator(const std::string& test_name) {
 }
 
 int main() {
-	std::cout << "💎 DIAMONDTRAP TESTING ARENA 💎\n" << std::endl;
+	std::cout << "💎 CLAPTRAP, SCAVTRAP, FRAGTRAP & DIAMONDTRAP TESTING ARENA 💎\n" << std::endl;
 
-	// Test 1: Construction/Destruction Chaining with Diamond Inheritance
-	printSeparator("TEST 1: DIAMOND INHERITANCE CONSTRUCTION/DESTRUCTION");
+	// Test 1: ClapTrap Basic Tests
+	printSeparator("TEST 1: CLAPTRAP BASIC FUNCTIONALITY");
+	{
+		std::cout << "Creating ClapTrap with default constructor:" << std::endl;
+		ClapTrap default_clap;
+		
+		std::cout << "\nCreating ClapTrap with name constructor:" << std::endl;
+		ClapTrap named_clap("BasicWarrior");
+		
+		std::cout << "\nClapTrap basic attacks:" << std::endl;
+		named_clap.attack("Training Dummy");
+		named_clap.attack("Evil Robot");
+		
+		std::cout << "\nClapTrap taking damage and repairing:" << std::endl;
+		named_clap.takeDamage(3);
+		named_clap.beRepaired(2);
+		
+		std::cout << "\nEnd of ClapTrap basic tests:" << std::endl;
+	}
+
+	// Test 2: ScavTrap Basic Tests
+	printSeparator("TEST 2: SCAVTRAP FUNCTIONALITY");
+	{
+		std::cout << "Creating ScavTrap:" << std::endl;
+		ScavTrap scav("Guardian");
+		
+		std::cout << "\nScavTrap enhanced attack:" << std::endl;
+		scav.attack("Bandit");
+		
+		std::cout << "\nScavTrap special ability:" << std::endl;
+		scav.guardGate();
+		
+		std::cout << "\nEnd of ScavTrap basic tests:" << std::endl;
+	}
+
+	// Test 3: FragTrap Basic Tests
+	printSeparator("TEST 3: FRAGTRAP FUNCTIONALITY");
+	{
+		std::cout << "Creating FragTrap:" << std::endl;
+		FragTrap frag("Destroyer");
+		
+		std::cout << "\nFragTrap attack:" << std::endl;
+		frag.attack("Target");
+		
+		std::cout << "\nFragTrap special ability:" << std::endl;
+		frag.highFiveGuys();
+		
+		std::cout << "\nEnd of FragTrap basic tests:" << std::endl;
+	}
+
+	// Test 4: Construction/Destruction Chaining with Diamond Inheritance
+	printSeparator("TEST 4: DIAMOND INHERITANCE CONSTRUCTION/DESTRUCTION");
 	{
 		std::cout << "Creating DiamondTrap - watch the construction chain:" << std::endl;
 		DiamondTrap diamond("Fusion");
@@ -19,8 +69,8 @@ int main() {
 		std::cout << "\nEnd of scope - destructors will be called in reverse order:" << std::endl;
 	}
 
-	// Test 2: Diamond Problem Resolution - whoAmI function
-	printSeparator("TEST 2: DIAMOND PROBLEM - WHO AM I?");
+	// Test 5: Diamond Problem Resolution - whoAmI function
+	printSeparator("TEST 5: DIAMOND PROBLEM - WHO AM I?");
 	{
 		DiamondTrap diamond("Hybrid");
 		
@@ -28,8 +78,8 @@ int main() {
 		diamond.whoAmI();
 	}
 
-	// Test 3: Inherited Attributes Values
-	printSeparator("TEST 3: DIAMONDTRAP ATTRIBUTES VERIFICATION");
+	// Test 6: Inherited Attributes Values
+	printSeparator("TEST 6: DIAMONDTRAP ATTRIBUTES VERIFICATION");
 	{
 		DiamondTrap diamond("TestStats");
 		
@@ -62,8 +112,8 @@ int main() {
 		attackTest.attack("TestTarget");
 	}
 
-	// Test 4: Attack Function (should use ScavTrap's attack)
-	printSeparator("TEST 4: ATTACK FUNCTION - SCAVTRAP INHERITANCE");
+	// Test 7: Attack Function (should use ScavTrap's attack)
+	printSeparator("TEST 7: ATTACK FUNCTION - SCAVTRAP INHERITANCE");
 	{
 		DiamondTrap diamond("Attacker");
 		
@@ -71,8 +121,8 @@ int main() {
 		diamond.attack("Enemy");
 	}
 
-	// Test 5: Inherited Special Abilities
-	printSeparator("TEST 5: INHERITED SPECIAL ABILITIES");
+	// Test 8: Inherited Special Abilities
+	printSeparator("TEST 8: INHERITED SPECIAL ABILITIES");
 	{
 		DiamondTrap diamond("SpecialBot");
 		
@@ -83,8 +133,8 @@ int main() {
 		diamond.guardGate();
 	}
 
-	// Test 6: Orthodox Canonical Form
-	printSeparator("TEST 6: ORTHODOX CANONICAL FORM");
+	// Test 9: Orthodox Canonical Form
+	printSeparator("TEST 9: ORTHODOX CANONICAL FORM");
 	{
 		std::cout << "Testing DiamondTrap Orthodox Canonical Form:" << std::endl;
 		
@@ -104,8 +154,8 @@ int main() {
 		assigned.whoAmI();
 	}
 
-	// Test 7: Combat Simulation
-	printSeparator("TEST 7: DIAMONDTRAP COMBAT SIMULATION");
+	// Test 10: Combat Simulation
+	printSeparator("TEST 10: DIAMONDTRAP COMBAT SIMULATION");
 	{
 		DiamondTrap warrior("UltimateWarrior");
 		
@@ -132,7 +182,7 @@ int main() {
 	}
 
 	printSeparator("END OF TESTS");
-	std::cout << "💎 DIAMONDTRAP TESTING COMPLETE 💎" << std::endl;
+	std::cout << "💎 CLAPTRAP, SCAVTRAP, FRAGTRAP & DIAMONDTRAP TESTING COMPLETE 💎" << std::endl;
 
 	return 0;
 }

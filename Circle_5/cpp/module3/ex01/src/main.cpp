@@ -15,10 +15,30 @@ void printSeparator(const std::string& test_name) {
 }
 
 int main() {
-    std::cout << "🛡️ SCAVTRAP TESTING ARENA 🛡️\n" << std::endl;
+    std::cout << "🤖 CLAPTRAP & SCAVTRAP TESTING ARENA 🤖\n" << std::endl;
 
-    // Test 1: Construction/Destruction Chaining
-    printSeparator("TEST 1: CONSTRUCTION/DESTRUCTION CHAINING");
+    // Test 1: ClapTrap Basic Tests
+    printSeparator("TEST 1: CLAPTRAP BASIC FUNCTIONALITY");
+    {
+        std::cout << "Creating ClapTrap with default constructor:" << std::endl;
+        ClapTrap default_clap;
+        
+        std::cout << "\nCreating ClapTrap with name constructor:" << std::endl;
+        ClapTrap named_clap("BasicWarrior");
+        
+        std::cout << "\nClapTrap basic attacks:" << std::endl;
+        named_clap.attack("Training Dummy");
+        named_clap.attack("Evil Robot");
+        
+        std::cout << "\nClapTrap taking damage and repairing:" << std::endl;
+        named_clap.takeDamage(3);
+        named_clap.beRepaired(2);
+        
+        std::cout << "\nEnd of ClapTrap basic tests:" << std::endl;
+    }
+
+    // Test 2: Construction/Destruction Chaining
+    printSeparator("TEST 2: CONSTRUCTION/DESTRUCTION CHAINING");
     {
         std::cout << "Creating ScavTrap with default constructor:" << std::endl;
         ScavTrap default_scav;
@@ -36,8 +56,8 @@ int main() {
         std::cout << "\nEnd of constructor tests (destructors will be called in reverse order):" << std::endl;
     }
 
-    // Test 2: ScavTrap Enhanced Attacks
-    printSeparator("TEST 2: SCAVTRAP ENHANCED ATTACKS");
+    // Test 3: ScavTrap Enhanced Attacks
+    printSeparator("TEST 3: SCAVTRAP ENHANCED ATTACKS");
     {
         ScavTrap warrior("Berserker");
         
@@ -47,8 +67,8 @@ int main() {
         warrior.attack("Boss Raider");
     }
 
-    // Test 3: Gate Keeper Mode
-    printSeparator("TEST 3: GATE KEEPER SPECIAL ABILITY");
+    // Test 4: Gate Keeper Mode
+    printSeparator("TEST 4: GATE KEEPER SPECIAL ABILITY");
     {
         ScavTrap gatekeeper("Sentinel");
         
@@ -60,8 +80,8 @@ int main() {
         gatekeeper.guardGate();
     }
 
-    // Test 4: Enhanced Stats Testing
-    printSeparator("TEST 4: ENHANCED STATS VERIFICATION");
+    // Test 5: Enhanced Stats Testing
+    printSeparator("TEST 5: ENHANCED STATS VERIFICATION");
     {
         ScavTrap tank("IronWall");
         
@@ -76,8 +96,8 @@ int main() {
         tank.beRepaired(20);
     }
 
-    // Test 5: Energy Exhaustion with Enhanced Pool
-    printSeparator("TEST 5: ENHANCED ENERGY POOL TEST");
+    // Test 6: Energy Exhaustion with Enhanced Pool
+    printSeparator("TEST 6: ENHANCED ENERGY POOL TEST");
     {
         ScavTrap energetic("Marathon");
         
@@ -98,8 +118,8 @@ int main() {
         energetic.guardGate();
     }
 
-    // Test 6: Battle Simulation
-    printSeparator("TEST 6: SCAVTRAP BATTLE SIMULATION");
+    // Test 7: Battle Simulation
+    printSeparator("TEST 7: SCAVTRAP BATTLE SIMULATION");
     {
         ScavTrap hero("ScavHero");
         
@@ -128,8 +148,8 @@ int main() {
         hero.guardGate();
     }
 
-    // Test 7: Death and Revival Attempts
-    printSeparator("TEST 7: DEATH SCENARIOS");
+    // Test 8: Death and Revival Attempts
+    printSeparator("TEST 8: DEATH SCENARIOS");
     {
         ScavTrap victim("Sacrifice");
         
@@ -142,8 +162,8 @@ int main() {
         victim.guardGate();
     }
 
-    // Test 8: Comparison with Base Values
-    printSeparator("TEST 8: INHERITANCE VERIFICATION");
+    // Test 9: Comparison with Base Values
+    printSeparator("TEST 9: INHERITANCE VERIFICATION");
     {
         std::cout << "Creating both ClapTrap and ScavTrap for comparison:" << std::endl;
         
@@ -166,8 +186,8 @@ int main() {
     }
 
     printSeparator("END OF SCAVTRAP TESTS");
-    std::cout << "All ScavTrap tests completed! Verify construction/destruction chaining above." << std::endl;
-    std::cout << "🏆 SCAVTRAP TESTING COMPLETE 🏆" << std::endl;
+    std::cout << "All ClapTrap and ScavTrap tests completed! Verify construction/destruction chaining above." << std::endl;
+    std::cout << "🏆 CLAPTRAP & SCAVTRAP TESTING COMPLETE 🏆" << std::endl;
 
     return 0;
 }

@@ -9,10 +9,30 @@ void printSeparator(const std::string& test_name) {
 }
 
 int main() {
-	std::cout << "🤖 SCAVTRAP & FRAGTRAP TESTING ARENA 🤖\n" << std::endl;
+	std::cout << "🤖 CLAPTRAP, SCAVTRAP & FRAGTRAP TESTING ARENA 🤖\n" << std::endl;
 
-	// Test 1: Construction/Destruction Chaining
-	printSeparator("TEST 1: CONSTRUCTION/DESTRUCTION CHAINING");
+	// Test 1: ClapTrap Basic Tests
+	printSeparator("TEST 1: CLAPTRAP BASIC FUNCTIONALITY");
+	{
+		std::cout << "Creating ClapTrap with default constructor:" << std::endl;
+		ClapTrap default_clap;
+		
+		std::cout << "\nCreating ClapTrap with name constructor:" << std::endl;
+		ClapTrap named_clap("BasicWarrior");
+		
+		std::cout << "\nClapTrap basic attacks:" << std::endl;
+		named_clap.attack("Training Dummy");
+		named_clap.attack("Evil Robot");
+		
+		std::cout << "\nClapTrap taking damage and repairing:" << std::endl;
+		named_clap.takeDamage(3);
+		named_clap.beRepaired(2);
+		
+		std::cout << "\nEnd of ClapTrap basic tests:" << std::endl;
+	}
+
+	// Test 2: Construction/Destruction Chaining
+	printSeparator("TEST 2: CONSTRUCTION/DESTRUCTION CHAINING");
 	{
 		std::cout << "Creating ScavTrap:" << std::endl;
 		ScavTrap scav("Guardian");
@@ -23,8 +43,8 @@ int main() {
 		std::cout << "\nEnd of scope - destructors will be called in reverse order:" << std::endl;
 	}
 
-	// Test 2: Attack comparison (ScavTrap has override, FragTrap uses ClapTrap's)
-	printSeparator("TEST 2: ATTACK COMPARISON");
+	// Test 3: Attack comparison (ScavTrap has override, FragTrap uses ClapTrap's)
+	printSeparator("TEST 3: ATTACK COMPARISON");
 	{
 		ScavTrap scav("ScavWarrior");
 		FragTrap frag("FragWarrior");
@@ -36,8 +56,8 @@ int main() {
 		frag.attack("Target");
 	}
 
-	// Test 3: Special abilities
-	printSeparator("TEST 3: SPECIAL ABILITIES");
+	// Test 4: Special abilities
+	printSeparator("TEST 4: SPECIAL ABILITIES");
 	{
 		ScavTrap gatekeeper("Fortress");
 		FragTrap socialBot("Friendly");
@@ -49,8 +69,8 @@ int main() {
 		socialBot.highFiveGuys();
 	}
 
-	// Test 4: Different HP/Energy values demonstration
-	printSeparator("TEST 4: STATS COMPARISON");
+	// Test 5: Different HP/Energy values demonstration
+	printSeparator("TEST 5: STATS COMPARISON");
 	{
 		ScavTrap scav("Tank");      // 100 HP, 50 Energy, 20 Attack
 		FragTrap frag("PowerHouse"); // 100 HP, 100 Energy, 30 Attack
@@ -68,8 +88,8 @@ int main() {
 		frag.highFiveGuys();
 	}
 
-	// Test 5: Energy exhaustion comparison
-	printSeparator("TEST 5: ENERGY EXHAUSTION TEST");
+	// Test 6: Energy exhaustion comparison
+	printSeparator("TEST 6: ENERGY EXHAUSTION TEST");
 	{
 		ScavTrap scav("Marathon1");  // 50 energy
 		FragTrap frag("Marathon2");  // 100 energy
@@ -92,14 +112,14 @@ int main() {
 		}
 		std::cout << "FragTrap still has energy for high five:" << std::endl;
 		for (int i = 51; i <= 100; i++) {
-		frag.highFiveGuys();
+			frag.highFiveGuys();
 		}
-		std::cout << "ScavTrap trying highFiveGuys when out of energy:" << std::endl;
+		std::cout << "FragTrap trying highFiveGuys when out of energy:" << std::endl;
 		frag.highFiveGuys();
 	}
 
-	// Test 6: Copy constructors and assignment
-	printSeparator("TEST 6: ORTHODOX CANONICAL FORM");
+	// Test 7: Copy constructors and assignment
+	printSeparator("TEST 7: ORTHODOX CANONICAL FORM");
 	{
 		std::cout << "Testing ScavTrap Orthodox Canonical Form:" << std::endl;
 		ScavTrap original_scav("Original");
@@ -114,8 +134,8 @@ int main() {
 		assigned_frag = original_frag;
 	}
 
-	// Test 7: Epic battle scenario
-	printSeparator("TEST 7: EPIC BATTLE SCENARIO");
+	// Test 8: Epic battle scenario
+	printSeparator("TEST 8: EPIC BATTLE SCENARIO");
 	{
 		ScavTrap guardian("Guardian");
 		FragTrap destroyer("Destroyer");
@@ -143,8 +163,8 @@ int main() {
 		destroyer.highFiveGuys();
 	}
 
-	// Test 8: Dead robots testing
-	printSeparator("TEST 8: DEAD ROBOTS TESTING");
+	// Test 9: Dead robots testing
+	printSeparator("TEST 9: DEAD ROBOTS TESTING");
 	{
 		ScavTrap dead_scav("DeadScav");
 		FragTrap dead_frag("DeadFrag");
@@ -161,7 +181,7 @@ int main() {
 	}
 
 	printSeparator("END OF TESTS");
-	std::cout << "🏆 SCAVTRAP & FRAGTRAP TESTING COMPLETE 🏆" << std::endl;
+	std::cout << "🏆 CLAPTRAP, SCAVTRAP & FRAGTRAP TESTING COMPLETE 🏆" << std::endl;
 
 	return 0;
 }
