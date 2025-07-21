@@ -1,5 +1,12 @@
 #include "ScavTrap.hpp"
 #include <iostream>
+#include <sstream>
+
+std::string toString(int value) {
+    std::stringstream ss;
+    ss << value;
+    return ss.str();
+}
 
 void printSeparator(const std::string& test_name) {
     std::cout << "\n" << std::string(50, '=') << std::endl;
@@ -82,7 +89,7 @@ int main() {
             } else if (i % 2 == 0) {
                 energetic.guardGate();
             } else {
-                energetic.attack("Target" + std::to_string(i));
+                energetic.attack("Target" + toString(i));
             }
         }
         
