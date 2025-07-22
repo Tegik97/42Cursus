@@ -8,7 +8,9 @@ RED=$(tput setaf 1)
 NO_COLOR=$(tput sgr0)
 BOLD=$(tput bold)
 
-
+if [ "$1" == "fclean" ]; then
+	exit 0
+fi;
 
 if [ "$1" == "valgrind" ]; then
 	VALGRIND="valgrind --leak-check=full --error-exitcode=42 --track-origins=yes --show-leak-kinds=all"
