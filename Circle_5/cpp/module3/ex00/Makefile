@@ -55,7 +55,7 @@ fclean: clean
 re: fclean all
 
 TESTER_NAME	:= "tester.sh"
-TESTER_URL	:= https://raw.githubusercontent.com/Tegik97/42Cursus/main/Circle_5/cpp/module1/testers/ex05/tester.sh
+TESTER_URL	:= 
 
 test:
 	@if [ "$(TESTER_URL)" ]; then \
