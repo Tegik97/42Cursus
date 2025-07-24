@@ -1,0 +1,57 @@
+# Compiled Object files
+*.o
+*.obj
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Build directories
+.build/
+build/
+obj/
+
+# Specific executables for this project
+OCF
+fixedPoint
+BSP
+
+# Test files created during development
+test_subject
+test_manual
+test_correction
+test_bsp_correction
+debug_test
+main_subject.cpp
+test_correction.cpp
+test_bsp_correction.cpp
+subject.txt
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# Log files
+*.log
+
+# Backup files
+*.bak
+*.backup

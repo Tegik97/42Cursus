@@ -37,6 +37,8 @@ MateriaSource&	MateriaSource::operator=(const MateriaSource& other)
 
 MateriaSource::~MateriaSource()
 {
+
+	std::cout << "[ MATERIASOURCE DESTRUCTOR ]" << std::endl;
 	for (int i = 0; i < 4; i++)
 		delete this->_grimoire[i];
 }
@@ -50,6 +52,7 @@ void	MateriaSource::learnMateria(AMateria* m)
 		if (!this->_grimoire[i])
 		{
 			this->_grimoire[i] = m->clone();
+			delete m;
 			return;
 		}
 	}
@@ -58,6 +61,7 @@ void	MateriaSource::learnMateria(AMateria* m)
 	for (int i = 0; i < 3; i++)
 		this->_grimoire[i] = this->_grimoire[i + 1];
 	this->_grimoire[3] = m->clone();
+	delete m;
 }
 
 AMateria*	MateriaSource::createMateria(const std::string& type)

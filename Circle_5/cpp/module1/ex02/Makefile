@@ -46,6 +46,27 @@ fclean: clean
 
 re: fclean all
 
+TESTER_NAME	:= "tester.sh"
+TESTER_URL = 
+
+test:
+	@if [ "$(TESTER_URL)" ]; then \
+		if [ ! -f "$(TESTER_NAME)" ]; then \
+			echo "${BOLD}${YELLOW}Downloading tester...${NO_COLOR}"; \
+			curl -sSfL $(TESTER_URL) -o $(TESTER_NAME); \
+			if [ -f "$(TESTER_NAME)" ]; then \
+				chmod +x $(TESTER_NAME); \
+				echo "${BOLD}${GREEN}Done${NO_COLOR}"; \
+			else \
+				echo "${BOLD}${RED}Not a valid URL: ${NO_COLOR}$(TESTER_URL)"; \
+			fi; \
+		else \
+			echo "${BOLD}${YELLOW}$(TESTER_NAME) already downloaded${NO_COLOR}"; \
+		fi; \
+	else \
+		echo "${BOLD}${RED}URL missing${NO_COLOR}";\
+	fi;
+
 .PHONY: all re clean fclean header
 .SILENT:
 

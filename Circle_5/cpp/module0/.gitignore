@@ -1,0 +1,44 @@
+# Compiled Object files
+*.o
+*.obj
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Build directories
+.build/
+obj/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Specific executables for this project
+megaphone
+phonebook
+atm
+
+
+# Test files
+test_megaphone.cpp
+debug_megaphone.cpp
+test_script.sh
+megaphone_test
+debug_megaphone
+test_phonebook.sh
+comprehensive_test.sh
+current_output.log

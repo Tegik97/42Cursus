@@ -1,0 +1,43 @@
+# Compiled Object files
+*.o
+*.obj
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Build directories
+.build/
+obj/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+tester.sh
+test.txt
+test.txt.replace
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Specific executables for this project
+zombies
+horde
+thisisbrain
+violence
+replacer
+harl
+harlFilter
+
+# PDF files to ignore
+Subject.txt

@@ -11,7 +11,7 @@ $(NAME): $(SRC)
 	$(CXX) $(CXXFLAGS) -o $(NAME) $(SRC) && echo "${BOLD}${GREEN}Done!${NO_COLOR}" \
 	|| echo "${BOLD}${RED}Error compiling $(C_NAME)${NO_COLOR}";
 
-clean:
+fclean:
 	rm -f $(NAME)
 
 header: 
@@ -21,7 +21,7 @@ header:
 		echo "${BOLD}${YELLOW}No changes detected, not rebuilding $(NAME)${NO_COLOR}"; \
 	fi
 
-.PHONY: all clean header
+.PHONY: all fclean header
 
 .SILENT:
 
