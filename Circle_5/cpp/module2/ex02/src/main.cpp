@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/26 11:51:49 by mchiaram          #+#    #+#             */
+/*   Updated: 2025/07/26 12:00:26 by mchiaram         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include "Fixed.hpp"
 
@@ -46,24 +58,14 @@ int main(void)
     std::cout << "nonConst1: " << nonConst1 << std::endl;
     std::cout << "nonConst2: " << nonConst2 << std::endl;
     
-    // Test versione const di min/max
     std::cout << "Fixed::min(const1, const2): " << Fixed::min(const1, const2) << std::endl;
     std::cout << "Fixed::max(const1, const2): " << Fixed::max(const1, const2) << std::endl;
     
-    // Test versione non-const di min/max
     std::cout << "Fixed::min(nonConst1, nonConst2): " << Fixed::min(nonConst1, nonConst2) << std::endl;
     std::cout << "Fixed::max(nonConst1, nonConst2): " << Fixed::max(nonConst1, nonConst2) << std::endl;
     
-    // Test misto (dovrebbe scegliere versione const)
     std::cout << "Fixed::min(const1, nonConst1): " << Fixed::min(const1, nonConst1) << std::endl;
     std::cout << "Fixed::max(const2, nonConst2): " << Fixed::max(const2, nonConst2) << std::endl;
-
-    std::cout << "\n=== Test casi particolari ===" << std::endl;
-    Fixed zero;
-    Fixed negative(-5);
-    std::cout << "zero: " << zero << std::endl;
-    std::cout << "negative: " << negative << std::endl;
-    std::cout << "zero == zero: " << (zero == zero) << std::endl;
 
     return 0;
 }
