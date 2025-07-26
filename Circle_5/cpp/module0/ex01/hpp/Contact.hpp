@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 10:23:24 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/07/26 10:23:25 by mchiaram         ###   ########.fr       */
+/*   Updated: 2025/07/26 10:59:08 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <string>
 #include <iostream>
+#include <cstdlib>
 
 class	Contact
 {

@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 10:23:31 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/07/26 10:23:32 by mchiaram         ###   ########.fr       */
+/*   Updated: 2025/07/26 11:01:55 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@ int	main(void)
 	while (true)
 	{
 		std::cout << "> ";
-		std::getline(std::cin, input);
+		if (!std::getline(std::cin, input))
+	{
+		std::cout << "\nEOF detected" << std::endl;
+		exit (0);
+	}
 		if (input == "ADD")
 			phonebook.addContact();
 		else if (input == "SEARCH")

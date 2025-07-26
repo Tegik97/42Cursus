@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 10:23:33 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/07/26 10:23:34 by mchiaram         ###   ########.fr       */
+/*   Updated: 2025/07/26 11:01:30 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,35 +25,55 @@ void	PhoneBook::addContact()
 	std::string secret;
 
 	std::cout << "Enter first name: ";
-	std::getline(std::cin, name);
+	if (!std::getline(std::cin, name))
+	{
+		std::cout << "\nEOF detected" << std::endl;
+		exit (0);
+	}
 	if (name.empty())
 	{
 		std::cout << "Error: All fields must be filled in" << std::endl;
 		return;
 	}
 	std::cout << "Enter last name: ";
-	std::getline(std::cin, last);
+	if (!std::getline(std::cin, last))
+	{
+		std::cout << "\nEOF detected" << std::endl;
+		exit (0);
+	}
 	if (last.empty())
 	{
 		std::cout << "Error: All fields must be filled in" << std::endl;
 		return;
 	}
 	std::cout << "Enter nickname: ";
-	std::getline(std::cin, nick);
+	if (!std::getline(std::cin, nick))
+	{
+		std::cout << "\nEOF detected" << std::endl;
+		exit (0);
+	}
 	if (nick.empty())
 	{
 		std::cout << "Error: All fields must be filled in" << std::endl;
 		return;
 	}
 	std::cout << "Enter phone number: ";
-	std::getline(std::cin, number);
+	if (!std::getline(std::cin, number))
+	{
+		std::cout << "\nEOF detected" << std::endl;
+		exit (0);
+	}
 	if (number.empty())
 	{
 		std::cout << "Error: All fields must be filled in" << std::endl;
 		return;
 	}
 	std::cout << "Enter contact's darkest secret: ";
-	std::getline(std::cin, secret) ;
+	if (!std::getline(std::cin, secret))
+	{
+		std::cout << "\nEOF detected" << std::endl;
+		exit (0);
+	}
 	if (secret.empty())
 	{
 		std::cout << "Error: All fields must be filled in" << std::endl;
@@ -102,7 +122,11 @@ void	PhoneBook::searchContact() const
 	{
 		displayTable();
 		std::cout << "Select which index entry you want to display: ";
-		std::getline(std::cin, input);
+		if (!std::getline(std::cin, input))
+	{
+		std::cout << "\nEOF detected" << std::endl;
+		exit (0);
+	}
 		if (input == "EXIT" || input == "exit")
 			return;
 		std::stringstream ss(input);
