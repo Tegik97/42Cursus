@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/26 15:31:00 by mchiaram          #+#    #+#             */
+/*   Updated: 2025/07/26 15:39:14 by mchiaram         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ClapTrap.hpp"
 #include <iostream>
 
@@ -10,7 +22,6 @@ void printSeparator(const std::string& test_name) {
 int main() {
     std::cout << "🤖 CLAPTRAP TESTING ARENA 🤖\n" << std::endl;
 
-    // Test 1: Costruttori
     printSeparator("TEST 1: CONSTRUCTORS");
     {
         std::cout << "Creating ClapTrap with default constructor:" << std::endl;
@@ -29,7 +40,6 @@ int main() {
         std::cout << "\nEnd of constructor tests (destructors will be called):" << std::endl;
     }
 
-    // Test 2: Attacchi normali
     printSeparator("TEST 2: NORMAL ATTACKS");
     {
         ClapTrap fighter("Gladiator");
@@ -40,7 +50,6 @@ int main() {
         fighter.attack("Boss Enemy");
     }
 
-    // Test 3: Prendere danni
     printSeparator("TEST 3: TAKING DAMAGE");
     {
         ClapTrap victim("Tank");
@@ -58,7 +67,6 @@ int main() {
         victim.takeDamage(5); // Should show "too damaged" message
     }
 
-    // Test 4: Riparazioni
     printSeparator("TEST 4: REPAIRS");
     {
         ClapTrap medic("Healer");
@@ -71,7 +79,6 @@ int main() {
         medic.beRepaired(2);
     }
 
-    // Test 5: Esaurimento energia
     printSeparator("TEST 5: ENERGY EXHAUSTION");
     {
         ClapTrap tired("Marathon");
@@ -88,7 +95,6 @@ int main() {
         }
     }
 
-    // Test 6: Scenario complesso
     printSeparator("TEST 6: COMPLEX BATTLE SCENARIO");
     {
         ClapTrap hero("Hero");
@@ -115,13 +121,12 @@ int main() {
         hero.beRepaired(1);
     }
 
-    // Test 7: ClapTrap morto che cerca di agire
     printSeparator("TEST 7: DEAD CLAPTRAP ACTIONS");
     {
         ClapTrap zombie("Undead");
         
         std::cout << "\nKilling the ClapTrap:" << std::endl;
-        zombie.takeDamage(15); // More than 10 HP
+        zombie.takeDamage(15);
         
         std::cout << "\nTrying actions while dead:" << std::endl;
         zombie.attack("Ghost");
