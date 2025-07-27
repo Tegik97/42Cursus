@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:31:00 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/07/26 15:39:14 by mchiaram         ###   ########.fr       */
+/*   Updated: 2025/07/27 11:57:05 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ int main() {
         victim.takeDamage(5);
         
         std::cout << "\nTaking fatal damage:" << std::endl;
-        victim.takeDamage(10); // Should set HP to 0
+        victim.takeDamage(10);
         
         std::cout << "\nTrying to damage when already dead:" << std::endl;
-        victim.takeDamage(5); // Should show "too damaged" message
+        victim.takeDamage(5);
     }
 
     printSeparator("TEST 4: REPAIRS");
