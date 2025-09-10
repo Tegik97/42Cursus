@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/26 15:32:00 by mchiaram          #+#    #+#             */
+/*   Updated: 2025/07/26 15:49:50 by mchiaram         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "DiamondTrap.hpp"
 #include <iostream>
 
@@ -10,7 +22,6 @@ void printSeparator(const std::string& test_name) {
 int main() {
 	std::cout << "💎 CLAPTRAP, SCAVTRAP, FRAGTRAP & DIAMONDTRAP TESTING ARENA 💎\n" << std::endl;
 
-	// Test 1: ClapTrap Basic Tests
 	printSeparator("TEST 1: CLAPTRAP BASIC FUNCTIONALITY");
 	{
 		std::cout << "Creating ClapTrap with default constructor:" << std::endl;
@@ -30,7 +41,6 @@ int main() {
 		std::cout << "\nEnd of ClapTrap basic tests:" << std::endl;
 	}
 
-	// Test 2: ScavTrap Basic Tests
 	printSeparator("TEST 2: SCAVTRAP FUNCTIONALITY");
 	{
 		std::cout << "Creating ScavTrap:" << std::endl;
@@ -45,7 +55,6 @@ int main() {
 		std::cout << "\nEnd of ScavTrap basic tests:" << std::endl;
 	}
 
-	// Test 3: FragTrap Basic Tests
 	printSeparator("TEST 3: FRAGTRAP FUNCTIONALITY");
 	{
 		std::cout << "Creating FragTrap:" << std::endl;
@@ -60,7 +69,6 @@ int main() {
 		std::cout << "\nEnd of FragTrap basic tests:" << std::endl;
 	}
 
-	// Test 4: Construction/Destruction Chaining with Diamond Inheritance
 	printSeparator("TEST 4: DIAMOND INHERITANCE CONSTRUCTION/DESTRUCTION");
 	{
 		std::cout << "Creating DiamondTrap - watch the construction chain:" << std::endl;
@@ -69,7 +77,6 @@ int main() {
 		std::cout << "\nEnd of scope - destructors will be called in reverse order:" << std::endl;
 	}
 
-	// Test 5: Diamond Problem Resolution - whoAmI function
 	printSeparator("TEST 5: DIAMOND PROBLEM - WHO AM I?");
 	{
 		DiamondTrap diamond("Hybrid");
@@ -78,7 +85,6 @@ int main() {
 		diamond.whoAmI();
 	}
 
-	// Test 6: Inherited Attributes Values
 	printSeparator("TEST 6: DIAMONDTRAP ATTRIBUTES VERIFICATION");
 	{
 		DiamondTrap diamond("TestStats");
@@ -112,7 +118,6 @@ int main() {
 		attackTest.attack("TestTarget");
 	}
 
-	// Test 7: Attack Function (should use ScavTrap's attack)
 	printSeparator("TEST 7: ATTACK FUNCTION - SCAVTRAP INHERITANCE");
 	{
 		DiamondTrap diamond("Attacker");
@@ -121,7 +126,6 @@ int main() {
 		diamond.attack("Enemy");
 	}
 
-	// Test 8: Inherited Special Abilities
 	printSeparator("TEST 8: INHERITED SPECIAL ABILITIES");
 	{
 		DiamondTrap diamond("SpecialBot");
@@ -133,29 +137,7 @@ int main() {
 		diamond.guardGate();
 	}
 
-	// Test 9: Orthodox Canonical Form
-	printSeparator("TEST 9: ORTHODOX CANONICAL FORM");
-	{
-		std::cout << "Testing DiamondTrap Orthodox Canonical Form:" << std::endl;
-		
-		std::cout << "\nOriginal DiamondTrap:" << std::endl;
-		DiamondTrap original("Original");
-		
-		std::cout << "\nCopy constructor:" << std::endl;
-		DiamondTrap copy(original);
-		
-		std::cout << "\nAssignment operator:" << std::endl;
-		DiamondTrap assigned("TempName");
-		assigned = original;
-		
-		std::cout << "\nTesting whoAmI() on all three:" << std::endl;
-		original.whoAmI();
-		copy.whoAmI();
-		assigned.whoAmI();
-	}
-
-	// Test 10: Combat Simulation
-	printSeparator("TEST 10: DIAMONDTRAP COMBAT SIMULATION");
+	printSeparator("TEST 9: DIAMONDTRAP COMBAT SIMULATION");
 	{
 		DiamondTrap warrior("UltimateWarrior");
 		

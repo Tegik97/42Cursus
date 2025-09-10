@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/26 15:31:14 by mchiaram          #+#    #+#             */
+/*   Updated: 2025/07/26 15:41:30 by mchiaram         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ScavTrap.hpp"
 #include <iostream>
 #include <sstream>
@@ -17,7 +29,6 @@ void printSeparator(const std::string& test_name) {
 int main() {
     std::cout << "🤖 CLAPTRAP & SCAVTRAP TESTING ARENA 🤖\n" << std::endl;
 
-    // Test 1: ClapTrap Basic Tests
     printSeparator("TEST 1: CLAPTRAP BASIC FUNCTIONALITY");
     {
         std::cout << "Creating ClapTrap with default constructor:" << std::endl;
@@ -37,7 +48,6 @@ int main() {
         std::cout << "\nEnd of ClapTrap basic tests:" << std::endl;
     }
 
-    // Test 2: Construction/Destruction Chaining
     printSeparator("TEST 2: CONSTRUCTION/DESTRUCTION CHAINING");
     {
         std::cout << "Creating ScavTrap with default constructor:" << std::endl;
@@ -56,7 +66,6 @@ int main() {
         std::cout << "\nEnd of constructor tests (destructors will be called in reverse order):" << std::endl;
     }
 
-    // Test 3: ScavTrap Enhanced Attacks
     printSeparator("TEST 3: SCAVTRAP ENHANCED ATTACKS");
     {
         ScavTrap warrior("Berserker");
@@ -67,21 +76,7 @@ int main() {
         warrior.attack("Boss Raider");
     }
 
-    // Test 4: Gate Keeper Mode
-    printSeparator("TEST 4: GATE KEEPER SPECIAL ABILITY");
-    {
-        ScavTrap gatekeeper("Sentinel");
-        
-        std::cout << "\nActivating Gate Keeper mode:" << std::endl;
-        gatekeeper.guardGate();
-        
-        std::cout << "\nTesting multiple activations:" << std::endl;
-        gatekeeper.guardGate();
-        gatekeeper.guardGate();
-    }
-
-    // Test 5: Enhanced Stats Testing
-    printSeparator("TEST 5: ENHANCED STATS VERIFICATION");
+    printSeparator("TEST 4: ENHANCED STATS VERIFICATION");
     {
         ScavTrap tank("IronWall");
         
@@ -90,19 +85,18 @@ int main() {
         tank.attack("Enemy");
         tank.takeDamage(40);
         tank.attack("Another Enemy");
-        tank.takeDamage(50); // Should still survive
+        tank.takeDamage(50);
         
         std::cout << "\nTrying to repair:" << std::endl;
         tank.beRepaired(20);
     }
 
-    // Test 6: Energy Exhaustion with Enhanced Pool
-    printSeparator("TEST 6: ENHANCED ENERGY POOL TEST");
+    printSeparator("TEST 5: ENHANCED ENERGY POOL TEST");
     {
         ScavTrap energetic("Marathon");
         
         std::cout << "\nUsing enhanced energy pool (50 points):" << std::endl;
-        for (int i = 1; i <= 15; i++) {
+        for (int i = 1; i <= 50; i++) {
             std::cout << "Action " << i << ": ";
             if (i % 3 == 0) {
                 energetic.beRepaired(2);
@@ -118,8 +112,7 @@ int main() {
         energetic.guardGate();
     }
 
-    // Test 7: Battle Simulation
-    printSeparator("TEST 7: SCAVTRAP BATTLE SIMULATION");
+    printSeparator("TEST 6: SCAVTRAP BATTLE SIMULATION");
     {
         ScavTrap hero("ScavHero");
         
@@ -148,13 +141,12 @@ int main() {
         hero.guardGate();
     }
 
-    // Test 8: Death and Revival Attempts
-    printSeparator("TEST 8: DEATH SCENARIOS");
+    printSeparator("TEST 7: DEATH SCENARIOS");
     {
         ScavTrap victim("Sacrifice");
         
         std::cout << "\nDealing fatal damage:" << std::endl;
-        victim.takeDamage(150); // More than 100 HP
+        victim.takeDamage(150);
         
         std::cout << "\nTrying actions while dead:" << std::endl;
         victim.attack("Ghost");
@@ -162,31 +154,7 @@ int main() {
         victim.guardGate();
     }
 
-    // Test 9: Comparison with Base Values
-    printSeparator("TEST 9: INHERITANCE VERIFICATION");
-    {
-        std::cout << "Creating both ClapTrap and ScavTrap for comparison:" << std::endl;
-        
-        std::cout << "\n--- Creating ClapTrap ---" << std::endl;
-        ClapTrap basic("BasicBot");
-        
-        std::cout << "\n--- Creating ScavTrap ---" << std::endl;
-        ScavTrap advanced("AdvancedBot");
-        
-        std::cout << "\n--- Comparing attack power ---" << std::endl;
-        std::cout << "ClapTrap attack: ";
-        basic.attack("Test Target");
-        std::cout << "ScavTrap attack: ";
-        advanced.attack("Test Target");
-        
-        std::cout << "\n--- ScavTrap special ability ---" << std::endl;
-        advanced.guardGate();
-        
-        std::cout << "\nEnd of comparison test:" << std::endl;
-    }
-
     printSeparator("END OF SCAVTRAP TESTS");
-    std::cout << "All ClapTrap and ScavTrap tests completed! Verify construction/destruction chaining above." << std::endl;
     std::cout << "🏆 CLAPTRAP & SCAVTRAP TESTING COMPLETE 🏆" << std::endl;
 
     return 0;

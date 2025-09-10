@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/26 15:31:35 by mchiaram          #+#    #+#             */
+/*   Updated: 2025/07/26 15:45:15 by mchiaram         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 #include <iostream>
@@ -11,7 +23,6 @@ void printSeparator(const std::string& test_name) {
 int main() {
 	std::cout << "🤖 CLAPTRAP, SCAVTRAP & FRAGTRAP TESTING ARENA 🤖\n" << std::endl;
 
-	// Test 1: ClapTrap Basic Tests
 	printSeparator("TEST 1: CLAPTRAP BASIC FUNCTIONALITY");
 	{
 		std::cout << "Creating ClapTrap with default constructor:" << std::endl;
@@ -31,7 +42,6 @@ int main() {
 		std::cout << "\nEnd of ClapTrap basic tests:" << std::endl;
 	}
 
-	// Test 2: Construction/Destruction Chaining
 	printSeparator("TEST 2: CONSTRUCTION/DESTRUCTION CHAINING");
 	{
 		std::cout << "Creating ScavTrap:" << std::endl;
@@ -43,7 +53,6 @@ int main() {
 		std::cout << "\nEnd of scope - destructors will be called in reverse order:" << std::endl;
 	}
 
-	// Test 3: Attack comparison (ScavTrap has override, FragTrap uses ClapTrap's)
 	printSeparator("TEST 3: ATTACK COMPARISON");
 	{
 		ScavTrap scav("ScavWarrior");
@@ -56,43 +65,10 @@ int main() {
 		frag.attack("Target");
 	}
 
-	// Test 4: Special abilities
-	printSeparator("TEST 4: SPECIAL ABILITIES");
+	printSeparator("TEST 4: ENERGY EXHAUSTION TEST");
 	{
-		ScavTrap gatekeeper("Fortress");
-		FragTrap socialBot("Friendly");
-		
-		std::cout << "\nScavTrap Gate Keeper mode:" << std::endl;
-		gatekeeper.guardGate();
-		
-		std::cout << "\nFragTrap High Five request:" << std::endl;
-		socialBot.highFiveGuys();
-	}
-
-	// Test 5: Different HP/Energy values demonstration
-	printSeparator("TEST 5: STATS COMPARISON");
-	{
-		ScavTrap scav("Tank");      // 100 HP, 50 Energy, 20 Attack
-		FragTrap frag("PowerHouse"); // 100 HP, 100 Energy, 30 Attack
-		
-		std::cout << "\nBoth taking 60 damage:" << std::endl;
-		scav.takeDamage(60);
-		frag.takeDamage(60);
-		
-		std::cout << "\nBoth repairing (uses 1 energy each):" << std::endl;
-		scav.beRepaired(10);
-		frag.beRepaired(10);
-		
-		std::cout << "\nUsing special abilities:" << std::endl;
-		scav.guardGate();
-		frag.highFiveGuys();
-	}
-
-	// Test 6: Energy exhaustion comparison
-	printSeparator("TEST 6: ENERGY EXHAUSTION TEST");
-	{
-		ScavTrap scav("Marathon1");  // 50 energy
-		FragTrap frag("Marathon2");  // 100 energy
+		ScavTrap scav("Marathon1");
+		FragTrap frag("Marathon2");
 		
 		std::cout << "\nScavTrap exhausting energy (50 total):" << std::endl;
 		for (int i = 1; i <= 50; i++) {
@@ -112,30 +88,14 @@ int main() {
 		}
 		std::cout << "FragTrap still has energy for high five:" << std::endl;
 		for (int i = 51; i <= 100; i++) {
+			std::cout << "FragTrap Action " << i << ": ";
 			frag.highFiveGuys();
 		}
 		std::cout << "FragTrap trying highFiveGuys when out of energy:" << std::endl;
 		frag.highFiveGuys();
 	}
 
-	// Test 7: Copy constructors and assignment
-	printSeparator("TEST 7: ORTHODOX CANONICAL FORM");
-	{
-		std::cout << "Testing ScavTrap Orthodox Canonical Form:" << std::endl;
-		ScavTrap original_scav("Original");
-		ScavTrap copy_scav(original_scav);
-		ScavTrap assigned_scav;
-		assigned_scav = original_scav;
-		
-		std::cout << "\nTesting FragTrap Orthodox Canonical Form:" << std::endl;
-		FragTrap original_frag("Original");
-		FragTrap copy_frag(original_frag);
-		FragTrap assigned_frag;
-		assigned_frag = original_frag;
-	}
-
-	// Test 8: Epic battle scenario
-	printSeparator("TEST 8: EPIC BATTLE SCENARIO");
+	printSeparator("TEST 5: EPIC BATTLE SCENARIO");
 	{
 		ScavTrap guardian("Guardian");
 		FragTrap destroyer("Destroyer");
@@ -147,8 +107,8 @@ int main() {
 		destroyer.highFiveGuys();
 		
 		std::cout << "\nRound 2: First attacks!" << std::endl;
-		guardian.attack("Destroyer");  // 20 damage with special message
-		destroyer.attack("Guardian");  // 30 damage with normal message
+		guardian.attack("Destroyer");
+		destroyer.attack("Guardian");
 		
 		std::cout << "\nRound 3: Taking damage!" << std::endl;
 		guardian.takeDamage(30);
@@ -163,8 +123,7 @@ int main() {
 		destroyer.highFiveGuys();
 	}
 
-	// Test 9: Dead robots testing
-	printSeparator("TEST 9: DEAD ROBOTS TESTING");
+	printSeparator("TEST 6: DEAD ROBOTS TESTING");
 	{
 		ScavTrap dead_scav("DeadScav");
 		FragTrap dead_frag("DeadFrag");

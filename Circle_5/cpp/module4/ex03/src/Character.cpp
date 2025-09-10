@@ -88,6 +88,13 @@ void	Character::equip(AMateria* m)
 		{
 			this->_inventory[i] = m;
 			std::cout << this->_name << " equipped " << m->getType() << " materia" << std::endl;
+			int count = 0;
+			for (int i = 0; i < 4; i++)
+			{
+				if (this->_inventory[i])
+					count++;
+			}
+			std::cout << "Inventory slot used " << count << "/4" << std::endl;
 			return;
 		}
 	}
@@ -99,15 +106,23 @@ void	Character::equip(AMateria* m)
 		{
 			this->_backpack[i] = m;
 			std::cout << m->getType() << " materia has been added to the backpack" << std::endl;
+			int count = 0;
+			for (int i = 0; i < 100; i++)
+			{
+				if (this->_backpack[i])
+					count++;
+			}
+			std::cout << "Backpack slot used " << count << "/100" << std::endl;
 			return;
 		}
 	}
 
+	std::cout << "Backpack is full, deleting " << this->_backpack[0]->getType() << " materia in backpack's first position\n";
+	std::cout << "and added the new materia in backpack's last position" << std::endl;
 	delete this->_backpack[0];
 	for (int i = 0; i < 99; i++)
 		this->_backpack[i] = this->_backpack[i + 1];
 	this->_backpack[99] = m;
-	std::cout << m->getType() << " materia has been added to the backpack" << std::endl;
 }
 
 void Character::unequip(int idx)
@@ -123,16 +138,24 @@ void Character::unequip(int idx)
 			this->_backpack[i] = this->_inventory[idx];
 			this->_inventory[idx] = NULL;
 			std::cout << this->_backpack[i]->getType() << " materia has been added to the backpack" << std::endl;
+			int count = 0;
+			for (int i = 0; i < 100; i++)
+			{
+				if (this->_backpack[i])
+					count++;
+			}
+			std::cout << "Backpack slot used " << count << "/100" << std::endl;
 			return;
 		}
 	}
 
-delete this->_backpack[0];
-for (int i = 0; i < 99; i++)
-	this->_backpack[i] = this->_backpack[i + 1];
-this->_backpack[99] = this->_inventory[idx];
-this->_inventory[idx] = NULL;
-std::cout << this->_backpack[99]->getType() << " materia has been added to the backpack" << std::endl;
+	std::cout << "Backpack is full, deleting " << this->_backpack[0]->getType() << " materia in backpack's first position\n";
+	std::cout << "and added the new materia in backpack's last position" << std::endl;
+	delete this->_backpack[0];
+	for (int i = 0; i < 99; i++)
+		this->_backpack[i] = this->_backpack[i + 1];
+	this->_backpack[99] = this->_inventory[idx];
+	this->_inventory[idx] = NULL;
 }
 
 void	Character::use(int idx, ICharacter& target)
