@@ -25,6 +25,18 @@ class Form {
         int getSignGrade() const;
         int getExecGrade() const;
         void beSigned(const Bureaucrat& bureaucrat);
+
+        class GradeTooHighException : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
+
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
 };
 
 std::ostream& operator<<(std::ostream& os, const Form& form);
