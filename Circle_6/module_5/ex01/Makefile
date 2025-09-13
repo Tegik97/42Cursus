@@ -7,7 +7,8 @@ BUILD_DIR 	= .build
 DIR_DUP 	= @mkdir -p $(@D)
 
 SRCS		=	$(SRC_DIR)/main.cpp \
-				$(SRC_DIR)/Bureaucrat.cpp
+				$(SRC_DIR)/Bureaucrat.cpp \
+				$(SRC_DIR)/Form.cpp
 
 OBJS 		= $(SRCS:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
 

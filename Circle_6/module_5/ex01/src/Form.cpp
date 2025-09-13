@@ -1,14 +1,33 @@
 #include "Form.hpp"
 
-Form::Form() {}
+Form::Form() : _name("form"), _is_signed(false), _sign_grade(1), _exec_grade(1)
+{
+    throw DeclarationNotAllowedException();
+}
 
 Form::Form(const std::string& name, const int sign_grade, const int exec_grade) :
     _name(name), _is_signed(false), _sign_grade(sign_grade), _exec_grade(exec_grade)
 {
-    if (sign_grade < 1 || exec_grade < 1)
+    if (sign_grade < 1)
+    {
+        std::cout << "Sign ";
         throw GradeTooHighException();
-    if (sign_grade > 150 || exec_grade > 150)
+    }
+    if (exec_grade < 1)
+    {
+        std::cout << "Exec ";
+        throw GradeTooHighException();
+    }
+    if (sign_grade > 150)
+    {
+        std::cout << "Sign ";
         throw GradeTooLowException();
+    }
+    if (exec_grade > 150)
+    {
+        std::cout << "Exec ";
+        throw GradeTooLowException();
+    }
 }
 
 Form::Form(const Form& other) :
@@ -55,12 +74,17 @@ void Form::beSigned(const Bureaucrat& bureaucrat)
 
 const char* Form::GradeTooLowException::what() const throw()
 {
-	return "Grade is too low";
+	return "grade is too low";
 }
 
 const char* Form::GradeTooHighException::what() const throw()
 {
-	return "Grade is too high";
+	return "grade is too high";
+}
+
+const char *Form::DeclarationNotAllowedException::what() const throw()
+{
+    return "Declaration not allowed, name, sign grade and execution grade are mandatory";
 }
 
 std::ostream& operator<<(std::ostream& os, const Form& form)
