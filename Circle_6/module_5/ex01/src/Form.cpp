@@ -19,29 +19,39 @@ Form::Form(const Form& other) :
 
 Form& Form::operator=(const Form& other)
 {
-    if (this != *other)
+    if (this != &other)
         throw Bureaucrat::AssignmentNotAllowedException();
     return *this;
 }
 
 Form::~Form() {}
 
-const std::string getName() const
+const std::string& Form::getName() const
 {
     return this->_name;
 }
 
-bool getSigned() const
+bool Form::getSigned() const
 {
     return this->_is_signed;
 }
 
-int getSignGrade() const
+int Form::getSignGrade() const
 {
     return this->_sign_grade;
 }
 
-int getExecGrade() const
+int Form::getExecGrade() const
 {
     return this->_exec_grade;
+}
+
+std::ostream& operator<<(std::ostream& os, const Form& form)
+{
+    os  << "Form: " << form.getName()
+        << " signed: " << (form.getSigned() ? "yes" : "no")
+        << ", sign grade: " << form.getSignGrade()
+        << ", exec grade: " << form.getExecGrade();
+
+    return os;
 }
