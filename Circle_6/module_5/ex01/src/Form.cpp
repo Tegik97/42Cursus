@@ -46,6 +46,14 @@ int Form::getExecGrade() const
     return this->_exec_grade;
 }
 
+void Form::beSigned(const Bureaucrat& bureaucrat)
+{
+    if (_sign_grade < bureaucrat.getGrade())
+        throw Bureaucrat::GradeTooLowException();
+    this->_is_signed = true;
+    return true;
+}
+
 std::ostream& operator<<(std::ostream& os, const Form& form)
 {
     os  << "Form: " << form.getName()
