@@ -1,7 +1,10 @@
 # Build
 .build
 
-# Eseguibili
+# Files
+*_shrubbery
+
+# Executables
 Bureaucrat
 Form
 Executeform
