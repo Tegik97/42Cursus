@@ -8,8 +8,9 @@ DIR_DUP 	= @mkdir -p $(@D)
 
 SRCS		=	$(SRC_DIR)/main.cpp \
 				$(SRC_DIR)/Bureaucrat.cpp \
-				$(SRC_DIR)/Form.cpp \
-				$(SRC_DIR)/ShrubberyCreationForm.cpp
+				$(SRC_DIR)/AForm.cpp \
+				$(SRC_DIR)/ShrubberyCreationForm.cpp \
+				$(SRC_DIR)/RobotomyRequestForm.cpp
 
 OBJS 		= $(SRCS:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
 

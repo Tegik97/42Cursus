@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 void printSeparator(const std::string& msg)
 {
@@ -118,7 +118,7 @@ int main(void)
 		//Form with basic constructor
 		try
 		{
-			Form	a42;
+			AForm	a42;
 			std::cout << a42 << std::endl;
 		} 
 		catch (const std::exception& e){
@@ -128,7 +128,7 @@ int main(void)
 		//Form with name and grades
 		try
 		{
-			Form	b42("b42", 15, 15);
+			AForm	b42("b42", 15, 15);
 			std::cout << "\n" << b42 << std::endl;
 		}
 		catch (const std::exception& e){
@@ -138,8 +138,8 @@ int main(void)
 		//Form with copy constructor
 		try
 		{
-			Form	c42("c42", 42, 42);
-			Form	c42Copy(c42);
+			AForm	c42("c42", 42, 42);
+			AForm	c42Copy(c42);
 
 			std::cout << "\n" << c42 << std::endl;
 			std::cout << c42Copy << std::endl;
@@ -151,8 +151,8 @@ int main(void)
 		//Form with assignment operator
 		try
 		{
-			Form	d42("d42", 73, 73);
-			Form	d43("d43", 12, 12);
+			AForm	d42("d42", 73, 73);
+			AForm	d43("d43", 12, 12);
 
 			d43 = d42;
 			std::cout << "\n" << d42 << std::endl;
@@ -165,7 +165,7 @@ int main(void)
 		//Form with invalid sign grade
 		try
 		{
-			Form	e42("e42", 0, 1);
+			AForm	e42("e42", 0, 1);
 
 			std::cout << e42 << std::endl;
 		}
@@ -175,7 +175,7 @@ int main(void)
 
 		try
 		{
-			Form	f42("f42", 151, 150);
+			AForm	f42("f42", 151, 150);
 
 			std::cout << f42 << std::endl;
 		}
@@ -186,7 +186,7 @@ int main(void)
 		//Form with invalid exec grade
 		try
 		{
-			Form	e42("e42", 1, 0);
+			AForm	e42("e42", 1, 0);
 
 			std::cout << e42 << std::endl;
 		}
@@ -196,7 +196,7 @@ int main(void)
 
 		try
 		{
-			Form	f42("f42", 150, 151);
+			AForm	f42("f42", 150, 151);
 
 			std::cout << f42 << std::endl;
 		}
@@ -212,7 +212,7 @@ int main(void)
 		try
 		{
 			Bureaucrat	luca("Luca", 10);
-			Form		a42("A42", 15, 15);
+			AForm		a42("A42", 15, 15);
 
 			std::cout << luca << std::endl;
 			std::cout << a42 << std::endl;
@@ -227,7 +227,7 @@ int main(void)
 		try
 		{
 			Bureaucrat	gigi("Gigi", 42);
-			Form		b42("B42", 15, 15);
+			AForm		b42("B42", 15, 15);
 
 			std::cout << gigi << std::endl;
 			std::cout << b42 << std::endl;
@@ -242,7 +242,7 @@ int main(void)
 		try
 		{
 			Bureaucrat	davide("Davide", 15);
-			Form		c42("C42", 15, 15);
+			AForm		c42("C42", 15, 15);
 
 			std::cout << davide << std::endl;
 			std::cout << c42 << std::endl;
