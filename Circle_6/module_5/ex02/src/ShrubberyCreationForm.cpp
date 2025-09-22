@@ -1,5 +1,6 @@
 #include "ShrubberyCreationForm.hpp"
 #include "Bureaucrat.hpp"
+#include <fstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm() {}
 
@@ -15,3 +16,25 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
+
+void	ShrubberyCreationForm::execute(const Bureaucrat& executor) const
+{
+	if (!getSigned())
+		throw AForm::FormNotSignedException();
+
+	if (executor.getGrade() > getExecGrade())
+		throw AForm::GradeTooLowException();
+
+	std::ofstream file(_target + "_shrubbery");
+	if (file.is_open())
+	{
+		file << "       /\\         /\\\n";
+		file << "      /  \\       /  \\\n";
+		file << "     /____\\     /____\\\n";
+		file << "       ||          ||\n";
+	  
+		file.close();
+	}
+	if (file.fail())
+		throw AForm::FileFailException();
+}

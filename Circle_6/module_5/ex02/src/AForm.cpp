@@ -82,6 +82,16 @@ const char* AForm::GradeTooHighException::what() const throw()
 	return "grade is too high";
 }
 
+const char*	AForm::FormNotSignedException::what() const throw()
+{
+	return "form not signed yet";
+}
+
+const char*	AForm::FileFailException::what() const throw()
+{
+	return "file error";
+}
+
 const char *AForm::DeclarationNotAllowedException::what() const throw()
 {
     return "Declaration not allowed, name, sign grade and execution grade are mandatory";

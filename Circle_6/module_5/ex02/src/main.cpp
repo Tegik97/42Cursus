@@ -1,5 +1,6 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 void printSeparator(const std::string& msg)
 {
@@ -113,22 +114,22 @@ int main(void)
 	}
 
 	{
-		printSeparator("TEST 3: FORM CONSTRUCTION");
+		printSeparator("TEST 3: SHRUBBERYCREATION CONSTRUCTION");
 
 		//Form with basic constructor
 		try
 		{
-			AForm	a42;
+			ShrubberyCreationForm	a42;
 			std::cout << a42 << std::endl;
 		} 
 		catch (const std::exception& e){
 			std::cout << e.what() << std::endl;
 		}
 
-		//Form with name and grades
+		//Form with target
 		try
 		{
-			AForm	b42("b42", 15, 15);
+			ShrubberyCreationForm	b42("home");
 			std::cout << "\n" << b42 << std::endl;
 		}
 		catch (const std::exception& e){
@@ -138,8 +139,8 @@ int main(void)
 		//Form with copy constructor
 		try
 		{
-			AForm	c42("c42", 42, 42);
-			AForm	c42Copy(c42);
+			ShrubberyCreationForm	c42("Park");
+			ShrubberyCreationForm	c42Copy(c42);
 
 			std::cout << "\n" << c42 << std::endl;
 			std::cout << c42Copy << std::endl;
@@ -151,8 +152,8 @@ int main(void)
 		//Form with assignment operator
 		try
 		{
-			AForm	d42("d42", 73, 73);
-			AForm	d43("d43", 12, 12);
+			ShrubberyCreationForm	d42("Garden");
+			ShrubberyCreationForm	d43("Garden2");
 
 			d43 = d42;
 			std::cout << "\n" << d42 << std::endl;
@@ -161,58 +162,16 @@ int main(void)
 		catch (const std::exception& e){
 			std::cout << e.what() << std::endl;
 		}
-
-		//Form with invalid sign grade
-		try
-		{
-			AForm	e42("e42", 0, 1);
-
-			std::cout << e42 << std::endl;
-		}
-		catch (const std::exception& e){
-			std::cout << e.what() << std::endl;
-		}
-
-		try
-		{
-			AForm	f42("f42", 151, 150);
-
-			std::cout << f42 << std::endl;
-		}
-		catch (const std::exception& e){
-			std::cout << e.what() << std::endl;
-		}
-
-		//Form with invalid exec grade
-		try
-		{
-			AForm	e42("e42", 1, 0);
-
-			std::cout << e42 << std::endl;
-		}
-		catch (const std::exception& e){
-			std::cout << e.what() << std::endl;
-		}
-
-		try
-		{
-			AForm	f42("f42", 150, 151);
-
-			std::cout << f42 << std::endl;
-		}
-		catch (const std::exception& e){
-			std::cout << e.what() << std::endl;
-		}
 	}
 
 	{
-		printSeparator("TEST 4: SIGNING FORMS");
+		printSeparator("TEST 4: EXECUTING FORMS");
 
-		//Bureaucrat with higher signing rights
+		//Form signed and executed with higher grades
 		try
 		{
-			Bureaucrat	luca("Luca", 10);
-			AForm		a42("A42", 15, 15);
+			Bureaucrat					luca("Luca", 10);
+			ShrubberyCreationForm		a42("Home");
 
 			std::cout << luca << std::endl;
 			std::cout << a42 << std::endl;
@@ -223,11 +182,11 @@ int main(void)
 			std::cout << e.what() << std::endl;
 		}
 
-		//Bureaucrat with lower signing rights
+		//Form signed with lower grade and executed while not signed
 		try
 		{
-			Bureaucrat	gigi("Gigi", 42);
-			AForm		b42("B42", 15, 15);
+			Bureaucrat					gigi("Gigi", 150);
+			ShrubberyCreationForm		b42("Garden");
 
 			std::cout << gigi << std::endl;
 			std::cout << b42 << std::endl;
@@ -238,11 +197,11 @@ int main(void)
 			std::cout << e.what() << std::endl;
 		}
 
-		//Bureaucrat with equal signing rights
+		//Form signed but executed with lower grade
 		try
 		{
-			Bureaucrat	davide("Davide", 15);
-			AForm		c42("C42", 15, 15);
+			Bureaucrat					davide("Davide", 139);
+			ShrubberyCreationForm		c42("Park");
 
 			std::cout << davide << std::endl;
 			std::cout << c42 << std::endl;
