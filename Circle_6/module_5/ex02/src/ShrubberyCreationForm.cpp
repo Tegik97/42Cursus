@@ -25,16 +25,16 @@ void	ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 	if (executor.getGrade() > getExecGrade())
 		throw AForm::GradeTooLowException();
 
-	std::ofstream file(_target + "_shrubbery");
-	if (file.is_open())
-	{
-		file << "       /\\         /\\\n";
-		file << "      /  \\       /  \\\n";
-		file << "     /____\\     /____\\\n";
-		file << "       ||          ||\n";
-	  
-		file.close();
-	}
+	std::ofstream file((_target + "_shrubbery").c_str());
+	if (!file.is_open())
+		throw AForm::FileFailException();
+
+	file << "       /\\         /\\\n";
+	file << "      /  \\       /  \\\n";
+	file << "     /____\\     /____\\\n";
+	file << "       ||         ||\n";
+	
+	file.close();
 	if (file.fail())
 		throw AForm::FileFailException();
 }

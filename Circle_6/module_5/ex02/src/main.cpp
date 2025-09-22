@@ -1,6 +1,8 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 void printSeparator(const std::string& msg)
 {
@@ -114,7 +116,7 @@ int main(void)
 	}
 
 	{
-		printSeparator("TEST 3: SHRUBBERYCREATION CONSTRUCTION");
+		printSeparator("TEST 3: FORM CONSTRUCTION");
 
 		//Form with basic constructor
 		try
@@ -165,7 +167,7 @@ int main(void)
 	}
 
 	{
-		printSeparator("TEST 4: EXECUTING FORMS");
+		printSeparator("TEST 4: EXECUTING SHRUBBERY FORMS");
 
 		//Form signed and executed with higher grades
 		try
@@ -176,7 +178,9 @@ int main(void)
 			std::cout << luca << std::endl;
 			std::cout << a42 << std::endl;
 			luca.signForm(a42);
-			std::cout << a42 << "\n" << std::endl;
+			std::cout << a42 << std::endl;
+			luca.executeForm(a42);
+			std::cout << std::endl;
 		}
 		catch (const std::exception& e){
 			std::cout << e.what() << std::endl;
@@ -191,7 +195,9 @@ int main(void)
 			std::cout << gigi << std::endl;
 			std::cout << b42 << std::endl;
 			gigi.signForm(b42);
-			std::cout << b42 << "\n" << std::endl;
+			std::cout << b42 << std::endl;
+			gigi.executeForm(b42);
+			std::cout << std::endl;
 		}
 		catch (const std::exception& e){
 			std::cout << e.what() << std::endl;
@@ -206,7 +212,119 @@ int main(void)
 			std::cout << davide << std::endl;
 			std::cout << c42 << std::endl;
 			davide.signForm(c42);
-			std::cout << c42 << "\n" << std::endl;
+			std::cout << c42 << std::endl;
+			davide.executeForm(c42);
+			std::cout << std::endl;
+		}
+		catch (const std::exception& e){
+			std::cout << e.what() << std::endl;
+		}
+	}
+
+	{
+		printSeparator("TEST 5: EXECUTING ROBOTOMY FORMS");
+
+		//Form signed and executed with higher grades
+		try
+		{
+			Bureaucrat					luca("Luca", 10);
+			RobotomyRequestForm			a42("Factory");
+
+			std::cout << luca << std::endl;
+			std::cout << a42 << std::endl;
+			luca.signForm(a42);
+			std::cout << a42 << std::endl;
+			luca.executeForm(a42);
+			std::cout << std::endl;
+		}
+		catch (const std::exception& e){
+			std::cout << e.what() << std::endl;
+		}
+
+		//Form signed with lower grade and executed while not signed
+		try
+		{
+			Bureaucrat					gigi("Gigi", 150);
+			RobotomyRequestForm			b42("Construction Line");
+
+			std::cout << gigi << std::endl;
+			std::cout << b42 << std::endl;
+			gigi.signForm(b42);
+			std::cout << b42 << std::endl;
+			gigi.executeForm(b42);
+			std::cout << std::endl;
+		}
+		catch (const std::exception& e){
+			std::cout << e.what() << std::endl;
+		}
+
+		//Form signed but executed with lower grade
+		try
+		{
+			Bureaucrat					davide("Davide", 65);
+			RobotomyRequestForm			c42("Storage");
+
+			std::cout << davide << std::endl;
+			std::cout << c42 << std::endl;
+			davide.signForm(c42);
+			std::cout << c42 << std::endl;
+			davide.executeForm(c42);
+			std::cout << std::endl;
+		}
+		catch (const std::exception& e){
+			std::cout << e.what() << std::endl;
+		}
+	}
+
+	{
+		printSeparator("TEST 6: EXECUTING PARDON FORMS");
+
+		//Form signed and executed with higher grades
+		try
+		{
+			Bureaucrat					luca("Luca", 3);
+			PresidentialPardonForm		a42("Giulia");
+
+			std::cout << luca << std::endl;
+			std::cout << a42 << std::endl;
+			luca.signForm(a42);
+			std::cout << a42 << std::endl;
+			luca.executeForm(a42);
+			std::cout << std::endl;
+		}
+		catch (const std::exception& e){
+			std::cout << e.what() << std::endl;
+		}
+
+		//Form signed with lower grade and executed while not signed
+		try
+		{
+			Bureaucrat					gigi("Gigi", 150);
+			PresidentialPardonForm		b42("Piero");
+
+			std::cout << gigi << std::endl;
+			std::cout << b42 << std::endl;
+			gigi.signForm(b42);
+			std::cout << b42 << std::endl;
+			gigi.executeForm(b42);
+			std::cout << std::endl;
+		}
+		catch (const std::exception& e){
+			std::cout << e.what() << std::endl;
+		}
+
+		//Form signed but executed with lower grade
+		try
+		{
+			Bureaucrat					davide("Davide", 20);
+			PresidentialPardonForm		c42("Marco");
+
+			std::cout << davide << std::endl;
+			std::cout << c42 << std::endl;
+			davide.signForm(c42);
+			std::cout << c42 << std::endl;
+			davide.executeForm(c42);
+			std::cout << std::endl;
 		}
 		catch (const std::exception& e){
 			std::cout << e.what() << std::endl;
