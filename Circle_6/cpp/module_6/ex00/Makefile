@@ -1,4 +1,4 @@
-NAME		= Bureaucrat
+NAME		= Converter
 
 CXX			= c++
 CXXFLAGS	= -Wextra -Werror -Wall -std=c++98 -Ihpp
@@ -6,7 +6,8 @@ SRC_DIR 	= src
 BUILD_DIR 	= .build
 DIR_DUP 	= @mkdir -p $(@D)
 
-SRCS		=	$(SRC_DIR)/main.cpp
+SRCS		=	$(SRC_DIR)/main.cpp \
+				$(SRC_DIR)/ScalarConverter.cpp
 
 OBJS 		= $(SRCS:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
 
