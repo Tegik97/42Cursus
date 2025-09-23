@@ -3,6 +3,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 void printSeparator(const std::string& msg)
 {
@@ -327,6 +328,61 @@ int main(void)
 			std::cout << std::endl;
 		}
 		catch (const std::exception& e){
+			std::cout << e.what() << std::endl;
+		}
+	}
+
+	{
+		printSeparator("TEST 7: INTERN FORM CREATION");
+
+		//Intern creates forms with valid name
+		try
+		{
+			Intern		piero;
+			Bureaucrat	luca("Luca", 3);
+			AForm*		shrubbery;
+			AForm*		robotomy;
+			AForm*		pardon;
+
+			shrubbery = piero.makeForm("shrubbery creation", "garden");
+			robotomy = piero.makeForm("robotomy request", "factory");
+			pardon = piero.makeForm("presidential pardon", "Mario");
+			std::cout << *shrubbery << std::endl;
+			std::cout << *robotomy << std::endl;
+			std::cout << *pardon << std::endl;
+			luca.signForm(*pardon);
+			luca.executeForm(*pardon);
+		} 
+		catch (const Intern::InvalidFormNameException& e) {
+			std::cout << "Intern couldn't create the form because " << e.what() << std::endl;
+		}
+		catch (const std::exception& e) {
+			std::cout << e.what() << std::endl;
+		}
+
+		//Intern creates forms with invalid name
+		try
+		{
+			Intern		piero;
+			Bureaucrat	luca("Luca", 3);
+			AForm*		shrubbery;
+			AForm*		robotomy;
+			AForm*		pardon;
+
+			std::cout << std::endl;
+			shrubbery = piero.makeForm("shrubbery", "garden");
+			robotomy = piero.makeForm("robotomy", "factory");
+			pardon = piero.makeForm("pardon", "Mario");
+			std::cout << *shrubbery << std::endl;
+			std::cout << *robotomy << std::endl;
+			std::cout << *pardon << std::endl;
+			luca.signForm(*pardon);
+			luca.executeForm(*pardon);
+		} 
+		catch (const Intern::InvalidFormNameException& e) {
+			std::cout << "Intern couldn't create the form because " << e.what() << std::endl;
+		}
+		catch (const std::exception& e) {
 			std::cout << e.what() << std::endl;
 		}
 	}
