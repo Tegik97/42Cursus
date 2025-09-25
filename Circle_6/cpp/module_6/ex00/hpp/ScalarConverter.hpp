@@ -18,9 +18,10 @@ class ScalarConverter
 			PSEUDO_LITERAL,
 			ERROR_TYPE
 		};
+
 		ScalarConverter();
 		ScalarConverter(const ScalarConverter& other);
-		ScalarConverter& operator=(const ScalarConverter& other);
+		ScalarConverter&	operator=(const ScalarConverter& other);
 		~ScalarConverter();
 		static LiteralType	detectType(const std::string& input);
 		static LiteralType	tryParseDetection(const std::string& input);
@@ -32,12 +33,6 @@ class ScalarConverter
 
 		public:
 			static void	convert(const std::string& input);
-
-		class DeclarationNotAllowedException : public std::exception
-		{
-			public:
-				const char	*what() const throw();
-		}
 };
 
 #endif
