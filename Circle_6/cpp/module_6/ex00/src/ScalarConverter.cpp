@@ -1,15 +1,20 @@
 #include "ScalarConverter.hpp"
 
-ScalarConverter::ScalarConverter() {}
+ScalarConverter::ScalarConverter()
+{
+	throw DeclarationNotAllowedException();
+}
 
 ScalarConverter::ScalarConverter(const ScalarConverter& other)
 {
 	(void)other;
+	throw DeclarationNotAllowedException();
 }
 
 ScalarConverter&	ScalarConverter::operator=(const ScalarConverter& other)
 {
 	(void)other;
+	throw DeclarationNotAllowedException();
 	return *this;
 }
 
@@ -206,4 +211,9 @@ void	ScalarConverter::convertFromPseudo(const std::string& input)
 		std::cout << input.substr(0, input.length() - 1) << std::endl;
 	else
 		std::cout << input << std::endl;
+}
+
+const char*	ScalarConverter::DeclarationNotAllowedException::what() const throw()
+{
+	return "Can't instanciate class";
 }

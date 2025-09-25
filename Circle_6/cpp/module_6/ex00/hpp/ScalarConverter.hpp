@@ -32,6 +32,12 @@ class ScalarConverter
 
 		public:
 			static void	convert(const std::string& input);
+
+		class DeclarationNotAllowedException : public std::exception
+		{
+			public:
+				const char	*what() const throw();
+		}
 };
 
 #endif
