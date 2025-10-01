@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Form.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/01 13:08:20 by mchiaram          #+#    #+#             */
+/*   Updated: 2025/10/01 13:32:50 by mchiaram         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Form.hpp"
 
 Form::Form() : _name("form"), _is_signed(false), _sign_grade(1), _exec_grade(1)
@@ -69,6 +81,8 @@ void Form::beSigned(const Bureaucrat& bureaucrat)
 {
     if (_sign_grade < bureaucrat.getGrade())
         throw GradeTooLowException();
+    if (this->_is_signed == true)
+        throw FormAlreadySignedException();
     this->_is_signed = true;
 }
 
@@ -85,6 +99,11 @@ const char* Form::GradeTooHighException::what() const throw()
 const char *Form::DeclarationNotAllowedException::what() const throw()
 {
     return "Declaration not allowed, name, sign grade and execution grade are mandatory";
+}
+
+const char  *Form::FormAlreadySignedException::what() const throw()
+{
+    return "form has aldready been signed";
 }
 
 std::ostream& operator<<(std::ostream& os, const Form& form)

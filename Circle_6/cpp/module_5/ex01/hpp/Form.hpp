@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Form.hpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/01 13:08:10 by mchiaram          #+#    #+#             */
+/*   Updated: 2025/10/01 13:32:10 by mchiaram         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FORM_HPP
 # define FORM_HPP
 
@@ -39,6 +51,12 @@ class Form {
 		};
         
         class DeclarationNotAllowedException : public std::exception
+        {
+            public:
+                const char* what() const throw();
+        };
+
+        class FormAlreadySignedException : public std::exception
         {
             public:
                 const char* what() const throw();

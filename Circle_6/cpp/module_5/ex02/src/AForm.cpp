@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/01 14:23:17 by mchiaram          #+#    #+#             */
+/*   Updated: 2025/10/01 14:23:18 by mchiaram         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "AForm.hpp"
 
 AForm::AForm() : _name("form"), _is_signed(false), _sign_grade(1), _exec_grade(1)
@@ -69,6 +81,8 @@ void AForm::beSigned(const Bureaucrat& bureaucrat)
 {
     if (_sign_grade < bureaucrat.getGrade())
         throw GradeTooLowException();
+    if (this->_is_signed == true)
+        throw FormAlreadySignedException();
     this->_is_signed = true;
 }
 
@@ -95,6 +109,11 @@ const char*	AForm::FileFailException::what() const throw()
 const char *AForm::DeclarationNotAllowedException::what() const throw()
 {
     return "Declaration not allowed, name, sign grade and execution grade are mandatory";
+}
+
+const char  *AForm::FormAlreadySignedException::what() const throw()
+{
+    return "form has already been signed";
 }
 
 std::ostream& operator<<(std::ostream& os, const AForm& form)

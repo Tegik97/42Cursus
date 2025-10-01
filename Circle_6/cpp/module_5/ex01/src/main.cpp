@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/01 13:08:23 by mchiaram          #+#    #+#             */
+/*   Updated: 2025/10/01 13:33:13 by mchiaram         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
@@ -248,6 +260,24 @@ int main(void)
 			std::cout << c42 << std::endl;
 			davide.signForm(c42);
 			std::cout << c42 << "\n" << std::endl;
+		}
+		catch (const std::exception& e){
+			std::cout << e.what() << std::endl;
+		}
+
+		//Form signed twice
+		try
+		{
+			Bureaucrat	piero("Piero", 5);
+			Bureaucrat	gianluca("Gianluca", 10);
+			Form		d42("D42", 15, 18);
+
+			std::cout << piero << std::endl;
+			std::cout << d42 << std::endl;
+			piero.signForm(d42);
+			std::cout << d42 << std::endl;
+			std::cout << gianluca << std::endl;
+			gianluca.signForm(d42);
 		}
 		catch (const std::exception& e){
 			std::cout << e.what() << std::endl;

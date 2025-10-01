@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/01 14:22:55 by mchiaram          #+#    #+#             */
+/*   Updated: 2025/10/01 14:22:56 by mchiaram         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef AFORM_HPP
 # define AFORM_HPP
 
@@ -52,6 +64,12 @@ class AForm {
 		};
 
         class DeclarationNotAllowedException : public std::exception
+        {
+            public:
+                const char* what() const throw();
+        };
+
+        class FormAlreadySignedException : public std::exception
         {
             public:
                 const char* what() const throw();
