@@ -5,12 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/10/07 17:00:47 by mchiaram          #+#    #+#              #
-#    Updated: 2025/10/07 17:00:48 by mchiaram         ###   ########.fr        #
+#    Created: 2025/10/07 17:00:58 by mchiaram          #+#    #+#              #
+#    Updated: 2025/10/07 17:00:59 by mchiaram         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= iter
+NAME		= array
 
 CXX			= c++
 CXXFLAGS	= -Wextra -Werror -Wall -std=c++98 -Ihpp

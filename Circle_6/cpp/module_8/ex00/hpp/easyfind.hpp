@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whatever.hpp                                       :+:      :+:    :+:   */
+/*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/07 17:00:33 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/10/07 17:00:34 by mchiaram         ###   ########.fr       */
+/*   Created: 2025/10/09 14:06:14 by mchiaram          #+#    #+#             */
+/*   Updated: 2025/10/09 14:16:30 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WHATEVER_HPP
-# define WHATEVER_HPP
+#ifndef EASYFIND_HPP
+# define EASYFIND_HPP
+
+# include <algorithm>
+# include <iterator>
+# include <stdexcept>
+# include <string>
 
 template<typename T>
-T   max(T a, T b) {
-    return (a > b) ? a : b;
-}
-
-template<typename T>
-T   min(T a, T b) {
-    return (a < b) ? a : b;
-}
-
-template<typename T>
-void    swap(T& a, T& b) {
-    T temp = a;
-    a = b;
-    b = temp;
+int	easyfind(T& cont, int find)
+{
+	for (typename T::iterator it = cont.begin(); it != cont.end(); ++it)
+	{
+		if (*it == find)
+			return *it;
+	}
+	throw std::runtime_error("Value " + std::to_string(find) + " not found in container");
 }
 
 #endif
