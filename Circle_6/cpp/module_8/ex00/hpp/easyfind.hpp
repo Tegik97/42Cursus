@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 14:06:14 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/10/09 14:16:30 by mchiaram         ###   ########.fr       */
+/*   Updated: 2025/10/15 20:26:17 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,14 @@
 # include <algorithm>
 # include <iterator>
 # include <stdexcept>
-# include <string>
 
 template<typename T>
-int	easyfind(T& cont, int find)
+typename T::iterator	easyfind(T& cont, int find)
 {
-	for (typename T::iterator it = cont.begin(); it != cont.end(); ++it)
-	{
-		if (*it == find)
-			return *it;
-	}
-	throw std::runtime_error("Value " + std::to_string(find) + " not found in container");
+	typename T::iterator it = std::find(cont.begin(), cont.end(), find);
+	if (it == cont.end())
+		throw std::runtime_error("Value not found in container");
+	return it;
 }
 
 #endif
