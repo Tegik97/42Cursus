@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/21 13:34:14 by mchiaram          #+#    #+#             */
+/*   Updated: 2025/10/21 13:39:03 by mchiaram         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Span.hpp"
 #include <string>
 #include <iostream>
@@ -114,11 +126,11 @@ int main()
 	}
 
 	{
-		printSeparator("TEST 8: 100.000.000 ELEMENTS");
-		Span				sp = Span(100000000);
+		printSeparator("TEST 8: 10.000.000 ELEMENTS");
+		Span				sp = Span(10000000);
 		std::vector<int>	temp;
 
-		for (int i = 0; i < 100000000; i++)
+		for (int i = 0; i < 10000000; i++)
 			temp.push_back(i);
 
 		sp.addRange(temp.begin(), temp.end());

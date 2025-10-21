@@ -6,11 +6,11 @@
 #    By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/09 14:06:35 by mchiaram          #+#    #+#              #
-#    Updated: 2025/10/21 13:34:23 by mchiaram         ###   ########.fr        #
+#    Updated: 2025/10/21 13:34:40 by mchiaram         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= span
+NAME		= mutantstack
 
 CXX			= c++
 CXXFLAGS	= -Wextra -Werror -Wall -std=c++98
@@ -19,10 +19,9 @@ HPP_DIR		= hpp
 BUILD_DIR 	= .build
 DIR_DUP 	= @mkdir -p $(@D)
 
-SRCS		=	$(SRC_DIR)/main.cpp \
-				$(SRC_DIR)/Span.cpp
+SRCS		=	$(SRC_DIR)/main.cpp
 
-HEADERS		=	$(HPP_DIR)/Span.hpp
+HEADERS		=	$(HPP_DIR)/MutantStack.hpp
 
 OBJS 		= $(SRCS:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
 
