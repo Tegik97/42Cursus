@@ -6,11 +6,11 @@
 #    By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/09 14:06:35 by mchiaram          #+#    #+#              #
-#    Updated: 2025/10/21 13:34:40 by mchiaram         ###   ########.fr        #
+#    Updated: 2025/10/21 14:26:45 by mchiaram         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= mutantstack
+NAME		= btc
 
 CXX			= c++
 CXXFLAGS	= -Wextra -Werror -Wall -std=c++98
