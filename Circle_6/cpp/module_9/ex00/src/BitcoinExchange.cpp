@@ -4,7 +4,7 @@ BitcoinExchange::BitcoinExchange() {}
 
 BitcoinExchange::BitcoinExchange(const std::string& filename) : _filename(filename)
 {
-	if (filename.empty())
+	if (!openFile)
 		throw std::invalid_argument("Error: Missing argument");
 }
 
@@ -17,3 +17,13 @@ BitcoinExchange&	operator=(const BitcoinExchange& other)
 }
 
 BitcoinExchange::~BitcoinExchange() {}
+
+int	BitcoinExchange::openFile(const std::string& filename)
+{
+	std::ifstream file(filename)
+	if (!file.is_open())
+	{
+		std::cerr << "Error: could not open file" << std::endl;
+		return 0;
+	}
+}
