@@ -59,11 +59,11 @@ int	BitcoinExchange::saveCSVData()
 
 static std::string	trim(const std::string& str)
 {
-	std::size_t	start = str.find_first_not_of(" ");
+	std::size_t	start = str.find_first_not_of(" \t");
 	if (start == std::string::npos)
 		return "";
 
-	std::size_t end = str.find_last_not_of(" ");
+	std::size_t end = str.find_last_not_of(" \t");
 	return str.substr(start, end - start + 1);	
 }
 
