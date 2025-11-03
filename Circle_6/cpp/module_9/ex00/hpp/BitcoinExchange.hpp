@@ -5,21 +5,27 @@
 # include <string>
 # include <fstream>
 # include <map>
+# include <iostream>
+# include <sstream>
+# include <ctime>
+# include <cctype>
+# include <cstdlib>
 
 class BitcoinExchange
 {
 	private:
-		const std::string	_filename;
-		std::map			_dbValue;
-		BitcoinExchange&	operator=(const BitcoinExchange& other);
+		std::map<std::string, double>	_dataValue;
+		
+		double	getClosestDate(const std::string& date) const;
 
 	public:
 		BitcoinExchange();
-		BitcoinExchange(const std::string& filename);
 		BitcoinExchange(const BitcoinExchange& other);
+		BitcoinExchange&	operator=(const BitcoinExchange& other);
 		~BitcoinExchange();
 
-		int	openFile(const std::string& filename);
+		int		saveCSVData();
+		int		printExchange(const std::string& filename);
 };
 
 #endif
