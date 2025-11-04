@@ -21,7 +21,7 @@ int	BitcoinExchange::saveCSVData()
 	std::ifstream	csvFile("data.csv");
 	if (!csvFile.is_open())
 	{
-		std::cerr << "Error: could not open file." << std::endl;
+		std::cerr << "Error: could not open data.csv" << std::endl;
 		return 0;
 	}
 
