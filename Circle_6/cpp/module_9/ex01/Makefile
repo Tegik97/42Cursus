@@ -6,7 +6,7 @@
 #    By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/09 14:06:35 by mchiaram          #+#    #+#              #
-#    Updated: 2025/11/04 15:50:57 by mchiaram         ###   ########.fr        #
+#    Updated: 2025/11/04 15:52:14 by mchiaram         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,6 +83,7 @@ test:
 			if [ ! -f "$$file" ]; then \
 				curl -sSfL $(TESTER_DIR_URL)/$$file -o $$file && \
 				if [ -f "$$file" ]; then \
+					chmod +x $$file && \
 					echo "${BOLD}${GREEN}Downloaded $$file${NO_COLOR}"; \
 				else \
 					echo "${BOLD}${RED}Not a valid URL: ${NO_COLOR}$(TESTER_DIR_URL)"; \

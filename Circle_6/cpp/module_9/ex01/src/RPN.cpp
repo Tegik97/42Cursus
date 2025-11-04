@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 15:41:17 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/11/04 15:41:18 by mchiaram         ###   ########.fr       */
+/*   Updated: 2025/11/04 15:54:11 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,8 @@ void	RPN::calculate(const std::string& expression)
 	catch(const std::exception& e) {
 		std::cerr << e.what() << std::endl;
 	}
-	std::cout << _operands.top() << std::endl;
+	if (_operands.size() == 1)
+		std::cout << _operands.top() << std::endl;
+	else
+		std::cerr << "Error" << std::endl;
 }
