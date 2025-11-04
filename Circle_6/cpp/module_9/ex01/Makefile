@@ -6,23 +6,23 @@
 #    By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/09 14:06:35 by mchiaram          #+#    #+#              #
-#    Updated: 2025/11/04 12:50:41 by mchiaram         ###   ########.fr        #
+#    Updated: 2025/11/04 14:13:49 by mchiaram         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= btc
+NAME		= RPN
 
 CXX			= c++
-CXXFLAGS	= -Wextra -Werror -Wall -std=c++98
+CXXFLAGS	= -Wextra -Werror -Wall -std=c++98 -g
 SRC_DIR 	= src
 HPP_DIR		= hpp
 BUILD_DIR 	= .build
 DIR_DUP 	= @mkdir -p $(@D)
 
 SRCS		=	$(SRC_DIR)/main.cpp \
-				$(SRC_DIR)/BitcoinExchange.cpp
+				$(SRC_DIR)/RPN.cpp
 
-HEADERS		=	$(HPP_DIR)/BitcoinExchange.hpp
+HEADERS		=	$(HPP_DIR)/RPN.hpp
 
 OBJS 		= $(SRCS:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
 
@@ -94,25 +94,6 @@ test:
 	else \
 		echo "${BOLD}${RED}missing URL${NO_COLOR}"; \
 	fi;
-
-# test:
-# 	@if [ "$(TESTER_URL)" ]; then \
-# 		if [ ! -f "$(TESTER_NAME)" ]; then \
-# 			echo "${BOLD}${YELLOW}Downloading tester...${NO_COLOR}"; \
-# 			curl -sSfL $(TESTER_URL) -o $(TESTER_NAME); \
-# 			if [ -f "$(TESTER_NAME)" ]; then \
-# 				chmod +x $(TESTER_NAME); \
-# 				echo "${BOLD}${GREEN}Done${NO_COLOR}"; \
-# 			else \
-# 				echo "${BOLD}${RED}Not a valid URL: ${NO_COLOR}$(TESTER_URL)"; \
-# 			fi; \
-# 		else \
-# 			echo "${BOLD}${YELLOW}$(TESTER_NAME) already downloaded${NO_COLOR}"; \
-# 		fi; \
-# 	else \
-# 		echo "${BOLD}${RED}missing URL${NO_COLOR}";\
-# 	fi;
-
 
 .PHONY: all re clean fclean header test
 .SILENT:
