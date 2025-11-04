@@ -6,14 +6,14 @@
 #    By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/09 14:06:35 by mchiaram          #+#    #+#              #
-#    Updated: 2025/11/04 14:13:49 by mchiaram         ###   ########.fr        #
+#    Updated: 2025/11/04 15:38:56 by mchiaram         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= RPN
 
 CXX			= c++
-CXXFLAGS	= -Wextra -Werror -Wall -std=c++98 -g
+CXXFLAGS	= -Wextra -Werror -Wall -std=c++98
 SRC_DIR 	= src
 HPP_DIR		= hpp
 BUILD_DIR 	= .build
