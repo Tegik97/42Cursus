@@ -6,7 +6,7 @@
 #    By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/09 14:06:35 by mchiaram          #+#    #+#              #
-#    Updated: 2025/11/04 11:13:45 by mchiaram         ###   ########.fr        #
+#    Updated: 2025/11/04 11:42:17 by mchiaram         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,35 +58,60 @@ fclean: clean
 	else \
 		echo "${BOLD}${YELLOW}No binary file to delete: $(NAME)${NO_COLOR}"; \
 	fi
-	@if [ -f $(TESTER_NAME) ]; then \
-		echo && \
-		echo "${BOLD}${YELLOW}[Tester]${NO_COLOR}" && \
-		rm -f $(TESTER_NAME) && \
-		echo "${BOLD}${GREEN}Deleted $(TESTER_NAME)${NO_COLOR}"; \
-	fi;
+	@for file in $(TESTER_FILES); do \
+		if [ -f "$$file" ]; then \
+			rm -f $$file && \
+			echo "${BOLD}${GREEN}Deleted $$file${NO_COLOR}";\
+		fi; \
+	done; \
+# 	if [ -f $(TESTER_FILES) ]; then \
+# 		echo && \
+# 		echo "${BOLD}${YELLOW}[Tester]${NO_COLOR}" && \
+# 		rm -f $(TESTER_FILES) && \
+# 		echo "${BOLD}${GREEN}Deleted $(TESTER_FILES)${NO_COLOR}"; \
+# 	fi;
 
 re: fclean all
 
-TESTER_NAME	:= "test.txt"
-TESTER_URL	:= https://raw.githubusercontent.com/Tegik97/42Cursus/module_9/ex00/Circle_6/cpp/module_9/testers/ex00/test.txt
+TESTER_FILES	:= input.txt test.txt empty.txt data.csv
+TESTER_DIR_URL	:= https://raw.githubusercontent.com/Tegik97/42Cursus/module_9/ex00/Circle_6/cpp/module_9/testers/ex00
 
 test:
-	@if [ "$(TESTER_URL)" ]; then \
-		if [ ! -f "$(TESTER_NAME)" ]; then \
-			echo "${BOLD}${YELLOW}Downloading tester...${NO_COLOR}"; \
-			curl -sSfL $(TESTER_URL) -o $(TESTER_NAME); \
-			if [ -f "$(TESTER_NAME)" ]; then \
-				chmod +x $(TESTER_NAME); \
-				echo "${BOLD}${GREEN}Done${NO_COLOR}"; \
+	@if [ "$(TESTER_DIR_URL)" ]; then \
+		echo "${BOLD}${YELLOW}Downloading test files...${NO_COLOR}"; \
+		for file in $(TESTER_FILES); do \
+			if [ ! -f "$$file" ]; then \
+				curl -sSfL $(TESTER_DIR_URL)/$$file -o $$file && \
+				if [ -f "$$file" ]; then \
+					echo "${BOLD}${GREEN}Downloaded $$file${NO_COLOR}"; \
+				else \
+					echo "${BOLD}${RED}Not a valid URL: ${NO_COLOR}$(TESTER_DIR_URL)"; \
+				fi; \
 			else \
-				echo "${BOLD}${RED}Not a valid URL: ${NO_COLOR}$(TESTER_URL)"; \
+				echo "${BOLD}${YELLOW}$$file already exists${NO_COLOR}"; \
 			fi; \
-		else \
-			echo "${BOLD}${YELLOW}$(TESTER_NAME) already downloaded${NO_COLOR}"; \
-		fi; \
+		done; \
 	else \
-		echo "${BOLD}${RED}missing URL${NO_COLOR}";\
+		echo "${BOLD}${RED}missing URL${NO_COLOR}"; \
 	fi;
+
+# test:
+# 	@if [ "$(TESTER_URL)" ]; then \
+# 		if [ ! -f "$(TESTER_NAME)" ]; then \
+# 			echo "${BOLD}${YELLOW}Downloading tester...${NO_COLOR}"; \
+# 			curl -sSfL $(TESTER_URL) -o $(TESTER_NAME); \
+# 			if [ -f "$(TESTER_NAME)" ]; then \
+# 				chmod +x $(TESTER_NAME); \
+# 				echo "${BOLD}${GREEN}Done${NO_COLOR}"; \
+# 			else \
+# 				echo "${BOLD}${RED}Not a valid URL: ${NO_COLOR}$(TESTER_URL)"; \
+# 			fi; \
+# 		else \
+# 			echo "${BOLD}${YELLOW}$(TESTER_NAME) already downloaded${NO_COLOR}"; \
+# 		fi; \
+# 	else \
+# 		echo "${BOLD}${RED}missing URL${NO_COLOR}";\
+# 	fi;
 
 
 .PHONY: all re clean fclean header test
