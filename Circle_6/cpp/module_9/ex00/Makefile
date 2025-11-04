@@ -6,7 +6,7 @@
 #    By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/09 14:06:35 by mchiaram          #+#    #+#              #
-#    Updated: 2025/11/04 11:42:17 by mchiaram         ###   ########.fr        #
+#    Updated: 2025/11/04 11:45:46 by mchiaram         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,7 @@ fclean: clean
 re: fclean all
 
 TESTER_FILES	:= input.txt test.txt empty.txt data.csv
-TESTER_DIR_URL	:= https://raw.githubusercontent.com/Tegik97/42Cursus/module_9/ex00/Circle_6/cpp/module_9/testers/ex00
+TESTER_DIR_URL	:= https://raw.githubusercontent.com/Tegik97/42Cursus/main/Circle_6/cpp/module_9/testers/ex00
 
 test:
 	@if [ "$(TESTER_DIR_URL)" ]; then \
