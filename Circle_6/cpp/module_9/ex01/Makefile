@@ -6,7 +6,7 @@
 #    By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/09 14:06:35 by mchiaram          #+#    #+#              #
-#    Updated: 2025/11/04 15:50:18 by mchiaram         ###   ########.fr        #
+#    Updated: 2025/11/04 15:50:57 by mchiaram         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,7 @@ fclean: clean
 re: fclean all
 
 TESTER_FILES	:= tester.sh
-TESTER_DIR_URL	:= https://raw.githubusercontent.com/Tegik97/42Cursus/main/Circle_6/cpp/module_9/testers/ex00
+TESTER_DIR_URL	:= https://raw.githubusercontent.com/Tegik97/42Cursus/module_9/ex01/Circle_6/cpp/module_9/testers/ex01
 
 test:
 	@if [ "$(TESTER_DIR_URL)" ]; then \
