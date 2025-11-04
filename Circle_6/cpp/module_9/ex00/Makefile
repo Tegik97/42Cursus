@@ -6,7 +6,7 @@
 #    By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/09 14:06:35 by mchiaram          #+#    #+#              #
-#    Updated: 2025/11/03 16:41:08 by mchiaram         ###   ########.fr        #
+#    Updated: 2025/11/04 11:00:26 by mchiaram         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ clean:
 		echo "${BOLD}${GREEN}Deleted build files${NO_COLOR}"; \
 	else \
 		echo "${BOLD}${YELLOW}No build files to delete${NO_COLOR}"; \
-	fi
+	fi;
 
 fclean: clean
 	@if [ -f "$(NAME)" ]; then \
@@ -58,18 +58,17 @@ fclean: clean
 	else \
 		echo "${BOLD}${YELLOW}No binary file to delete: $(NAME)${NO_COLOR}"; \
 	fi
-	@if [ -f "tester.sh" ]; then \
+	@if [ -f $(TESTER_NAME) ]; then \
 		echo && \
 		echo "${BOLD}${YELLOW}[Tester]${NO_COLOR}" && \
-		./$(TESTER_NAME) fclean && \
-		rm -f "tester.sh" && \
-		echo "${BOLD}${GREEN}Deleted tester.sh${NO_COLOR}"; \
+		rm -f $(TESTER_NAME) && \
+		echo "${BOLD}${GREEN}Deleted $(TESTER_NAME)${NO_COLOR}"; \
 	fi;
 
 re: fclean all
 
-TESTER_NAME	:= "tester.sh"
-TESTER_URL	:= 
+TESTER_NAME	:= "test.txt"
+TESTER_URL	:= https://raw.githubusercontent.com/Tegik97/42Cursus/module_9/ex00/Circle_6/cpp/module_9/ex00/test.txt
 
 test:
 	@if [ "$(TESTER_URL)" ]; then \
@@ -86,7 +85,7 @@ test:
 			echo "${BOLD}${YELLOW}$(TESTER_NAME) already downloaded${NO_COLOR}"; \
 		fi; \
 	else \
-		echo "${BOLD}${RED}URL missing${NO_COLOR}";\
+		echo "${BOLD}${RED}missing URL${NO_COLOR}";\
 	fi;
 
 
