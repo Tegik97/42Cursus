@@ -7,6 +7,6 @@ int	main(int argc, char** argv)
 	if (!merge.inputParse(argc, argv))
 		return 1;
 
-	std::cout << "TEST: OK" << std::endl;
+	merge.printSortedVector();
 	return 0;
 }
