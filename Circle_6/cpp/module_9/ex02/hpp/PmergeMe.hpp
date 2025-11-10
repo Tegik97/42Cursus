@@ -3,6 +3,8 @@
 
 # include <vector>
 # include <deque>
+# include <iostream>
+# include <sstream>
 
 class PmergeMe
 {
@@ -15,6 +17,8 @@ class PmergeMe
 		PmergeMe(const PmergeMe& other);
 		PmergeMe&	operator=(const PmergeMe& other);
 		~PmergeMe();
+
+		bool	inputParse(int argc, char** argv);
 };
 
 #endif
