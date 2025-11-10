@@ -25,18 +25,22 @@ bool	PmergeMe::inputParse(int argc, char** argv)
 		return false;
 	}
 
-	for	(int i = 0; i < argc; i++)
+	for	(int i = 1; i < argc; i++)
 	{
 		std::stringstream	ss(argv[i]);
 		int					value;
 
-		if (!(ss >> value) || !ss.eof())
+		while (ss >> value)
 		{
-			std::cerr << "Error: invalid argument " << argv[1] << std::endl;
+			_vec.push_back(value);
+			_deq.push_back(value);
+		}
+
+		if (!ss.eof())
+		{
+			std::cerr << "Error: invalid argument " << argv[i] << std::endl;
 			return false;
 		}
-		_vec.push_back(value);
-		_deq.push_back(value);
 	}
 	return true;
 }

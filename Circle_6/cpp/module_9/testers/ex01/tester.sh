@@ -3,17 +3,15 @@
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
-BLUE='\033[1;36m'  # Cyan vivace
+BLUE='\033[1;36m'
 BOLD='\033[1m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
 PASSED=0
 FAILED=0
 
-# Percorso dell'eseguibile
 RPN_PATH="./RPN"
 
-# Verifica che l'eseguibile esista
 if [ ! -f "$RPN_PATH" ]; then
     echo -e "${RED}Error: RPN executable not found at $RPN_PATH${NC}"
     echo "Please compile the project first: cd ../../ex01 && make"

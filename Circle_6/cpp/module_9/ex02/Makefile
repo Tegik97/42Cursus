@@ -6,23 +6,23 @@
 #    By: menny <menny@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/09 14:06:35 by mchiaram          #+#    #+#              #
-#    Updated: 2025/11/10 16:45:23 by menny            ###   ########.fr        #
+#    Updated: 2025/11/10 19:02:47 by menny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= PmergeMe
 
 CXX			= c++
-CXXFLAGS	= -Wextra -Werror -Wall -std=c++98
+CXXFLAGS	= -Wextra -Werror -Wall -std=c++98 -g
 SRC_DIR 	= src
 HPP_DIR		= hpp
 BUILD_DIR 	= .build
 DIR_DUP 	= @mkdir -p $(@D)
 
 SRCS		=	$(SRC_DIR)/main.cpp \
-				$(SRC_DIR)/RPN.cpp
+				$(SRC_DIR)/PmergeMe.cpp
 
-HEADERS		=	$(HPP_DIR)/RPN.hpp
+HEADERS		=	$(HPP_DIR)/PmergeMe.hpp
 
 OBJS 		= $(SRCS:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
 
