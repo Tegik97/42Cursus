@@ -1,8 +1,13 @@
-#include "PmergeMe.hpp"
+#include "PmergeMeTest.hpp"
 
-PmergeMe::PmergeMe() {}
+// =============================================================================
+// Funzioni Canoniche
+// =============================================================================
 
-PmergeMe::PmergeMe(const PmergeMe& other) : _vec(other._vec), _deq(other._deq) {}
+PmergeMe::PmergeMe() : _timeVec(0), _timeDeq(0) {}
+
+PmergeMe::PmergeMe(const PmergeMe& other)
+	: _vec(other._vec), _deq(other._deq), _timeVec(other._timeVec), _timeDeq(other._timeDeq) {}
 
 PmergeMe&	PmergeMe::operator=(const PmergeMe& other)
 {
@@ -10,12 +15,36 @@ PmergeMe&	PmergeMe::operator=(const PmergeMe& other)
 	{
 		_vec = other._vec;
 		_deq = other._deq;
+		_timeVec = other._timeVec;
+		_timeDeq = other._timeDeq;
 	}
-
 	return *this;
 }
 
 PmergeMe::~PmergeMe() {}
+
+// =============================================================================
+// Helper: Tempo e Jacobsthal
+// =============================================================================
+
+long	PmergeMe::getTime()
+{
+	struct timeval	tv;
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000000) + tv.tv_usec;
+}
+
+size_t	PmergeMe::getJacobsthal(int n)
+{
+	if (n < 2) return n;
+	size_t	power = 1 << (n + 1); // 2^(n+1)
+	int		sign = (n % 2 == 0) ? 1 : -1;
+	return (power + sign) / 3;
+}
+
+// =============================================================================
+// Parsing e Stampa Principale
+// =============================================================================
 
 bool	PmergeMe::inputParse(int argc, char** argv)
 {
@@ -28,161 +57,272 @@ bool	PmergeMe::inputParse(int argc, char** argv)
 	for	(int i = 1; i < argc; i++)
 	{
 		std::stringstream	ss(argv[i]);
-		int					value;
+		long				value;
+
+		std::string arg_check = argv[i];
+		if (arg_check.find_first_not_of(' ') == std::string::npos)
+		{
+			std::cerr << "Error: invalid argument (empty)" << std::endl;
+			return false;
+		}
 
 		while (ss >> value)
 		{
-			_vec.push_back(value);
-			_deq.push_back(value);
+			if (value < 0)
+			{
+				std::cerr << "Error: not a positive integer: " << value << std::endl;
+				return false;
+			}
+			if (value > 2147483647)
+			{
+				std::cerr << "Error: number too large: " << value << std::endl;
+				return false;
+			}
+			_vec.push_back(static_cast<int>(value));
+			_deq.push_back(static_cast<int>(value));
 		}
-
-		if (!ss.eof())
+		if (!ss.eof() || ss.fail())
 		{
-			std::cerr << "Error: invalid argument " << argv[i] << std::endl;
-			return false;
+			ss.clear();
+			std::string remaining;
+			ss >> remaining;
+			if (remaining.find_first_not_of(' ') != std::string::npos)
+			{
+				std::cerr << "Error: invalid argument " << argv[i] << std::endl;
+				return false;
+			}
 		}
 	}
 	return true;
 }
 
-void	PmergeMe::printSortedVector()
+void	PmergeMe::runSort()
 {
 	std::cout << "Before: ";
 	for (size_t	i = 0; i < _vec.size(); i++)
 		std::cout << _vec[i] << " ";
 	std::cout << std::endl;
 
-	sortVector(1);
+	// Sort per Vector
+	long startTimeVec = getTime();
+	mergeInsertSort(_vec);
+	long endTimeVec = getTime();
+	_timeVec = static_cast<double>(endTimeVec - startTimeVec);
+
+	// Sort per Deque
+	long startTimeDeq = getTime();
+	mergeInsertSort(_deq);
+	long endTimeDeq = getTime();
+	_timeDeq = static_cast<double>(endTimeDeq - startTimeDeq);
 
 	std::cout << "After: ";
 	for (size_t	i = 0; i < _vec.size(); i++)
 		std::cout << _vec[i] << " ";
 	std::cout << std::endl;
+
+	std::cout << "Time to process a range of " << _vec.size()
+			  << " elements with std::vector: " << std::fixed << std::setprecision(5)
+			  << _timeVec << " us" << std::endl;
+
+	std::cout << "Time to process a range of " << _deq.size()
+			  << " elements with std::deque: " << std::fixed << std::setprecision(5)
+			  << _timeDeq << " us" << std::endl;
 }
 
-static std::vector<std::vector<int> >	swapPairs(std::vector<std::vector<int> > pairs)
-{
-	for (size_t i = 0; (i + 1) < pairs.size(); i += 2)
-	{
-		if (pairs[i].back() > pairs[i + 1].back())
-			std::swap(pairs[i], pairs[i + 1]);
-	}
+// =============================================================================
+// Implementazione Pura (VECTOR)
+// =============================================================================
 
-	return pairs;
-}
-
-static std::vector<int>	copyVect(std::vector<std::vector<int> > pairs)
+void	PmergeMe::binaryInsert(std::vector<int>& S, int element, int max_index)
 {
-	std::vector<int>	vec;
+	int low = 0;
+	int high = max_index;
 	
-	for (size_t i = 0; i < pairs.size(); i++)
+	if (high >= static_cast<int>(S.size()))
+		high = S.size() - 1;
+
+	while (low <= high)
 	{
-		for (size_t j = 0; j < pairs[i].size(); j++)
-			vec.push_back(pairs[i][j]);
-	}
-
-	return vec;
-}
-
-static std::vector<std::vector<int> >	getPairsVect(size_t pair_size, std::vector<int> vec)
-{
-	std::vector<std::vector<int> >	pairs_vec;
-
-	for (size_t	i = 0; i < vec.size(); i += pair_size)
-	{
-		std::vector<int>	pair;
-		
-		for(size_t j = 0; j < pair_size && (i + j) < vec.size(); j++)
-		pair.push_back(vec[i + j]);
-		
-		pairs_vec.push_back(pair);
-	}
-	return pairs_vec;
-}
-
-void	PmergeMe::sortVector(int recursion_level)
-{
-	size_t	pair_size = 1 << (recursion_level - 1);
-	std::vector<std::vector<int> >	pairs_vec = getPairsVect(pair_size, _vec);
-
-	pairs_vec = swapPairs(pairs_vec);
-	_vec = copyVect(pairs_vec);
-	
-	if (static_cast<size_t>(1 << recursion_level) <= (_vec.size() / 2))
-		sortVector(recursion_level + 1);
-	
-	binaryVectInsertion(pair_size);
-}
-
-static size_t	getJacobsthal(int n)
-{
-	size_t	power = 1 << (n + 1);
-	int		sign = (n % 2 == 0) ? 1 : -1;
-
-	return (power + sign) / 3;
-}
-
-static int	binarySearchBound(const std::vector<std::vector<int> >& main_vec,
-									const std::vector<int>& element,
-									int bound)
-{
-	if (main_vec.empty() || bound == 0)
-		return 0;
-	
-	int	target = element.back();
-	
-	while (bound >= 0)
-	{
-		if (main_vec[bound].back() < target)
-			return bound + 1;
-		bound--;
-	}
-	return bound + 1;
-}
-
-void	PmergeMe::binaryVectInsertion(size_t pair_size)
-{
-	std::vector<std::vector<int> >	pairs_vec = getPairsVect(pair_size, _vec);
-	std::vector<std::vector<int> >	main_vec;
-	std::vector<std::vector<int> >	pend_vec;
-
-	main_vec.push_back(pairs_vec[0]);
-
-	for (size_t i = 1; i < (pairs_vec.size()); i++)
-	{
-		if (i % 2 == 0)
-			pend_vec.push_back(pairs_vec[i]);
+		int mid = low + (high - low) / 2;
+		if (S[mid] < element)
+			low = mid + 1;
 		else
-			main_vec.push_back(pairs_vec[i]);
+			high = mid - 1;
 	}
-	if (pend_vec.empty())
+	S.insert(S.begin() + low, element);
+}
+
+void	PmergeMe::mergeInsertSort(std::vector<int>& S)
+{
+	size_t n = S.size();
+	if (n < 2)
+		return;
+
+	int straggler = -1;
+	bool hasStraggler = (n % 2 != 0);
+	if (hasStraggler)
 	{
-		_vec = copyVect(main_vec);
-		return ;
+		straggler = S.back();
+		S.pop_back();
+		n--;
 	}
-	
-	size_t	jacob_idx = 2;
-	size_t	inserted = 0;
 
-	while (inserted < pend_vec.size())
+	PairVector pairs;
+	for (size_t i = 0; i < n; i += 2)
 	{
-		size_t	current_jacob = (getJacobsthal(jacob_idx)) - 1;
-		size_t	prev_jacob = (getJacobsthal(jacob_idx - 1)) - 1;
-		size_t	end = std::min(current_jacob, pend_vec.size());
+		if (S[i] > S[i + 1])
+			pairs.push_back(std::make_pair(S[i], S[i + 1]));
+		else
+			pairs.push_back(std::make_pair(S[i + 1], S[i]));
+	}
 
-		for (size_t pos = end; pos > prev_jacob && pos > 0; pos--)
+	std::vector<int> main_chain;
+	for (size_t i = 0; i < pairs.size(); ++i)
+		main_chain.push_back(pairs[i].first);
+
+	mergeInsertSort(main_chain); // Ricorsione
+
+	std::vector<int> pend_chain;
+	for (size_t i = 0; i < main_chain.size(); ++i)
+	{
+		for (size_t j = 0; j < pairs.size(); ++j)
 		{
-			int	bound = 1 + pos + inserted;
-			bound = std::min(static_cast<size_t>(bound), main_vec.size() - 1);
-			int	insert_pos = binarySearchBound(main_vec, pend_vec[pos - 1], bound);
+			if (main_chain[i] == pairs[j].first)
+			{
+				pend_chain.push_back(pairs[j].second);
+				pairs.erase(pairs.begin() + j); 
+				break;
+			}
+		}
+	}
 
-			main_vec.insert(main_vec.begin() + insert_pos, pend_vec[pos - 1]);
+	if (!pend_chain.empty())
+		main_chain.insert(main_chain.begin(), pend_chain[0]);
+
+	size_t	jacob_idx = 2;
+	size_t	inserted = 1;
+	size_t	max_pend = pend_chain.size();
+
+	while (inserted < max_pend)
+	{
+		size_t	end_idx = getJacobsthal(jacob_idx);
+		end_idx = std::min(end_idx, max_pend);
+		size_t	start_idx = getJacobsthal(jacob_idx - 1);
+
+		for (size_t i = end_idx; i > start_idx; --i)
+		{
+			if (i - 1 >= pend_chain.size())
+				continue;
+			int element_to_insert = pend_chain[i - 1];
+			int bound = (i - 1) + inserted;
+			bound = std::min(static_cast<size_t>(bound), main_chain.size());
+
+			binaryInsert(main_chain, element_to_insert, bound - 1); // bound-1 è l'indice max
 			inserted++;
 		}
 		jacob_idx++;
 	}
-	_vec = copyVect(main_vec);
+
+	if (hasStraggler)
+		binaryInsert(main_chain, straggler, main_chain.size() - 1);
+
+	S = main_chain;
 }
 
+// =============================================================================
+// Implementazione Pura (DEQUE)
+// =============================================================================
 
+void	PmergeMe::binaryInsert(std::deque<int>& S, int element, int max_index)
+{
+	int low = 0;
+	int high = max_index;
+	
+	if (high >= static_cast<int>(S.size()))
+		high = S.size() - 1;
 
+	while (low <= high)
+	{
+		int mid = low + (high - low) / 2;
+		if (S[mid] < element)
+			low = mid + 1;
+		else
+			high = mid - 1;
+	}
+	S.insert(S.begin() + low, element);
+}
+
+void	PmergeMe::mergeInsertSort(std::deque<int>& S)
+{
+	size_t n = S.size();
+	if (n < 2) return;
+
+	int straggler = -1;
+	bool hasStraggler = (n % 2 != 0);
+	if (hasStraggler)
+	{
+		straggler = S.back();
+		S.pop_back();
+		n--;
+	}
+
+	PairDeque pairs;
+	for (size_t i = 0; i < n; i += 2)
+	{
+		if (S[i] > S[i + 1])
+			pairs.push_back(std::make_pair(S[i], S[i + 1]));
+		else
+			pairs.push_back(std::make_pair(S[i + 1], S[i]));
+	}
+
+	std::deque<int> main_chain;
+	for (size_t i = 0; i < pairs.size(); ++i)
+		main_chain.push_back(pairs[i].first);
+
+	mergeInsertSort(main_chain); // Ricorsione
+
+	std::deque<int> pend_chain;
+	for (size_t i = 0; i < main_chain.size(); ++i)
+	{
+		for (size_t j = 0; j < pairs.size(); ++j)
+		{
+			if (main_chain[i] == pairs[j].first)
+			{
+				pend_chain.push_back(pairs[j].second);
+				pairs.erase(pairs.begin() + j); 
+				break;
+			}
+		}
+	}
+
+	if (!pend_chain.empty())
+		main_chain.insert(main_chain.begin(), pend_chain[0]);
+
+	size_t	jacob_idx = 2;
+	size_t	inserted = 1;
+	size_t	max_pend = pend_chain.size();
+
+	while (inserted < max_pend)
+	{
+		size_t	end_idx = getJacobsthal(jacob_idx);
+		end_idx = std::min(end_idx, max_pend);
+		size_t	start_idx = getJacobsthal(jacob_idx - 1);
+
+		for (size_t i = end_idx; i > start_idx; --i)
+		{
+			if (i - 1 >= pend_chain.size()) continue;
+			int element_to_insert = pend_chain[i - 1];
+			int bound = (i - 1) + inserted;
+			bound = std::min(static_cast<size_t>(bound), main_chain.size());
+
+			binaryInsert(main_chain, element_to_insert, bound - 1); // bound-1 è l'indice max
+			inserted++;
+		}
+		jacob_idx++;
+	}
+
+	if (hasStraggler)
+		binaryInsert(main_chain, straggler, main_chain.size() - 1);
+
+	S = main_chain;
+}

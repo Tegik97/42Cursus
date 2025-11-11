@@ -1,4 +1,4 @@
-#include "PmergeMe.hpp"
+#include "PmergeMeTest.hpp"
 
 int	main(int argc, char** argv)
 {
@@ -7,6 +7,6 @@ int	main(int argc, char** argv)
 	if (!merge.inputParse(argc, argv))
 		return 1;
 
-	merge.printSortedVector();
+	merge.runSort();
 	return 0;
 }

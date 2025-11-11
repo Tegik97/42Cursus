@@ -1,12 +1,16 @@
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP
 
+# include <iostream>
 # include <vector>
 # include <deque>
-# include <iostream>
 # include <sstream>
-# include <algorithm>
-# include <cstddef>
+# include <string>
+# include <algorithm> // Per std::min
+# include <cstddef>   // Per size_t
+# include <utility>   // Per std::pair
+# include <iomanip>   // Per std::setprecision
+# include <sys/time.h> // Per gettimeofday
 
 class PmergeMe
 {
@@ -14,8 +18,25 @@ class PmergeMe
 		std::vector<int>	_vec;
 		std::deque<int>		_deq;
 
-		void	sortVector(int recursion_level);
-		void	binaryVectInsertion(size_t pair_size);
+		double				_timeVec;
+		double				_timeDeq;
+
+		// Tipi per le coppie
+		typedef std::pair<int, int> Pair;
+		typedef std::vector<Pair> PairVector;
+		typedef std::deque<Pair> PairDeque;
+
+		// --- Algoritmo per VECTOR ---
+		void	mergeInsertSort(std::vector<int>& S);
+		void	binaryInsert(std::vector<int>& S, int element, int max_index);
+
+		// --- Algoritmo per DEQUE ---
+		void	mergeInsertSort(std::deque<int>& S);
+		void	binaryInsert(std::deque<int>& S, int element, int max_index);
+
+		// --- Helper Comune ---
+		size_t	getJacobsthal(int n);
+		long	getTime(); // Ritorna microsecondi
 
 	public:
 		PmergeMe();
@@ -24,7 +45,7 @@ class PmergeMe
 		~PmergeMe();
 
 		bool	inputParse(int argc, char** argv);
-		void	printSortedVector();
+		void	runSort();
 };
 
 #endif
