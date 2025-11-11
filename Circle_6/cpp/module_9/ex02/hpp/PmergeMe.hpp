@@ -6,6 +6,7 @@
 # include <iostream>
 # include <sstream>
 # include <algorithm>
+# include <cstddef>
 
 class PmergeMe
 {
@@ -14,6 +15,7 @@ class PmergeMe
 		std::deque<int>		_deq;
 
 		void	sortVector(int recursion_level);
+		void	binaryVectInsertion(size_t pair_size);
 
 	public:
 		PmergeMe();
