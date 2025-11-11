@@ -145,26 +145,18 @@ void	PmergeMe::binaryVectInsertion(size_t pair_size)
 	std::vector<std::vector<int> >	pairs_vec = getPairsVect(pair_size, _vec);
 	std::vector<std::vector<int> >	main_vec;
 	std::vector<std::vector<int> >	pend_vec;
-	std::vector<int>				carry_vec;
 
 	main_vec.push_back(pairs_vec[0]);
 
-	for (size_t i = 1; i < (pairs_vec.size() - 1); i++)
+	for (size_t i = 1; i < (pairs_vec.size()); i++)
 	{
 		if (i % 2 == 0)
 			pend_vec.push_back(pairs_vec[i]);
 		else
 			main_vec.push_back(pairs_vec[i]);
 	}
-	if (pairs_vec.back().size() == pair_size)
-		pend_vec.push_back(pairs_vec.back());
-	else
-		carry_vec = pairs_vec.back();
-	
 	if (pend_vec.empty())
 	{
-		if (!carry_vec.empty())
-			main_vec.push_back(carry_vec);
 		_vec = copyVect(main_vec);
 		return ;
 	}
@@ -174,13 +166,13 @@ void	PmergeMe::binaryVectInsertion(size_t pair_size)
 
 	while (inserted < pend_vec.size())
 	{
-		size_t	current_jacob = (getJacobsthal(jacob_idx));
-		size_t	prev_jacob = (getJacobsthal(jacob_idx - 1));
+		size_t	current_jacob = (getJacobsthal(jacob_idx)) - 1;
+		size_t	prev_jacob = (getJacobsthal(jacob_idx - 1)) - 1;
 		size_t	end = std::min(current_jacob, pend_vec.size());
 
-		for (size_t pos = end; pos >= prev_jacob && pos > 0; pos--)
+		for (size_t pos = end; pos > prev_jacob && pos > 0; pos--)
 		{
-			int	bound = 1 + pos;
+			int	bound = 1 + pos + inserted;
 			bound = std::min(static_cast<size_t>(bound), main_vec.size() - 1);
 			int	insert_pos = binarySearchBound(main_vec, pend_vec[pos - 1], bound);
 
@@ -189,7 +181,8 @@ void	PmergeMe::binaryVectInsertion(size_t pair_size)
 		}
 		jacob_idx++;
 	}
-	if (!carry_vec.empty())
-		main_vec.push_back(carry_vec);
 	_vec = copyVect(main_vec);
 }
+
+
+
