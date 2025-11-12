@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include <iostream>
 #include <sys/select.h>
-#include <netinet/in.h>
+#include <netinet/in.h> //controllare librerie versione c++
 
 #include "Client.hpp"
 #include "Channel.hpp"
