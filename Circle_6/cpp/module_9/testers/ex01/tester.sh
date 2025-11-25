@@ -14,7 +14,7 @@ RPN_PATH="./RPN"
 
 if [ ! -f "$RPN_PATH" ]; then
     echo -e "${RED}Error: RPN executable not found at $RPN_PATH${NC}"
-    echo "Please compile the project first: cd ../../ex01 && make"
+    echo "Please compile the project first"
     exit 1
 fi
 
@@ -25,7 +25,7 @@ test_case() {
     
     echo -n "Testing: $description ($input) "
     
-    result=$($RPN_PATH "$input" 2>&1 | head -n 1)
+    result=$($RPN_PATH "$input" 2>&1)
     
     if [ "$result" = "$expected" ]; then
         echo -e "= $result ${GREEN}✓ PASS${NC}"
@@ -108,21 +108,21 @@ echo
 echo -e "${BOLD}=== Error Tests ===${NC}"
 # ============================================================================
 test_case "5 0 /" "Error: division by zero" "Division by zero"
-test_case "8 2 / 0 /" "Error: division by zero" "Division by zero (after operation)"
+test_case "8 2 / 0 /" "Error: division by zero" "Division by zero"
 test_case "0 0 /" "Error: division by zero" "Zero divided by zero"
 
-test_case "5 +" "Error: not enough operands" "Not enough operands (one number)"
+test_case "5 +" "Error: not enough operands" "Not enough operands"
 test_case "+ 3 4" "Error: not enough operands" "Operator at start"
 test_case "+" "Error: not enough operands" "Only operator"
-test_case "3 + 4" "Error: not enough operands" "Infix notation (should be RPN)"
+test_case "3 + 4" "Error: not enough operands" "Infix notation"
 
-test_case "3 4 5" "Error" "Too many operands (no operations)"
+test_case "3 4 5" "Error" "Too many operands"
 test_case "1 2 + 3 4 +" "Error" "Multiple results in stack"
 
 test_case "3 4 & 2" "Error" "Invalid operator (&)"
 test_case "3 4 x" "Error" "Invalid operator (x)"
 test_case "abc" "Error" "Invalid token (letters)"
-test_case "3 4.5 +" "Error" "Float number (if integers only)"
+test_case "3 4.5 +" "Error" "Float number"
 
 test_case "" "Error: bad argument" "Empty expression"
 

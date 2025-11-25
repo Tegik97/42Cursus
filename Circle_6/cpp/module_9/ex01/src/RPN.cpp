@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
+/*   By: menny <menny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 15:41:17 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/11/04 15:54:11 by mchiaram         ###   ########.fr       */
+/*   Updated: 2025/11/25 18:30:16 by menny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,10 @@ static bool	validOperator(const char& op)
 void	RPN::calculate(const std::string& expression)
 {
 	if (expression.empty())
+	{
 		std::cerr << "Error: bad argument" << std::endl;
+		return ;
+	}
 
 	std::istringstream	iss(expression);
 	int					value;
@@ -82,7 +85,7 @@ void	RPN::calculate(const std::string& expression)
 		while (iss >> token)
 		{
 			if (toInt(token, value))
-				_operands.push(value);
+				_operands.push_back(value);
 			else
 			{
 				if (!validOperator(token[0]))
@@ -92,19 +95,20 @@ void	RPN::calculate(const std::string& expression)
 					std::cerr << "Error: not enough operands" << std::endl;
 					return ;
 				}
-				int	op2 = _operands.top();
-				_operands.pop();
-				int op1 = _operands.top();
-				_operands.pop();
-				_operands.push(getResult(op1, op2, token[0]));
+				int	op2 = _operands.back();
+				_operands.pop_back();
+				int op1 = _operands.back();
+				_operands.pop_back();
+				_operands.push_back(getResult(op1, op2, token[0]));
 			}
 		}
 	}
 	catch(const std::exception& e) {
 		std::cerr << e.what() << std::endl;
+		return ;
 	}
 	if (_operands.size() == 1)
-		std::cout << _operands.top() << std::endl;
+		std::cout << _operands.back() << std::endl;
 	else
 		std::cerr << "Error" << std::endl;
 }
