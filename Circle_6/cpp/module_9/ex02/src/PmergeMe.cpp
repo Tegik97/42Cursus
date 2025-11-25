@@ -1,4 +1,4 @@
-#include "PmergeMeTest.hpp"
+#include "PmergeMe.hpp"
 
 // =============================================================================
 // Funzioni Canoniche
@@ -36,7 +36,8 @@ long	PmergeMe::getTime()
 
 size_t	PmergeMe::getJacobsthal(int n)
 {
-	if (n < 2) return n;
+	if (n < 2)
+		return n;
 	size_t	power = 1 << (n + 1); // 2^(n+1)
 	int		sign = (n % 2 == 0) ? 1 : -1;
 	return (power + sign) / 3;
