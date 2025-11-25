@@ -1,8 +1,9 @@
 #include "PmergeMe.hpp"
 
-// =============================================================================
-// Funzioni Canoniche
-// =============================================================================
+#define RESET   	"\033[0m"
+#define BOLD    	"\033[1m"
+#define LAVENDER   "\033[38;5;183m"
+#define CYAN    	"\033[36m"
 
 PmergeMe::PmergeMe() : _timeVec(0), _timeDeq(0) {}
 
@@ -23,10 +24,6 @@ PmergeMe&	PmergeMe::operator=(const PmergeMe& other)
 
 PmergeMe::~PmergeMe() {}
 
-// =============================================================================
-// Helper: Tempo e Jacobsthal
-// =============================================================================
-
 long	PmergeMe::getTime()
 {
 	struct timeval	tv;
@@ -42,10 +39,6 @@ size_t	PmergeMe::getJacobsthal(int n)
 	int		sign = (n % 2 == 0) ? 1 : -1;
 	return (power + sign) / 3;
 }
-
-// =============================================================================
-// Parsing e Stampa Principale
-// =============================================================================
 
 bool	PmergeMe::inputParse(int argc, char** argv)
 {
@@ -102,37 +95,42 @@ void	PmergeMe::runSort()
 	std::cout << "Before: ";
 	for (size_t	i = 0; i < _vec.size(); i++)
 		std::cout << _vec[i] << " ";
-	std::cout << std::endl;
+	std::cout << "\n" << std::endl;
 
-	// Sort per Vector
+	// Vector Sort
 	long startTimeVec = getTime();
 	mergeInsertSort(_vec);
 	long endTimeVec = getTime();
 	_timeVec = static_cast<double>(endTimeVec - startTimeVec);
 
-	// Sort per Deque
+	// Deque Sort
 	long startTimeDeq = getTime();
 	mergeInsertSort(_deq);
 	long endTimeDeq = getTime();
 	_timeDeq = static_cast<double>(endTimeDeq - startTimeDeq);
 
-	std::cout << "After: ";
+	std::cout << LAVENDER << "After Vec: ";
 	for (size_t	i = 0; i < _vec.size(); i++)
 		std::cout << _vec[i] << " ";
-	std::cout << std::endl;
+	std::cout << RESET << "\n" << std::endl;
 
-	std::cout << "Time to process a range of " << _vec.size()
-			  << " elements with std::vector: " << std::fixed << std::setprecision(5)
-			  << _timeVec << " us" << std::endl;
+	std::cout << CYAN << "After Deq: ";
+	for (size_t	i = 0; i < _deq.size(); i++)
+		std::cout << _deq[i] << " ";
+	std::cout << RESET << "\n" << std::endl;
 
-	std::cout << "Time to process a range of " << _deq.size()
-			  << " elements with std::deque: " << std::fixed << std::setprecision(5)
-			  << _timeDeq << " us" << std::endl;
+	std::cout << BOLD << LAVENDER << "Time to process a range of " << _vec.size()
+			  << " elements with std::vector: " << std::fixed << std::setprecision(2)
+			  << _timeVec << " us" << RESET << std::endl;
+
+	std::cout << BOLD << CYAN << "Time to process a range of " << _deq.size()
+			  << " elements with std::deque: " << std::fixed << std::setprecision(2)
+			  << _timeDeq << " us" << RESET << std::endl;
 }
 
-// =============================================================================
-// Implementazione Pura (VECTOR)
-// =============================================================================
+//=================
+// PmergeMe Vector
+//=================
 
 void	PmergeMe::binaryInsert(std::vector<int>& S, int element, int max_index)
 {
@@ -181,7 +179,7 @@ void	PmergeMe::mergeInsertSort(std::vector<int>& S)
 	for (size_t i = 0; i < pairs.size(); ++i)
 		main_chain.push_back(pairs[i].first);
 
-	mergeInsertSort(main_chain); // Ricorsione
+	mergeInsertSort(main_chain);
 
 	std::vector<int> pend_chain;
 	for (size_t i = 0; i < main_chain.size(); ++i)
@@ -218,7 +216,7 @@ void	PmergeMe::mergeInsertSort(std::vector<int>& S)
 			int bound = (i - 1) + inserted;
 			bound = std::min(static_cast<size_t>(bound), main_chain.size());
 
-			binaryInsert(main_chain, element_to_insert, bound - 1); // bound-1 è l'indice max
+			binaryInsert(main_chain, element_to_insert, bound - 1);
 			inserted++;
 		}
 		jacob_idx++;
@@ -230,9 +228,9 @@ void	PmergeMe::mergeInsertSort(std::vector<int>& S)
 	S = main_chain;
 }
 
-// =============================================================================
-// Implementazione Pura (DEQUE)
-// =============================================================================
+//=================
+// PmergeMe Deque
+//=================
 
 void	PmergeMe::binaryInsert(std::deque<int>& S, int element, int max_index)
 {
@@ -280,7 +278,7 @@ void	PmergeMe::mergeInsertSort(std::deque<int>& S)
 	for (size_t i = 0; i < pairs.size(); ++i)
 		main_chain.push_back(pairs[i].first);
 
-	mergeInsertSort(main_chain); // Ricorsione
+	mergeInsertSort(main_chain);
 
 	std::deque<int> pend_chain;
 	for (size_t i = 0; i < main_chain.size(); ++i)
@@ -316,7 +314,7 @@ void	PmergeMe::mergeInsertSort(std::deque<int>& S)
 			int bound = (i - 1) + inserted;
 			bound = std::min(static_cast<size_t>(bound), main_chain.size());
 
-			binaryInsert(main_chain, element_to_insert, bound - 1); // bound-1 è l'indice max
+			binaryInsert(main_chain, element_to_insert, bound - 1);
 			inserted++;
 		}
 		jacob_idx++;

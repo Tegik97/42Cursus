@@ -6,11 +6,11 @@
 # include <deque>
 # include <sstream>
 # include <string>
-# include <algorithm> // Per std::min
-# include <cstddef>   // Per size_t
-# include <utility>   // Per std::pair
-# include <iomanip>   // Per std::setprecision
-# include <sys/time.h> // Per gettimeofday
+# include <algorithm>
+# include <cstddef>
+# include <utility>
+# include <iomanip>
+# include <sys/time.h>
 
 class PmergeMe
 {
@@ -21,22 +21,18 @@ class PmergeMe
 		double				_timeVec;
 		double				_timeDeq;
 
-		// Tipi per le coppie
 		typedef std::pair<int, int> Pair;
 		typedef std::vector<Pair> PairVector;
 		typedef std::deque<Pair> PairDeque;
 
-		// --- Algoritmo per VECTOR ---
 		void	mergeInsertSort(std::vector<int>& S);
 		void	binaryInsert(std::vector<int>& S, int element, int max_index);
 
-		// --- Algoritmo per DEQUE ---
 		void	mergeInsertSort(std::deque<int>& S);
 		void	binaryInsert(std::deque<int>& S, int element, int max_index);
 
-		// --- Helper Comune ---
 		size_t	getJacobsthal(int n);
-		long	getTime(); // Ritorna microsecondi
+		long	getTime();
 
 	public:
 		PmergeMe();
