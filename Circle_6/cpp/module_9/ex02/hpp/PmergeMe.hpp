@@ -25,11 +25,11 @@ class PmergeMe
 		typedef std::vector<Pair> PairVector;
 		typedef std::deque<Pair> PairDeque;
 
-		void	mergeInsertSort(std::vector<int>& S);
-		void	binaryInsert(std::vector<int>& S, int element, int max_index);
+		void	mergeInsertSort(std::vector<int>& vec);
+		void	binaryInsert(std::vector<int>& vec, int element, int max_index);
 
-		void	mergeInsertSort(std::deque<int>& S);
-		void	binaryInsert(std::deque<int>& S, int element, int max_index);
+		void	mergeInsertSort(std::deque<int>& deq);
+		void	binaryInsert(std::deque<int>& deq, int element, int max_index);
 
 		size_t	getJacobsthal(int n);
 		long	getTime();

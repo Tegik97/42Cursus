@@ -92,7 +92,7 @@ bool	PmergeMe::inputParse(int argc, char** argv)
 
 void	PmergeMe::runSort()
 {
-	std::cout << "Before: ";
+	std::cout << BOLD << "Before: " << RESET;
 	for (size_t	i = 0; i < _vec.size(); i++)
 		std::cout << _vec[i] << " ";
 	std::cout << "\n" << std::endl;
@@ -109,12 +109,12 @@ void	PmergeMe::runSort()
 	long endTimeDeq = getTime();
 	_timeDeq = static_cast<double>(endTimeDeq - startTimeDeq);
 
-	std::cout << LAVENDER << "After Vec: ";
+	std::cout << BOLD << LAVENDER << "After Vec: " << RESET << LAVENDER;
 	for (size_t	i = 0; i < _vec.size(); i++)
 		std::cout << _vec[i] << " ";
 	std::cout << RESET << "\n" << std::endl;
 
-	std::cout << CYAN << "After Deq: ";
+	std::cout << BOLD << CYAN << "After Deq: " << RESET << CYAN;
 	for (size_t	i = 0; i < _deq.size(); i++)
 		std::cout << _deq[i] << " ";
 	std::cout << RESET << "\n" << std::endl;
@@ -132,28 +132,28 @@ void	PmergeMe::runSort()
 // PmergeMe Vector
 //=================
 
-void	PmergeMe::binaryInsert(std::vector<int>& S, int element, int max_index)
+void	PmergeMe::binaryInsert(std::vector<int>& vec, int element, int max_index)
 {
 	int low = 0;
 	int high = max_index;
 	
-	if (high >= static_cast<int>(S.size()))
-		high = S.size() - 1;
+	if (high >= static_cast<int>(vec.size()))
+		high = vec.size() - 1;
 
 	while (low <= high)
 	{
 		int mid = low + (high - low) / 2;
-		if (S[mid] < element)
+		if (vec[mid] < element)
 			low = mid + 1;
 		else
 			high = mid - 1;
 	}
-	S.insert(S.begin() + low, element);
+	vec.insert(vec.begin() + low, element);
 }
 
-void	PmergeMe::mergeInsertSort(std::vector<int>& S)
+void	PmergeMe::mergeInsertSort(std::vector<int>& vec)
 {
-	size_t n = S.size();
+	size_t n = vec.size();
 	if (n < 2)
 		return;
 
@@ -161,18 +161,18 @@ void	PmergeMe::mergeInsertSort(std::vector<int>& S)
 	bool hasStraggler = (n % 2 != 0);
 	if (hasStraggler)
 	{
-		straggler = S.back();
-		S.pop_back();
+		straggler = vec.back();
+		vec.pop_back();
 		n--;
 	}
 
 	PairVector pairs;
 	for (size_t i = 0; i < n; i += 2)
 	{
-		if (S[i] > S[i + 1])
-			pairs.push_back(std::make_pair(S[i], S[i + 1]));
+		if (vec[i] > vec[i + 1])
+			pairs.push_back(std::make_pair(vec[i], vec[i + 1]));
 		else
-			pairs.push_back(std::make_pair(S[i + 1], S[i]));
+			pairs.push_back(std::make_pair(vec[i + 1], vec[i]));
 	}
 
 	std::vector<int> main_chain;
@@ -225,53 +225,53 @@ void	PmergeMe::mergeInsertSort(std::vector<int>& S)
 	if (hasStraggler)
 		binaryInsert(main_chain, straggler, main_chain.size() - 1);
 
-	S = main_chain;
+	vec = main_chain;
 }
 
 //=================
 // PmergeMe Deque
 //=================
 
-void	PmergeMe::binaryInsert(std::deque<int>& S, int element, int max_index)
+void	PmergeMe::binaryInsert(std::deque<int>& deq, int element, int max_index)
 {
 	int low = 0;
 	int high = max_index;
 	
-	if (high >= static_cast<int>(S.size()))
-		high = S.size() - 1;
+	if (high >= static_cast<int>(deq.size()))
+		high = deq.size() - 1;
 
 	while (low <= high)
 	{
 		int mid = low + (high - low) / 2;
-		if (S[mid] < element)
+		if (deq[mid] < element)
 			low = mid + 1;
 		else
 			high = mid - 1;
 	}
-	S.insert(S.begin() + low, element);
+	deq.insert(deq.begin() + low, element);
 }
 
-void	PmergeMe::mergeInsertSort(std::deque<int>& S)
+void	PmergeMe::mergeInsertSort(std::deque<int>& deq)
 {
-	size_t n = S.size();
+	size_t n = deq.size();
 	if (n < 2) return;
 
 	int straggler = -1;
 	bool hasStraggler = (n % 2 != 0);
 	if (hasStraggler)
 	{
-		straggler = S.back();
-		S.pop_back();
+		straggler = deq.back();
+		deq.pop_back();
 		n--;
 	}
 
 	PairDeque pairs;
 	for (size_t i = 0; i < n; i += 2)
 	{
-		if (S[i] > S[i + 1])
-			pairs.push_back(std::make_pair(S[i], S[i + 1]));
+		if (deq[i] > deq[i + 1])
+			pairs.push_back(std::make_pair(deq[i], deq[i + 1]));
 		else
-			pairs.push_back(std::make_pair(S[i + 1], S[i]));
+			pairs.push_back(std::make_pair(deq[i + 1], deq[i]));
 	}
 
 	std::deque<int> main_chain;
@@ -323,5 +323,5 @@ void	PmergeMe::mergeInsertSort(std::deque<int>& S)
 	if (hasStraggler)
 		binaryInsert(main_chain, straggler, main_chain.size() - 1);
 
-	S = main_chain;
+	deq = main_chain;
 }
