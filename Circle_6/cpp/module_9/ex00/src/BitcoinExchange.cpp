@@ -6,7 +6,7 @@
 /*   By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 12:46:50 by mchiaram          #+#    #+#             */
-/*   Updated: 2025/11/04 12:46:51 by mchiaram         ###   ########.fr       */
+/*   Updated: 2025/11/26 11:37:43 by mchiaram         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	BitcoinExchange::saveCSVData()
 	if (!csvFile.is_open())
 	{
 		std::cerr << "Error: could not open data.csv" << std::endl;
-		return 0;
+		exit(EXIT_FAILURE);
 	}
 
 	std::string		line;
@@ -42,7 +42,7 @@ int	BitcoinExchange::saveCSVData()
 	if (!std::getline(csvFile, line))
 	{
 		std::cerr << "Error: empty file" << std::endl;
-		return 0;
+		exit(EXIT_FAILURE);
 	}
 
 	while (std::getline(csvFile, line))

@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: menny <menny@student.42.fr>                +#+  +:+       +#+         #
+#    By: mchiaram <mchiaram@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/09 14:06:35 by mchiaram          #+#    #+#              #
-#    Updated: 2025/11/11 23:05:31 by menny            ###   ########.fr        #
+#    Updated: 2025/11/26 11:48:41 by mchiaram         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= PmergeMe
 
 CXX			= c++
-CXXFLAGS	= -Wextra -Werror -Wall -std=c++98 -g
+CXXFLAGS	= -Wextra -Werror -Wall -std=c++98
 SRC_DIR 	= src
 HPP_DIR		= hpp
 BUILD_DIR 	= .build
@@ -73,8 +73,8 @@ fclean: clean
 
 re: fclean all
 
-TESTER_FILES	:= tester.sh
-TESTER_DIR_URL	:= https://raw.githubusercontent.com/Tegik97/42Cursus/main/Circle_6/cpp/module_9/testers/ex01
+TESTER_FILES	:=
+TESTER_DIR_URL	:=
 
 test:
 	@if [ "$(TESTER_DIR_URL)" ]; then \
