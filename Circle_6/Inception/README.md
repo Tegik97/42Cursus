@@ -1,27 +1,38 @@
+# Inception - 42 Project
+
 *This project has been created as part of the 42 curriculum by mchiaram.*
 
-## Description
-This project aims to broaden knowledge of system administration using Docker Compose. The objective is to configure a small infrastructure running NGINX, WordPress and MariaDB under specific rules.
-Each service must run inside its own dedicated container, communicating with one another via a dedicated network.
-The only service accessible to the user is NGINX, which acts as entrypoint and routes requests to the other two services if needed
+## Project Overview
+This project aims to broaden knowledge of system administration using Docker. The objective is to build a small, secure infrastructure running NGINX, WordPress, and MariaDB under strict constraints.
+
+Each service runs in a dedicated container, isolated within a private network. NGINX acts as the sole entry point, routing HTTPS requests to other services while ensuring all communications are encrypted via TLSv1.2 or TLSv1.3.
 
 ## Instructions
-To build and execute the project run the `make` command from the repository root. The infrastructure will be built using `docker compose`. Ensure that the `/etc/hosts` and `.env` files are properly configured before execution.
+1. **Prerequisites**: Ensure you are on a Debian/Ubuntu VM.
+2. **Setup**: 
+   - Add `127.0.0.1 mchiaram.42.fr` to your `/etc/hosts`.
+   - Create a `.env` file in `srcs/` with your credentials.
+3. **Run**: Execute `make` from the root directory to build and start the infrastructure.
 
-## Resources
-* [Official Docker Compose documentation](https://docs.docker.com/compose/intro/compose-application-model/)
-* [nginx configuration tutorial](https://nginx.org/en/docs/beginners_guide.html)
-* [Inception guide from Forstman1 github](https://github.com/Forstman1/inception-42)
-* **AI USAGE**: I used AI to better understand the syntax of the NGINX configuration file and how to properly handle PID 1 inside Bash scripts. Overall, AI helped accelerate and deepen my study of the project by answering specific questions that would have otherwise taken significantly more time to research online.
+## Design Choices & Comparisons
+In accordance with the project requirements (Chapter VI), here is an analysis of the technologies used:
 
 ### Virtual Machines vs Docker
-Virtual Machines emulate the entire hardware and guest OS resulting in a heavier workload for the host machine. Docker, on the other hand, shares the host's kernel and virtualizes at the OS level, providing a lighter and faster solution.
+Virtual Machines (VMs) emulate entire hardware sets and guest operating systems, resulting in high resource overhead. **Docker**, on the other hand, virtualizes at the OS level, sharing the host's kernel. This makes Docker containers significantly lighter, faster to start, and more portable for microservices architectures.
 
-### Secrets vs Environment Variables
-Environment variables can be easily read by anyone inspecting the container (docker inspect). Docker Secrets, instead, are a more secure mechanism for handling highly sensitive data. They are not stored in the container's configuration but are mounted directly into the container's in-memory filesystem.
+### Docker Secrets vs Environment Variables
+While Environment Variables are practical, they can be exposed via `docker inspect`. In this project, we use them for basic configuration, but for a production-grade environment, **Docker Secrets** would be the preferred choice as they are encrypted at rest and mounted into the container's in-memory filesystem, never touching the disk.
 
 ### Docker Network vs Host Network
-Using a Docker bridge network isolates the containers from the host, creating a private network. Within this network, containers communicate securely using hostnames without exposing unnecessary ports to the outside world.
+We use a **Docker Bridge Network** to isolate containers from the host. This provides an internal DNS (allowing containers to communicate via service names like `mariadb`) and ensures that only necessary ports (like 443 via NGINX) are exposed to the outside world, minimizing the attack surface.
 
 ### Docker Volumes vs Bind Mounts
-Bind Mounts link a specific directory on the host machine to the container. They rely on the host's filesystem structure and OS, making them less portable. Docker Volumes, on the other hand, are entirely managed by Docker and stored in a dedicated, isolated area of the host filesystem. Volumes are the recommended approach because they offer better performance, are easier to back up or migrate, and provide greater security since non-Docker processes cannot easily interfere with the data.
+In this project, we utilize **Named Volumes with bind-mount configurations**. While standard Docker Volumes are entirely managed by Docker in a hidden area of the host filesystem, we specifically configure them to point to `/home/mchiaram/data/` as required by the subject. 
+
+This approach combines the portability of Named Volumes (referenced by name in the services) with the explicit data persistence of Bind Mounts, ensuring that our WordPress and MariaDB data are easily accessible and persistent on the host machine even if the containers or Docker networks are removed.
+
+## Resources & AI Usage
+* [Official Docker Documentation](https://docs.docker.com/)
+* [NGINX TLS Configuration Guide](https://nginx.org/en/docs/http/configuring_https_it.html)
+
+**AI Disclosure**: I used AI (Gemini) to clarify complex NGINX syntax and to optimize the signal handling (PID 1) in my entrypoint scripts. This helped accelerate the learning process regarding container lifecycle management and secure protocol implementation.
