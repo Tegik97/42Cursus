@@ -1,0 +1,32 @@
+-per o k l sendModeChange deve mandare anche il target o l'argomento al client:
+	per 'o' deve mandare anche il target (il nickname dell'utente che riceve o perde l'operator)
+	per 'k' deve mandare la nuova key
+	per 'l' deve mandare il valore del nuovo limite
+
+
+-JOIN, INVITE, PART, KICK e TOPIC devono funzionare anche nella chat principale con il formato /comando <channelName> <nickname/topic>
+
+-JOIN, PART e KICK devono accettare piu' parametri:
+	/join #chan1,#chan2,#chan3 key1,key2
+	/part #chan1,#chan2,#chan3 :reason
+	/kick #chan user1,user2,user3 :reason
+
+/USER:
+	-Gestire anche /user <username> <realname> senza richiedere per forza <0> e <*>
+
+/QUIT:
+	-ciclare params per estrarre e gestire la reason dopo i ':'
+
+
+/MODE
+
+i = invite only
+t = change topic
+k = change key [param]
+o = operator [param]
+l = limit [param]
+
+
+// DA AGGIUSTARE -->
+SE metto prima /USER poi /NICK 
+IL MESSAGGIO DI BENVENTO "Welcome .." SARÀ:    !username@ip !!!

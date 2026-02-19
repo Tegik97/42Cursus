@@ -1,0 +1,13 @@
+#vscode
+.vscode
+
+#build
+.build
+.build_bonus
+
+#binary
+ircserv
+ircBot
+
+#docker
+.devcontainer
